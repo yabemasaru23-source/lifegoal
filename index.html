@@ -522,6 +522,26 @@ svg.pyramid .spark{animation:twk 3.4s ease-in-out infinite;transform-box:fill-bo
   body.map-print{background:#fff}
 }
 
+/* ---- 段の内訳（スマホではこちらを読む） ---- */
+.tiers{display:none}
+.trow{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:13px;background:var(--sunk);margin-bottom:7px}
+.trow i{font-style:normal;width:28px;height:28px;border-radius:9px;color:#fff;font-weight:800;
+  display:grid;place-items:center;font-size:14px;flex:none;font-family:var(--font-num)}
+.trow b{display:block;font-size:14.5px;font-family:var(--font-display)}
+.trow small{display:block;font-size:12px;color:var(--ink-3);font-family:var(--font-num);font-weight:700}
+.trow em{margin-left:auto;font-style:normal;font-size:13px;font-weight:800;color:var(--ink-3);
+  font-family:var(--font-num);white-space:nowrap}
+.tnote{font-size:12px;font-weight:800;color:var(--c5);margin:10px 0 0}
+@media (max-width:760px){
+  .tiers{display:block;margin-top:14px}
+  svg.pyramid .tl{display:none}
+  .purposebox .in{padding:13px 15px}
+  #ultimate{font-size:17px}
+  .stat b{font-size:26px}
+  .sechead h2{font-size:17px}
+  .brand h1{font-size:28px}
+}
+
 footer{text-align:center;font-size:12px;color:var(--ink-3);margin-top:46px;line-height:2}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
 @media print{
@@ -597,6 +617,7 @@ footer{text-align:center;font-size:12px;color:var(--ink-3);margin-top:46px;line-
   </div></div>
   <div id="pyrView">
     <svg class="pyramid" id="pyramid" viewBox="0 0 940 500" role="img" aria-label="人生ピラミッド"></svg>
+    <div class="tiers" id="tiers"></div>
     <div class="legend" id="legend"></div>
   </div>
   <div id="roadView" hidden><div id="roadmap"></div></div>
@@ -986,9 +1007,9 @@ function drawPyramid(reveal){
     }
     g.push(`<polygon points="${poly}" fill="none" stroke="${PANEL}" stroke-width="3"/>`);
     const my = (yt+yb)/2;
-    g.push(`<text class="tierlabel" x="6" y="${my-11}">${lv.n}. ${lv.label}</text>`);
-    g.push(`<text class="tiersub" x="6" y="${my+7}">${lv.span}</text>`);
-    g.push(`<text class="tiersub" x="6" y="${my+25}">${sum ? segs.reduce((a,s)=>a+s.d,0) + " / " + sum + " 件" : "0 件"}</text>`);
+    g.push(`<text class="tierlabel tl" x="6" y="${my-11}">${lv.n}. ${lv.label}</text>`);
+    g.push(`<text class="tiersub tl" x="6" y="${my+7}">${lv.span}</text>`);
+    g.push(`<text class="tiersub tl" x="6" y="${my+25}">${sum ? segs.reduce((a,s)=>a+s.d,0) + " / " + sum + " 件" : "0 件"}</text>`);
     p.push(`<g class="tierg" style="animation-delay:${(2-r)*0.32}s">${g.join("")}</g>`);
   });
 
@@ -999,7 +1020,7 @@ function drawPyramid(reveal){
                 ${q[0]+q[2]*.8},${q[1]+q[2]*.8} ${q[0]},${q[1]+q[2]*2.4} ${q[0]-q[2]*.8},${q[1]+q[2]*.8}
                 ${q[0]-q[2]*2.4},${q[1]} ${q[0]-q[2]*.8},${q[1]-q[2]*.8}" fill="#fbbf24"/>`));
   }
-  p.push(`<text x="6" y="492" font-size="12" font-weight="800" fill="${cssv("--c5")}">↑ 近い日付ほど、下の段に入ります</text>`);
+  p.push(`<text class="tl" x="6" y="492" font-size="12" font-weight="800" fill="${cssv("--c5")}">↑ 近い日付ほど、下の段に入ります</text>`);
 
   const svg = document.getElementById("pyramid");
   svg.classList.remove("reveal");
@@ -1007,6 +1028,15 @@ function drawPyramid(reveal){
   if(reveal){ void svg.getBoundingClientRect(); svg.classList.add("reveal"); }
   document.getElementById("legend").innerHTML =
     CATS.map(c=>`<span style="color:${c.hex}">${catIcon(c.id,16)}<b style="color:var(--ink)">${c.name}</b></span>`).join("");
+  const th = document.getElementById("tiers");
+  if(th) th.innerHTML = [...LEVELS].reverse().map(lv => {
+    const list = data.items.filter(i => i.level === lv.id);
+    const done = list.filter(i => i.done).length;
+    const col = ["var(--c4)","var(--c3)","var(--c1)"][["result","realize","base"].indexOf(lv.id)];
+    return `<div class="trow"><i style="background:${col}">${lv.n}</i>
+      <span><b>${lv.label}</b><small>${lv.span}</small></span>
+      <em>${done} / ${list.length} 件</em></div>`;
+  }).join("") + `<p class="tnote">↑ 近い日付ほど、下の段に入ります</p>`;
 }
 
 function countUp(el, to){
