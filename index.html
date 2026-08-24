@@ -1,0 +1,2983 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Zen+Maru+Gothic:wght@700;900&display=swap">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="やりたいことを6分野に書き出し、日付をつけ、絵をつける。最後に自分の言葉から人生の目的が現れます。壁に貼れる宝地図と人生ロードマップをA4で出力できる無料ツールです">
+<link rel="canonical" href="https://yabemasaru23-source.github.io/lifegoal/">
+<meta name="theme-color" content="#ec4899">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ライフゴール">
+<meta property="og:title" content="ライフゴール｜人生はビジュアル化できる">
+<meta property="og:description" content="6分野に夢を書き出し、日付と絵をつけると、最後に人生の目的が現れます。宝地図と人生ロードマップをA4で出力できます">
+<meta property="og:url" content="https://yabemasaru23-source.github.io/lifegoal/">
+<meta property="og:image" content="https://yabemasaru23-source.github.io/lifegoal/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%8E%AF%3C/text%3E%3C/svg%3E">
+<title>ライフゴール｜人生はビジュアル化できる</title>
+<style>
+:root{
+  --bg:#fbfaf8; --panel:#ffffff; --sunk:#f5f4f1;
+  --ink:#16181c; --ink-2:#565b64; --ink-3:#8d939d;
+  --line:#e6e5e1; --line-2:#cfcdc7;
+  --c1:#06b6a4; --c2:#ec4899; --c3:#3b82f6; --c4:#8b5cf6; --c5:#f97316; --c6:#eab308;
+  --gold:#e0a410; --gold-2:#fbbf24;
+  --cta:linear-gradient(100deg,#8b5cf6,#ec4899 52%,#f97316);
+  --rainbow:linear-gradient(90deg,#06b6a4,#ec4899,#3b82f6,#8b5cf6,#f97316,#eab308);
+  --radius:18px; --shadow:0 1px 2px rgba(22,24,28,.04),0 12px 30px rgba(22,24,28,.07);
+  --shadow-lift:0 8px 18px rgba(22,24,28,.10),0 24px 48px rgba(22,24,28,.10);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#131318; --panel:#1d1e25; --sunk:#191a20;
+    --ink:#f0f1f4; --ink-2:#adb2bc; --ink-3:#7c828d;
+    --line:#2c2e37; --line-2:#3d404b; --gold:#fbbf24; --gold-2:#fde68a;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 30px rgba(0,0,0,.4);
+    --shadow-lift:0 8px 18px rgba(0,0,0,.5),0 24px 48px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131318; --panel:#1d1e25; --sunk:#191a20;
+  --ink:#f0f1f4; --ink-2:#adb2bc; --ink-3:#7c828d;
+  --line:#2c2e37; --line-2:#3d404b; --gold:#fbbf24; --gold-2:#fde68a;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 30px rgba(0,0,0,.4);
+  --shadow-lift:0 8px 18px rgba(0,0,0,.5),0 24px 48px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",Meiryo,system-ui,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:340px;pointer-events:none;z-index:0;
+  background:radial-gradient(700px 260px at 12% 0%,rgba(139,92,246,.14),transparent 70%),
+             radial-gradient(620px 240px at 78% 0%,rgba(236,72,153,.13),transparent 70%),
+             radial-gradient(520px 200px at 50% 0%,rgba(6,182,164,.10),transparent 70%)}
+.wrap{max-width:1140px;margin:0 auto;padding:24px 20px 120px;position:relative;z-index:1}
+h1,h2,h3,h4{line-height:1.35;margin:0}
+[hidden]{display:none!important}
+.grad{background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+header.top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:8px}
+.brand .eyebrow{font-size:10.5px;letter-spacing:.34em;color:var(--ink-3);font-weight:800}
+.brand h1{font-size:clamp(30px,5.4vw,46px);letter-spacing:.01em;font-weight:800}
+.brand p{margin:2px 0 0;color:var(--ink-2);font-size:14px;font-weight:600}
+.rainbowrule{height:5px;border-radius:5px;background:var(--rainbow);margin:14px 0 22px}
+.toolbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+
+button{font:inherit;font-size:13px;padding:8px 14px;border-radius:11px;border:1px solid var(--line-2);
+  background:var(--panel);color:var(--ink);cursor:pointer;transition:.16s;white-space:nowrap}
+button:hover{border-color:var(--ink-3);transform:translateY(-1px)}
+button:active{transform:translateY(0)}
+button:focus-visible{outline:3px solid var(--c4);outline-offset:2px}
+button.cta{background:var(--cta);color:#fff;border:none;font-weight:800;box-shadow:0 6px 18px rgba(236,72,153,.32)}
+button.cta:hover{box-shadow:0 10px 26px rgba(236,72,153,.42)}
+button.gold{background:linear-gradient(100deg,var(--gold),var(--gold-2));color:#3b2a00;border:none;font-weight:800}
+button.big{font-size:16px;padding:14px 30px;border-radius:14px}
+button.ghost{border-color:transparent;background:transparent;color:var(--ink-2)}
+button.danger:hover{border-color:#e0453a;color:#e0453a}
+button:disabled{opacity:.32;cursor:default;transform:none!important;box-shadow:none}
+.saved{font-size:12px;color:var(--ink-3);min-width:96px}
+
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:20px}
+.panel > .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.panel h2{font-size:18px;font-weight:800}
+.hint{font-size:12.5px;color:var(--ink-3)}
+.sechead{display:flex;align-items:center;gap:12px;margin:36px 0 14px;flex-wrap:wrap}
+.sechead .num{font-size:11px;letter-spacing:.16em;color:#fff;font-weight:800;border-radius:20px;padding:4px 13px;background:var(--cta)}
+.sechead h2{font-size:19px;font-weight:800}
+.sechead .hint{margin-left:auto}
+
+textarea,input[type=text],select{font:inherit;width:100%;background:var(--panel);color:var(--ink);
+  border:1.5px solid var(--line);border-radius:11px;padding:10px 12px;resize:vertical;transition:.15s}
+textarea:focus,input:focus,select:focus{outline:none;border-color:var(--c4);box-shadow:0 0 0 4px rgba(139,92,246,.16)}
+select{cursor:pointer}
+
+/* ---- 入口 ---- */
+.intro{background:var(--panel);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow-lift);padding:38px 30px;margin-bottom:20px;position:relative;overflow:hidden}
+.intro::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--rainbow)}
+.intro h2{font-size:clamp(22px,3.6vw,30px);margin-bottom:10px;font-weight:800}
+.intro p{font-size:15px;color:var(--ink-2);max-width:60ch;margin:0 0 12px}
+.introsteps{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:24px 0 6px}
+.introstep{border-radius:15px;padding:15px;color:#fff;font-weight:800;font-size:14px;line-height:1.5;box-shadow:var(--shadow)}
+.introstep span{display:block;font-size:10.5px;letter-spacing:.18em;opacity:.85;font-weight:700;margin-bottom:3px}
+.intro .cta-row{display:flex;gap:11px;flex-wrap:wrap;margin-top:24px}
+.veil{text-align:center;color:var(--ink-3);font-size:13.5px;border:2px dashed var(--line-2);border-radius:16px;padding:30px 20px}
+.veil b{display:block;color:var(--ink-2);font-size:15px;margin-bottom:4px}
+
+/* ---- ステップレール ---- */
+ol.rail{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 22px;padding:0}
+ol.rail li{background:var(--panel);border:1.5px solid var(--line);border-radius:16px;padding:14px;transition:.18s;
+  display:flex;gap:11px;align-items:center}
+ol.rail li .badge{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;flex:none;
+  font-weight:800;font-size:14px;background:var(--sunk);color:var(--ink-3)}
+ol.rail li .t{font-size:14px;font-weight:800;line-height:1.3}
+ol.rail li .s{font-size:11.5px;color:var(--ink-3)}
+ol.rail li.done .badge{background:var(--cta);color:#fff}
+ol.rail li.now{border-color:var(--c4);box-shadow:0 0 0 4px rgba(139,92,246,.14)}
+ol.rail li.now .badge{background:var(--c4);color:#fff}
+ol.rail li.locked{opacity:.4}
+ol.rail li.can{cursor:pointer}
+ol.rail li.can:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+@media (max-width:720px){ ol.rail{grid-template-columns:repeat(2,1fr)} }
+
+/* ---- 目的とピラミッド ---- */
+.purposebox{border-radius:16px;padding:3px;background:var(--cta);box-shadow:var(--shadow)}
+.purposebox .in{background:var(--panel);border-radius:13px;padding:15px 18px}
+.purposebox label{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.16em;font-weight:800;margin-bottom:5px}
+.purposebox label .tag{background:var(--cta);-webkit-background-clip:text;background-clip:text;color:transparent}
+.purposebox label button{font-size:11px;padding:3px 10px;letter-spacing:0;margin-left:auto;font-weight:600}
+#ultimate{border:none;padding:0;min-height:58px;font-size:19px;line-height:1.65;font-weight:800;background:transparent}
+#ultimate:focus{outline:none;box-shadow:none}
+svg.pyramid{width:100%;height:auto;display:block;overflow:hidden;margin-top:12px}
+svg.pyramid text{font-family:inherit}
+.tierlabel{font-size:14px;font-weight:800;fill:var(--ink)}
+.tiersub{font-size:11.5px;fill:var(--ink-3)}
+@keyframes riseIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes popIn{0%{opacity:0;transform:scale(.86)}70%{transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
+svg.pyramid.reveal .tierg{animation:riseIn .75s cubic-bezier(.2,.8,.3,1) both;transform-box:fill-box;transform-origin:center}
+svg.pyramid.reveal .crowng{animation:popIn 1s cubic-bezier(.2,.9,.3,1) both;animation-delay:1.25s;transform-box:fill-box;transform-origin:center}
+.legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.legend span{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;
+  background:var(--sunk);border-radius:20px;padding:4px 12px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:12px;margin-top:20px}
+.stat{background:var(--sunk);border-radius:14px;padding:13px 15px}
+.stat b{display:block;font-size:30px;font-weight:800;letter-spacing:-.01em;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat > span{font-size:11px;color:var(--ink-3);font-weight:700}
+.stat b span{font-size:inherit;color:inherit;font-weight:inherit}
+
+/* ---- カード ---- */
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(345px,1fr));gap:18px}
+.cat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:.18s}
+.cat:hover{box-shadow:var(--shadow-lift)}
+.cat .capbar{padding:14px 18px;display:flex;align-items:center;gap:9px;color:#fff}
+.cat .capbar h3{font-size:16px;font-weight:800}
+.cat .capbar em{font-style:normal;font-size:11.5px;opacity:.85;font-weight:600}
+.cat .capbar .prog{margin-left:auto;font-size:12px;font-weight:800;background:rgba(255,255,255,.24);border-radius:20px;padding:2px 11px;font-variant-numeric:tabular-nums}
+.cat .body{padding:16px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+.lvgroup{border-top:1px solid var(--line);padding-top:10px}
+.lvgroup:first-child{border-top:none;padding-top:0}
+.lvgroup.nodate{border:1.5px solid var(--gold);border-radius:13px;padding:11px 13px;background:rgba(224,164,16,.07)}
+.lvgroup > h4{font-size:11.5px;color:var(--ink-3);margin:0 0 7px;font-weight:800;display:flex;align-items:center;gap:7px}
+.lvgroup.nodate > h4{color:var(--gold)}
+.lvgroup > h4 i{font-style:normal;width:19px;height:19px;border-radius:6px;background:var(--sunk);color:var(--ink-2);font-size:11px;display:grid;place-items:center;flex:none;font-weight:800}
+ul.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+li.item{display:flex;flex-wrap:wrap;gap:3px 8px;align-items:flex-start;font-size:14px;padding:2px 0}
+li.item input[type=checkbox]{margin-top:5px;width:17px;height:17px;accent-color:var(--c4);cursor:pointer;flex:none}
+li.item .thumb{width:38px;height:29px;border-radius:7px;object-fit:cover;flex:none;margin-top:1px;background:var(--line);cursor:pointer}
+li.item .txt{flex:1;min-width:110px;cursor:text;border-radius:5px;line-height:1.55}
+li.item .txt:focus{outline:none;box-shadow:0 0 0 3px rgba(139,92,246,.2)}
+li.item.done .txt{text-decoration:line-through;color:var(--ink-3)}
+li.item.vague .txt{color:var(--ink-2)}
+li.item .flag{font-size:10px;font-weight:800;border-radius:20px;padding:1px 8px;flex:none;margin-top:3px}
+li.item .flag.sharp{background:rgba(6,182,164,.16);color:var(--c1)}
+li.item .flag.vague{background:rgba(249,115,22,.16);color:var(--c5)}
+li.item .due{font-size:11.5px;padding:2px 8px;border-radius:20px;border:1.5px solid var(--line);color:var(--ink-2);flex:none;margin-top:1px;font-variant-numeric:tabular-nums;width:auto;cursor:pointer;background:var(--panel)}
+li.item .tools{display:flex;gap:2px;flex:none;opacity:0;transition:.15s}
+li.item:hover .tools,li.item:focus-within .tools{opacity:1}
+li.item .tools button{border:none;background:transparent;color:var(--ink-3);padding:1px 5px;font-size:12px;border-radius:6px}
+li.item .tools button:hover{color:var(--ink);background:var(--sunk);transform:none}
+li.item .tools button.del:hover{color:#e0453a}
+.addrow{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:auto;padding-top:11px;border-top:1px solid var(--line)}
+.addrow input[type=text]{flex:1;min-width:140px;font-size:13.5px;padding:8px 11px}
+.empty{font-size:12.5px;color:var(--ink-3)}
+
+/* ---- 夢の地図 ---- */
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:15px}
+.tile{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);display:flex;flex-direction:column;
+  position:relative;text-align:left;padding:0;white-space:normal;box-shadow:var(--shadow);transition:.18s}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+.tile .ribbon{height:5px;width:100%}
+.tile .ph,.tile img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--sunk)}
+.tile .ph{display:grid;place-items:center;color:var(--ink-3);font-size:13px;font-weight:700;border-bottom:2px dashed var(--line-2)}
+.tile .cap{padding:11px 13px;font-size:13px;flex:1;line-height:1.55;font-weight:600}
+.tile .cap b{display:block;font-size:10.5px;margin-bottom:3px;font-weight:800}
+.tile .kill{position:absolute;top:9px;right:9px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;width:26px;height:26px;padding:0;font-size:12px;opacity:0;transition:.15s}
+.tile:hover .kill{opacity:1}
+.tile.addable{cursor:pointer}
+.tile.addable:hover .ph{border-color:var(--c4);color:var(--c4)}
+.meterrow{display:flex;gap:12px;align-items:center;margin-bottom:16px}
+.meter{flex:1;min-width:120px;height:8px;border-radius:8px;background:var(--sunk);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--cta);transition:.4s}
+
+.legacyview{display:grid;gap:12px}
+.qa{background:var(--sunk);border-radius:14px;padding:14px 17px;border-left:5px solid var(--c4)}
+.qa h4{font-size:12.5px;color:var(--c4);margin-bottom:4px;font-weight:800}
+.qa p{margin:0;font-size:14.5px;white-space:pre-wrap}
+
+/* ---- ダイアログ ---- */
+dialog{border:none;border-radius:22px;background:var(--panel);color:var(--ink);
+  max-width:780px;width:calc(100% - 26px);padding:0;box-shadow:0 30px 80px rgba(0,0,0,.4);overflow:hidden}
+dialog::backdrop{background:rgba(18,18,24,.72);backdrop-filter:blur(3px)}
+.dlg-top{height:6px;background:var(--rainbow)}
+.dlg-in{padding:24px;max-height:70vh;overflow-y:auto}
+.dlg-in h2{font-size:22px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.dlg-actions{display:flex;gap:9px;justify-content:flex-end;align-items:center;padding:14px 24px;border-top:1px solid var(--line);background:var(--sunk);flex-wrap:wrap}
+.dlg-actions .spacer{margin-right:auto;font-size:12.5px;color:var(--ink-3);font-weight:600}
+.progressbar{height:6px;border-radius:6px;background:var(--sunk);overflow:hidden;margin-bottom:16px}
+.progressbar i{display:block;height:100%;background:var(--cta);transition:width .3s}
+
+.prompts{border-radius:14px;padding:14px 17px;margin:13px 0 15px;background:var(--sunk)}
+.prompts h4{font-size:11px;letter-spacing:.14em;margin-bottom:7px;font-weight:800}
+.prompts ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-2)}
+.dumpin{display:flex;gap:8px;align-items:center}
+.dumpin input{font-size:16px;padding:13px 15px;font-weight:600}
+.blankwarn{font-size:12px;color:var(--c5);font-weight:700;margin-top:6px;min-height:18px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 4px}
+.chips button{font-size:12.5px;padding:6px 13px;border-radius:20px;color:var(--ink-2);border:1.5px dashed var(--line-2);font-weight:600}
+.chips button:hover{border-color:var(--c4);color:var(--c4);border-style:solid}
+.dumplist{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:6px;max-height:220px;overflow-y:auto}
+.dumplist li{display:flex;gap:10px;align-items:center;font-size:14.5px;padding:8px 12px;background:var(--sunk);border-radius:11px}
+.dumplist li .i{font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums;flex:none;font-weight:700}
+.dumplist li .body{flex:1;font-weight:600}
+.dumplist li .why{font-size:11.5px;padding:3px 10px;border-radius:20px;flex:none;font-weight:700;border-color:var(--c4);color:var(--c4)}
+.dumplist li .x{border:none;background:transparent;color:var(--ink-3);padding:0 3px;flex:none}
+.dumplist li .x:hover{color:#e0453a}
+.whyrow{background:rgba(139,92,246,.09);border:1.5px solid var(--c4);border-radius:11px;padding:11px 13px;margin-top:6px}
+.whyrow .q{font-size:13px;font-weight:800;color:var(--c4);margin-bottom:7px}
+.whyrow .row{display:flex;gap:7px}
+.tally{font-size:13px;color:var(--ink-2);margin-top:12px;font-weight:600}
+.tally b{font-size:17px;font-weight:800}
+.tally .sh{color:var(--c1)} .tally .vg{color:var(--c5)}
+
+.sortcard{border-radius:16px;padding:26px 22px;text-align:center;margin:10px 0 18px;color:#fff;box-shadow:var(--shadow)}
+.sortcard .who{font-size:11.5px;letter-spacing:.14em;margin-bottom:8px;opacity:.9;font-weight:700}
+.sortcard .what{font-size:23px;font-weight:800;line-height:1.5;text-wrap:balance}
+.duebtns{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px}
+.duebtn{text-align:left;padding:14px 16px;border-radius:14px;line-height:1.5;border-width:1.5px}
+.duebtn strong{display:block;font-size:16px;font-weight:800}
+.duebtn .yr{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.duebtn .lv{font-size:11px;margin-top:4px;display:block;font-weight:800}
+.duebtn:hover{border-color:var(--c4);background:rgba(139,92,246,.06)}
+
+.solemn{background:linear-gradient(135deg,rgba(139,92,246,.13),rgba(236,72,153,.08));border-radius:16px;padding:20px 22px;margin:12px 0 18px}
+.solemn p{margin:0;font-size:15px;line-height:1.9;color:var(--ink-2)}
+.qblock{margin-bottom:16px}
+.qblock label{display:block;font-size:15px;font-weight:800;margin-bottom:6px}
+.qblock .sub{font-size:12.5px;color:var(--ink-3);font-weight:500;margin-left:7px}
+.qblock textarea{min-height:78px;font-size:15px}
+.deep{border:1.5px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.deep > summary{list-style:none;cursor:pointer;padding:12px 15px;font-size:14px;font-weight:800;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.deep > summary::-webkit-details-marker{display:none}
+.deep > summary::after{content:"開く";margin-left:auto;font-size:11.5px;color:var(--ink-3);font-weight:600}
+.deep[open] > summary::after{content:"閉じる"}
+.deep[open]{border-color:var(--c4)}
+.deep .in{padding:0 15px 14px}
+.deep .in .qblock{margin-top:13px;margin-bottom:0}
+.deep .in label{font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.deep .in textarea{min-height:58px;font-size:14px}
+
+.draft{border-radius:18px;padding:4px;background:var(--cta);margin:8px 0 16px;box-shadow:var(--shadow-lift)}
+.draft .in{background:var(--panel);border-radius:14px;padding:18px 20px}
+.draft .lab{font-size:11px;letter-spacing:.16em;font-weight:800;margin-bottom:8px;
+  background:var(--cta);-webkit-background-clip:text;background-clip:text;color:transparent}
+.draft textarea{min-height:92px;font-size:19px;font-weight:800;line-height:1.65;border:none;padding:0;background:transparent}
+.draft textarea:focus{box-shadow:none}
+.evidence{display:grid;gap:10px}
+.evrow{background:var(--sunk);border-radius:13px;padding:12px 15px}
+.evrow b{font-size:15px;font-weight:800}
+.evrow .cnt{font-size:11.5px;color:var(--ink-3);margin-left:8px;font-variant-numeric:tabular-nums;font-weight:700}
+.evrow ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)}
+.redo{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:2px}
+
+.finale{text-align:center;padding:14px 0 6px}
+.finale .big{font-size:27px;font-weight:800;margin-bottom:10px}
+.finale .quote{font-size:20px;font-weight:800;line-height:1.75;padding:20px;margin:16px auto;max-width:48ch;
+  text-wrap:balance;border-radius:16px;color:#fff;background:var(--cta);box-shadow:var(--shadow-lift)}
+.finale p{font-size:14px;color:var(--ink-2);margin:0 auto;max-width:46ch}
+#dlgText{min-height:210px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:9999}
+
+/* ---- プロローグ ---- */
+.prologue{position:fixed;inset:0;z-index:500;background:var(--bg);display:grid;place-items:center;
+  padding:20px;overflow-y:auto;overscroll-behavior:contain}
+.prologue::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(760px 380px at 18% 8%,rgba(139,92,246,.16),transparent 70%),
+             radial-gradient(700px 340px at 82% 12%,rgba(236,72,153,.14),transparent 70%),
+             radial-gradient(600px 320px at 50% 96%,rgba(6,182,164,.12),transparent 70%)}
+.pro-inner{max-width:740px;width:100%;text-align:center;position:relative;z-index:1}
+.pro-stage{height:clamp(210px,40vh,330px);display:grid;place-items:center;margin-bottom:14px}
+.pro-stage svg{width:100%;height:100%;max-width:620px;overflow:visible}
+.pro-copy h2{font-size:clamp(20px,3.5vw,29px);font-weight:800;margin-bottom:11px;text-wrap:balance;line-height:1.5}
+.pro-copy p{font-size:15.5px;color:var(--ink-2);margin:0 auto;max-width:42ch;line-height:2}
+.pro-nav{display:flex;align-items:center;gap:13px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+.pro-dots{display:flex;gap:7px;align-items:center}
+.pro-dots i{width:9px;height:9px;border-radius:50%;background:var(--line-2);transition:.3s;display:block}
+.pro-dots i.on{background:var(--cta);width:28px;border-radius:5px}
+.pro-scene{animation:proIn .5s cubic-bezier(.2,.8,.3,1) both}
+@keyframes proIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes proPop{0%{opacity:0;transform:scale(.4)}70%{transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
+@keyframes proJit{0%,100%{transform:translate(0,0)}25%{transform:translate(3px,-4px)}50%{transform:translate(-4px,3px)}75%{transform:translate(3px,4px)}}
+@keyframes proDrift{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes proDash{to{stroke-dashoffset:0}}
+@keyframes proRise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes proGlow{0%,100%{opacity:.45}50%{opacity:1}}
+.pro-stage .pop{animation:proPop .5s cubic-bezier(.2,.9,.3,1) both;transform-box:fill-box;transform-origin:center}
+.pro-stage .jit{animation:proJit 3.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.pro-stage .dft{animation:proDrift 4.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.pro-stage .rise{animation:proRise .7s cubic-bezier(.2,.8,.3,1) both;transform-box:fill-box;transform-origin:center}
+.pro-stage .glow{animation:proGlow 2.4s ease-in-out infinite}
+.pro-stage .draw{stroke-dasharray:1400;stroke-dashoffset:1400;animation:proDash 2.4s ease-out .2s both}
+@media (prefers-reduced-motion:reduce){
+  .pro-stage .pop,.pro-stage .jit,.pro-stage .dft,.pro-stage .rise,.pro-stage .glow,.pro-stage .draw,.pro-scene{animation:none!important;opacity:1!important;stroke-dashoffset:0!important;transform:none!important}
+}
+
+/* ---- 宝の人生マップ ---- */
+#mapDlg{max-width:940px}
+#mapImg{width:100%;height:auto;display:block;border-radius:12px;box-shadow:var(--shadow-lift);background:var(--sunk)}
+#mapInfo{font-size:12.5px;color:var(--ink-3);margin:12px 0 0;text-align:center}
+#mapPrintHost{display:none}
+#mapPrintHost img{width:100%;display:block}
+@media print{
+  body.map-print > *{display:none!important}
+  body.map-print #mapPrintHost{display:block!important}
+  body.map-print{background:#fff}
+  @page{margin:0}
+}
+
+/* ==================== 書体 ==================== */
+:root{
+  --font-display:"Zen Maru Gothic","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  --font-num:"Outfit","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+}
+h1,h2,h3,h4,.intro h2,.pro-copy h2,.finale .big,.sortcard .what,.duebtn strong,
+.dlg-in h2,#ultimate,.draft textarea,.evrow b,.qblock label,.flowcard h4,
+.cat .capbar h3,ol.rail li .t,.tile .cap{font-family:var(--font-display)}
+.stat b,.cat .prog,li.item .due,.dumplist li .i,.duebtn .yr,#mapInfo,
+.brand .eyebrow,.sechead .num,.tally b,.evrow .cnt{font-family:var(--font-num)}
+.brand h1{letter-spacing:.03em}
+
+/* ==================== プロローグの読みやすさ ==================== */
+.pro-stage svg{overflow:hidden}            /* はみ出して見出しに重なるのを止める */
+.pro-stage{margin-bottom:22px}
+.pro-copy h2{color:var(--ink);line-height:1.5;margin-bottom:14px;text-wrap:balance}
+.pro-copy p{color:var(--ink);font-size:16.5px;max-width:34em;line-height:2.05;
+  text-wrap:pretty;line-break:strict;font-weight:500}
+:root:not([data-theme="light"]) .pro-copy p{color:var(--ink)}
+.prologue::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 60% at 50% 62%,var(--panel) 0%,transparent 62%);opacity:.72}
+.pro-inner{position:relative;z-index:2}
+
+/* ==================== きらめき ==================== */
+.grad{background-size:240% 100%;animation:hueShift 11s linear infinite}
+@keyframes hueShift{to{background-position:240% 0}}
+
+.spk{position:relative;display:inline-block}
+.spk i{position:absolute;display:block;width:var(--s,13px);height:var(--s,13px);
+  background:var(--k,#fbbf24);opacity:0;pointer-events:none;
+  clip-path:polygon(50% 0,60% 38%,100% 50%,60% 62%,50% 100%,40% 62%,0 50%,40% 38%);
+  animation:twk 2.8s ease-in-out infinite;
+  filter:drop-shadow(0 0 7px var(--k,#fbbf24))}
+@keyframes twk{
+  0%,100%{opacity:0;transform:scale(.2) rotate(0deg)}
+  40%{opacity:1;transform:scale(1.12) rotate(60deg)}
+  62%{opacity:.85;transform:scale(.9) rotate(105deg)}}
+
+.sechead h2{position:relative;padding-bottom:7px}
+.sechead h2::after{content:"";position:absolute;left:0;bottom:0;height:4px;width:0;
+  border-radius:4px;background:var(--rainbow);transition:width .9s cubic-bezier(.2,.8,.3,1) .15s}
+.sechead.on h2::after{width:100%}
+
+/* ==================== スクロールで現れる ==================== */
+.rv{opacity:0;transform:translateY(22px)}
+.rv.on{opacity:1;transform:none;transition:opacity .65s cubic-bezier(.2,.8,.3,1),transform .65s cubic-bezier(.2,.8,.3,1)}
+
+/* ==================== 手ざわり ==================== */
+button.cta,button.gold{background-size:190% 100%;transition:background-position .45s,box-shadow .22s,transform .15s}
+button.cta:hover,button.gold:hover{background-position:100% 0}
+@keyframes breathe{0%,100%{box-shadow:0 6px 18px rgba(236,72,153,.30)}50%{box-shadow:0 12px 34px rgba(236,72,153,.58)}}
+#btnStart,#proNext,#btnResume{animation:breathe 3s ease-in-out infinite}
+
+.cat{--glow:rgba(0,0,0,0)}
+.cat:hover{transform:translateY(-4px);box-shadow:0 12px 34px var(--glow),var(--shadow-lift)}
+.cat .capbar{position:relative;overflow:hidden}
+.cat .capbar .wm{position:absolute;right:-16px;top:50%;transform:translateY(-50%) rotate(-8deg);
+  opacity:.24;color:#fff;pointer-events:none}
+.cat .capbar h3,.cat .capbar em,.cat .capbar .prog,.cat .capbar .ic{position:relative;z-index:1}
+.cat .capbar .ic{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;
+  background:rgba(255,255,255,.26);color:#fff;flex:none}
+
+.tile{overflow:hidden}
+.tile img{transition:transform .55s cubic-bezier(.2,.8,.3,1)}
+.tile:hover img{transform:scale(1.07)}
+
+.legend span{transition:.18s}
+.legend span:hover{transform:translateY(-2px)}
+
+.stat{position:relative;overflow:hidden;transition:.2s}
+.stat:hover{transform:translateY(-2px)}
+.stat::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.5) 50%,transparent 60%);
+  transform:translateX(-120%)}
+.stat.shine::after{animation:sheenSweep 1.1s ease-out both}
+@keyframes sheenSweep{to{transform:translateX(120%)}}
+
+ol.rail li.done .badge{animation:popIn .55s cubic-bezier(.2,.9,.3,1) both}
+.chips button{transition:.18s}
+.chips button:hover{transform:translateY(-2px) scale(1.03)}
+.duebtn{transition:.18s}
+.duebtn:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.lvgroup .empty{display:inline-flex;align-items:center;gap:8px;border:1.5px dashed var(--line-2);
+  border-radius:20px;padding:3px 14px;color:var(--ink-3);font-size:12px}
+
+svg.pyramid .spark{animation:twk 3.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.pro-stage .halo{animation:haloPulse 4.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes haloPulse{0%,100%{opacity:.35;transform:scale(.94)}50%{opacity:.85;transform:scale(1.06)}}
+.pro-stage .spark{animation:twk 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.pro-dots i.on{box-shadow:0 0 10px rgba(236,72,153,.6)}
+
+@media (prefers-reduced-motion:reduce){
+  .grad,.spk i,#btnStart,#proNext,#btnResume,svg.pyramid .spark,
+  .pro-stage .halo,.pro-stage .spark,.stat.shine::after{animation:none!important}
+  .rv{opacity:1;transform:none}
+  .sechead h2::after{width:100%;transition:none}
+}
+
+/* ---- 書き出しの目安と応援 ---- */
+.goal{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px;
+  background:var(--sunk);border-radius:15px;padding:13px 17px;transition:background .4s}
+.goal.done{background:linear-gradient(100deg,rgba(6,182,164,.16),rgba(139,92,246,.13))}
+.goal .beads{display:flex;gap:8px;flex:none}
+.goal .beads i{width:17px;height:17px;border-radius:50%;background:var(--line);display:block;
+  transition:transform .35s cubic-bezier(.2,.9,.3,1),background .35s,box-shadow .35s}
+.goal .beads i.on{background:var(--cta);transform:scale(1.14);box-shadow:0 0 11px rgba(236,72,153,.55)}
+.goal .msg{font-size:14.5px;font-weight:700;flex:1;min-width:190px;line-height:1.6}
+.goal .msg small{display:block;font-size:12px;font-weight:600;color:var(--ink-3);margin-top:1px}
+.goal .n{font-family:var(--font-num);font-size:22px;font-weight:800;
+  background:var(--cta);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes cheerPop{0%{transform:scale(.72);opacity:.4}62%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+.goal.cheer{animation:cheerPop .55s cubic-bezier(.2,.9,.3,1)}
+@media (prefers-reduced-motion:reduce){.goal.cheer{animation:none}}
+
+/* ==================== プロフィール ==================== */
+.pform{display:grid;gap:16px;margin-top:16px}
+.pf-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.pf-2{grid-template-columns:1fr}}
+.pform label{display:block;font-size:13px;font-weight:800;margin-bottom:5px}
+.pform label .req{color:#ec4899;margin-left:4px}
+.pform input,.pform select{font-size:16px;padding:11px 13px;font-weight:600}
+.pf-age{font-family:var(--font-num);font-size:26px;font-weight:800;padding:6px 0;
+  background:var(--cta);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf-age small{display:block;font-family:inherit;font-size:12px;font-weight:600;color:var(--ink-3);
+  -webkit-text-fill-color:var(--ink-3)}
+.pf-face{display:flex;gap:16px;align-items:center;background:var(--sunk);border-radius:15px;padding:14px 16px}
+.pf-thumb{width:88px;height:88px;border-radius:50%;flex:none;display:grid;place-items:center;cursor:pointer;
+  border:3px dashed var(--line-2);color:var(--ink-3);font-size:26px;overflow:hidden;background:var(--panel);transition:.2s}
+.pf-thumb:hover{border-color:var(--c4);color:var(--c4)}
+.pf-thumb img{width:100%;height:100%;object-fit:cover}
+.pf-face p{margin:3px 0 0}
+
+.mecard{display:flex;align-items:center;gap:13px;background:var(--panel);border:1px solid var(--line);
+  border-radius:16px;padding:12px 16px;margin-bottom:20px;box-shadow:var(--shadow)}
+.mecard .av{width:46px;height:46px;border-radius:50%;flex:none;overflow:hidden;background:var(--cta);
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:19px;font-family:var(--font-display)}
+.mecard .av img{width:100%;height:100%;object-fit:cover}
+.mecard b{font-size:16px;font-family:var(--font-display)}
+.mecard .sub{font-size:12.5px;color:var(--ink-3);font-family:var(--font-num);font-weight:700}
+.mecard button{margin-left:auto}
+
+/* ==================== 年表ロードマップ ==================== */
+.viewtabs{display:inline-flex;gap:4px;background:var(--sunk);border-radius:12px;padding:4px;margin-bottom:4px}
+.viewtabs button{border:none;background:transparent;font-size:13.5px;font-weight:800;padding:7px 16px;border-radius:9px;color:var(--ink-3)}
+.viewtabs button.on{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
+.viewtabs button:hover{transform:none}
+.rmwrap{overflow-x:auto;padding-bottom:6px;margin-top:12px}
+.rmap{min-width:760px;display:grid;grid-template-columns:130px repeat(5,1fr);gap:0}
+.rmap .hd{position:sticky;top:0;padding:10px 8px 12px;text-align:center;border-bottom:2px solid var(--line)}
+.rmap .hd b{display:block;font-family:var(--font-num);font-size:16px;font-weight:800}
+.rmap .hd small{display:block;font-size:11.5px;color:var(--ink-3);font-weight:700}
+.rmap .hd.now b{background:var(--cta);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rmap .corner{border-bottom:2px solid var(--line)}
+.rmap .lane{display:contents}
+.rmap .lname{display:flex;align-items:center;gap:8px;padding:12px 10px;border-bottom:1px solid var(--line);
+  font-size:13px;font-weight:800;position:sticky;left:0;background:var(--panel);z-index:1}
+.rmap .cell{border-bottom:1px solid var(--line);border-left:1px dashed var(--line);padding:10px 8px;
+  display:flex;flex-direction:column;gap:5px;min-height:74px}
+.rmap .cell.nowcol{background:linear-gradient(180deg,rgba(139,92,246,.06),transparent)}
+.rmap .chip{font-size:12px;font-weight:700;border-radius:9px;padding:5px 9px;line-height:1.45;
+  border-left:4px solid var(--c);background:var(--sunk);display:flex;gap:6px;align-items:flex-start}
+.rmap .chip.done{opacity:.5;text-decoration:line-through}
+.rmap .chip img{width:26px;height:20px;object-fit:cover;border-radius:4px;flex:none;margin-top:1px}
+.rmap .none{font-size:11.5px;color:var(--ink-3)}
+.rmnote{font-size:12px;color:var(--ink-3);margin-top:10px}
+
+/* ---- 出力シートの切替と額縁テーマ ---- */
+#mapTabs{display:inline-flex;gap:4px;background:var(--sunk);border-radius:12px;padding:4px;margin-bottom:12px}
+#mapTabs button{border:none;background:transparent;font-size:13.5px;font-weight:800;padding:8px 18px;border-radius:9px;color:var(--ink-3)}
+#mapTabs button.on{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
+#mapTabs button:hover{transform:none}
+#mapThemes{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 4px}
+#mapThemes button{font-size:12.5px;font-weight:700;padding:6px 13px 6px 8px;border-radius:20px;
+  display:inline-flex;align-items:center;gap:7px}
+#mapThemes button i{width:19px;height:19px;border-radius:50%;display:block;border:1px solid rgba(0,0,0,.14)}
+#mapThemes button.on{border-color:var(--c4);box-shadow:0 0 0 3px rgba(139,92,246,.16)}
+@media print{
+  body.map-print #mapPrintHost[data-land="1"]{transform:none}
+  body.map-print{background:#fff}
+}
+
+footer{text-align:center;font-size:12px;color:var(--ink-3);margin-top:46px;line-height:2}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
+@media print{
+  body{background:#fff}
+  body::before{display:none}
+  .toolbar,.addrow,li.item .tools,footer,.hint,.meterrow,.intro,ol.rail,.tile .kill,.purposebox label button{display:none!important}
+  .panel,.cat,.tile{box-shadow:none;border:1px solid #ccc;break-inside:avoid}
+  .cats,.board{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<section class="prologue" id="prologue" hidden>
+  <div class="pro-inner">
+    <div class="pro-stage" id="proStage"></div>
+    <div class="pro-copy" id="proCopy"></div>
+    <div class="pro-nav">
+      <div class="pro-dots" id="proDots"></div>
+      <button id="proBack" class="ghost">戻る</button>
+      <button id="proNext" class="cta big">次へ</button>
+      <button id="proSkip" class="ghost">とばす</button>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="brand">
+    <div class="eyebrow">LIFE GOAL</div>
+    <h1 class="grad">ライフゴール</h1>
+    <p>人生はビジュアル化できる</p>
+  </div>
+  <div class="toolbar">
+    <span class="saved" id="saved"></span>
+    <button id="btnTheme" class="ghost" title="配色を切り替える">◐</button>
+    <button id="btnExport">書き出し</button>
+    <button id="btnImport">読み込み</button>
+    <button id="btnPrint">印刷</button>
+    <button id="btnReset" class="ghost danger">全消去</button>
+  </div>
+</header>
+<div class="rainbowrule"></div>
+
+<section class="intro" id="intro">
+  <h2>4ステップ進むだけで、人生が1枚の絵になります</h2>
+  <p>ピラミッドは先にお見せしません。全体像が見えていると、人はそこに合わせて書いてしまうからです。<strong>最後に、あなたの言葉の中から人生の目的が現れます。</strong></p>
+  <div class="introsteps" id="introSteps"></div>
+  <div class="note">6分野と3レベルの名称は熊谷正寿氏の夢手帳の構成に、宝地図の考え方は望月俊孝氏に、「終わりから考える」問いは『7つの習慣』第2の習慣に、それぞれ拠っています。各書籍・商品とは無関係の非公式ツールです。呼び水の質問・穴埋めの型・解析の仕組み・画面の構成は当方が独自に作成しました。</div>
+  <div class="cta-row">
+    <button class="cta big" id="btnStart">はじめる</button>
+    <button class="big" id="btnSample">記入例で完成形を見る</button>
+    <button class="ghost" id="btnPro">プロローグをもう一度見る</button>
+  </div>
+</section>
+
+<div id="meHost"></div>
+<ol class="rail" id="rail" hidden></ol>
+<div id="resumeHost"></div>
+
+<section class="panel" id="secPyramid" hidden>
+  <div class="head">
+    <div class="viewtabs">
+      <button data-v="pyr" class="on">ピラミッド</button>
+      <button data-v="road">年表ロードマップ</button>
+    </div>
+    <span class="hint">色が濃いほど達成済み　薄い部分がこれからの伸びしろ</span>
+  </div>
+  <div class="purposebox"><div class="in">
+    <label for="ultimate"><span class="tag">人生の目的</span>
+      <button id="btnReanalyze">言葉から作り直す</button></label>
+    <textarea id="ultimate" placeholder="STEP 4 を終えると、あなたの言葉からここに現れます"></textarea>
+  </div></div>
+  <div id="pyrView">
+    <svg class="pyramid" id="pyramid" viewBox="0 0 940 500" role="img" aria-label="人生ピラミッド"></svg>
+    <div class="legend" id="legend"></div>
+  </div>
+  <div id="roadView" hidden><div id="roadmap"></div></div>
+  <div class="stats" id="stats"></div>
+</section>
+
+<div id="secLegacy" hidden>
+  <div class="sechead"><span class="num">終わりから</span><h2>遺したいもの</h2>
+    <span class="hint">迷ったとき、ここに戻ってください</span></div>
+  <section class="panel"><div class="legacyview" id="legacyView"></div></section>
+</div>
+
+<div id="secCats" hidden>
+  <div class="sechead"><span class="num">一覧</span><h2>6分野の中身</h2>
+    <span class="hint">日付を変えると、入る段も自動で変わります</span></div>
+  <div class="cats" id="cats"></div>
+</div>
+
+<div id="secMap" hidden>
+  <div class="sechead"><span class="num">夢の地図</span><h2>絵にした夢</h2>
+    <button class="cta" id="btnMap">1枚の宝の地図にする</button>
+    <span class="hint">クリックで写真を差し替えられます</span></div>
+  <section class="panel">
+    <div class="meterrow">
+      <span class="hint" id="meterTxt"></span>
+      <div class="meter" title="保存容量"><i id="meterBar"></i></div>
+    </div>
+    <div class="board" id="board"></div>
+  </section>
+</div>
+
+<footer>データはこのブラウザの中だけに保存されます　サーバーには何も送られません<br>書き込んだら「書き出し」でバックアップを取ってください<br><span style="opacity:.8">熊谷正寿氏の夢手帳／望月俊孝氏の宝地図／『7つの習慣』の考え方を参考にした非公式ツールです</span></footer>
+</div>
+
+<dialog id="wiz">
+  <div class="dlg-top"></div>
+  <div class="dlg-in">
+    <div class="progressbar"><i id="wizBar"></i></div>
+    <h2 id="wizTitle"></h2>
+    <p class="hint" id="wizHint" style="margin:0"></p>
+    <div id="wizBody"></div>
+  </div>
+  <div class="dlg-actions">
+    <span class="spacer" id="wizCount"></span>
+    <button id="wizPrev">戻る</button>
+    <button id="wizNext" class="cta">次へ</button>
+    <button id="wizClose" class="ghost">中断する</button>
+  </div>
+</dialog>
+
+<dialog id="dlg">
+  <div class="dlg-top"></div>
+  <div class="dlg-in">
+    <h2 id="dlgTitle"></h2>
+    <p class="hint" id="dlgHint" style="margin:0 0 12px"></p>
+    <textarea id="dlgText" spellcheck="false"></textarea>
+  </div>
+  <div class="dlg-actions" id="dlgActions"></div>
+</dialog>
+
+<dialog id="mapDlg">
+  <div class="dlg-top"></div>
+  <div class="dlg-in">
+    <h2>宝の人生マップ</h2>
+    <p class="hint" style="margin:0 0 12px">2枚できました。壁に貼る宝地図と、時間軸で見るロードマップです</p>
+    <div id="mapTabs">
+      <button data-s="map" class="on">宝地図（A4縦）</button>
+      <button data-s="road">人生ロードマップ（A4横）</button>
+    </div>
+    <img id="mapImg" alt="宝の人生マップ">
+    <p id="mapInfo"></p>
+    <p class="hint" style="margin:14px 0 0">額縁の色</p>
+    <div id="mapThemes"></div>
+  </div>
+  <div class="dlg-actions">
+    <button id="mapSave" class="cta">画像を保存</button>
+    <button id="mapPrint">印刷する</button>
+    <button id="mapClose" class="ghost">閉じる</button>
+  </div>
+</dialog>
+
+<div id="mapPrintHost"></div>
+
+<input type="file" id="fileImg" accept="image/*" hidden>
+<canvas id="confetti" hidden></canvas>
+
+<script>
+"use strict";
+
+/* ==================== 定義 ====================
+   6分野・3レベルの名称は熊谷正寿氏の夢手帳の構成に準拠。
+   呼び水の質問・穴埋めの型・解析辞書は当社が独自に作成。 */
+const BLANK = "＿＿";
+const CATS = [
+  {id:"economy", name:"経済", sub:"物・お金", color:"var(--c1)", hex:"#06b6a4",
+   asks:["いくらあれば、お金の不安がなくなりますか","いま一番ほしい高価なものは何ですか","毎月いくら、自由に使いたいですか","何歳で働かなくてもよくなりたいですか","誰に、いくら渡したいですか"],
+   forms:["＿＿円が入ってくる","毎月＿＿万円を自由に使う","＿＿歳で働かなくてよくなる","＿＿に＿＿円を渡す","＿＿を買う","＿＿の支払いを終える"]},
+  {id:"family", name:"プライベート・家庭", sub:"家族・住まい", color:"var(--c2)", hex:"#ec4899",
+   asks:["誰と、どこで暮らしていたいですか","家族と何をしたいですか","どんな家に住みたいですか","1年に何日、休みたいですか","10年後の食卓には誰がいますか"],
+   forms:["＿＿と＿＿へ行く","＿＿に住む","毎週＿＿曜日は＿＿する","＿＿と＿＿を一緒にやる","年に＿＿日休む","＿＿に感謝を伝える"]},
+  {id:"social", name:"社会・仕事", sub:"仕事・社会貢献", color:"var(--c3)", hex:"#3b82f6",
+   asks:["どんな仕事で名前を呼ばれたいですか","誰の役に立ちたいですか","何人に届けたいですか","引退したあと、何と言われたいですか","絶対にやりたくない仕事は何ですか"],
+   forms:["＿＿について本を出す","＿＿人に＿＿を届ける","＿＿で一番と言われる","＿＿を次の世代に渡す","＿＿の前で話す","＿＿という会社をつくる"]},
+  {id:"knowledge", name:"教養・知識", sub:"学び・技術", color:"var(--c4)", hex:"#8b5cf6",
+   asks:["何を学び直したいですか","どんな資格や技術がほしいですか","何語を話せるようになりたいですか","人に教えられるようになりたいことは何ですか","子どものころ諦めた習い事はありますか"],
+   forms:["＿＿語で＿＿する","＿＿の資格を取る","＿＿が弾けるようになる","＿＿について人に教えられる","月に＿＿冊読む","＿＿を学び直す"]},
+  {id:"health", name:"健康", sub:"美容・体力", color:"var(--c5)", hex:"#f97316",
+   asks:["何歳まで、どんな体でいたいですか","体重や体型の理想はありますか","やってみたいスポーツは何ですか","見た目について言われたいことは何ですか","いま体で一番気になるところはどこですか"],
+   forms:["＿＿歳で＿＿ができる体でいる","体重を＿＿kgにする","＿＿を完走する","毎朝＿＿する","＿＿をやめる","＿＿と＿＿を一緒に歩く"]},
+  {id:"spirit", name:"心・精神", sub:"あり方・心", color:"var(--c6)", hex:"#eab308",
+   asks:["どんなときに心が満たされますか","何から解放されたいですか","どんな人だと言われたいですか","いま、こわいものは何ですか","誰に、ありがとうと言いたいですか"],
+   forms:["＿＿されても、機嫌よくいる","＿＿をやめる","＿＿に、ありがとうと言う","＿＿な自分を許す","毎日＿＿する","＿＿から解放される"]}
+];
+const LEVELS = [
+  {id:"base", n:1, label:"基礎レベル", span:"1年以内"},
+  {id:"realize", n:2, label:"実現レベル", span:"3〜5年"},
+  {id:"result", n:3, label:"結果レベル", span:"10年以降・いつか"}
+];
+const DUES = [
+  {id:"y1",  years:1,  label:"1年以内",  level:"base"},
+  {id:"y3",  years:3,  label:"3年以内",  level:"realize"},
+  {id:"y5",  years:5,  label:"5年以内",  level:"realize"},
+  {id:"y10", years:10, label:"10年以内", level:"result"},
+  {id:"someday", years:null, label:"いつか", level:"result"}
+];
+const THIS_YEAR = new Date().getFullYear();
+function dueOf(id){ return DUES.find(d=>d.id===id) || null; }
+function dueBadge(id){ const d = dueOf(id); return d ? (d.years ? THIS_YEAR + d.years + "年" : "いつか") : "未定"; }
+
+const FUNERAL = [
+  {id:"f1", q:"あなたのお葬式を想像してください。どんな葬式ですか", sub:"場所、広さ、空気、流れている音"},
+  {id:"f2", q:"誰が来ていますか", sub:"家族、友人、仕事で関わった人。名前が浮かぶなら名前で"},
+  {id:"f3", q:"その人たちは、あなたのことを何と言っていますか", sub:"聞こえてきてほしい一言を、そのまま"}
+];
+const DEEP = [
+  {t:"逆境と痛みを反転させる", s:"最も強い使命感は、快楽よりも痛みや怒りから生まれます", qs:[
+    {id:"d11", q:"これまでで最も理不尽だと感じたこと、許せなかったことは何ですか。それを世の中から減らすために、何ができますか"},
+    {id:"d12", q:"最も絶望していた時期、どんな言葉や助けがあれば救われていましたか"},
+    {id:"d13", q:"他人には耐え難いのに、自分にはなぜか耐えられる（むしろ夢中になれる）苦労は何ですか"}]},
+  {t:"リミッターを解除する", s:"お金・評価・常識を取り払うと、純粋な意志が残ります", qs:[
+    {id:"d21", q:"口座に100億円あり、地位も名声も一生保証されているとしたら、毎朝何のために起きますか"},
+    {id:"d22", q:"誰にも褒められず、感謝すらされないとしても、自腹を切ってやり続けたいことは何ですか"},
+    {id:"d23", q:"失敗が100%あり得ない世界なら、どんな大風呂敷を広げますか"}]},
+  {t:"原体験と、我を忘れる時間", s:"幼少期の衝動と、没頭の瞬間にヒントがあります", qs:[
+    {id:"d31", q:"10歳のころ、損得なしに何時間でも没頭していたことは何ですか"},
+    {id:"d32", q:"他人が1時間で疲れるのに、自分は3時間やってもエネルギーが湧く活動は何ですか"},
+    {id:"d33", q:"本屋や図書館で、頼まれてもいないのに足が向かう棚はどこですか"}]},
+  {t:"貢献と、他者との接続点", s:"目的は独り相撲ではなく、誰かとの間で結実します", qs:[
+    {id:"d41", q:"誰の、どんな表情や言葉を見たときに、心の底から震えるような喜びを感じましたか"},
+    {id:"d42", q:"自分という資源（才能・経験・時間）を、どの集団に全投下したいですか"},
+    {id:"d43", q:"自分が生きていることで、誰の人生がどう良くなることを望みますか"}]},
+  {t:"目的を「見つける」のをやめる", s:"待つのではなく、自ら引き受ける覚悟を問います", qs:[
+    {id:"d51", q:"「人生が今、あなたに何を求めているか」と問われたら、何と答えますか"},
+    {id:"d52", q:"人生の目的が最初から白紙なら、自分で勝手に決める「最高に面白いルール」は何ですか"}]},
+  {t:"遺す痕跡", s:"世界に残る変化としての目的", qs:[
+    {id:"d61", q:"余命1年、身体は健康なまま動けるとしたら、今日から何をやめて、何に全力を注ぎますか"},
+    {id:"d62", q:"あなたがこの世を去ったあと、世界にどんな痕跡（変化・価値）を遺したいですか"}]}
+];
+
+const VALUES = [
+  {k:"自由",     say:"時間と場所を自分で決める",   re:/自由|縛ら|好きな(時|場所)|場所を選|独立|やりたいこと|自分で決め|辞め|会社に行かな/g},
+  {k:"挑戦",     say:"越えたことのない線を越える", re:/挑戦|チャレンジ|初めて|越え|超え|突破|記録|一番|世界一|完走|登(る|頂)|優勝|上場/g},
+  {k:"創造",     say:"まだ無いものを形にする",     re:/創|つく(る|り)|作(る|り)|生み出|デザイン|書く|描|表現|発信|出版|本を出|曲|映画|商品/g},
+  {k:"探求",     say:"わかるまで追いかける",       re:/学(ぶ|び|習)|知識|読(む|書)|研究|理解|極め|資格|語(を|が)?話|大学|勉強|教養|冊/g},
+  {k:"育成",     say:"次の誰かが立てるようにする", re:/育て|教え|後継|指導|コーチ|次の世代|弟子|部下|生徒|渡す|継(ぐ|承)/g},
+  {k:"貢献",     say:"誰かの一日を確実に良くする", re:/役に立|支え|助け|貢献|届け|救|力になる|恩返し|寄付|喜ば|感謝|変わ(る|れ|っ)|変え|背中を押|立ち会|人生が変|可能性/g},
+  {k:"つながり", say:"近くの人と、ちゃんと一緒にいる", re:/家族|仲間|友(人|達|だち)|一緒|集ま|会う|つなが|チーム|夫|妻|孫|親|食卓|団欒/g},
+  {k:"健やかさ", say:"最後まで自分の足で動く",     re:/健康|走|体(力|重|脂肪)|運動|眠|睡眠|食事|若|美|治|薬|歩|マラソン|筋|kg/g},
+  {k:"豊かさ",   say:"お金の心配から家族を外す",   re:/億|万円|収入|年収|資産|貯|稼|買|家を建|富|お金|報酬|売上|利益|支払/g},
+  {k:"安心",     say:"崩れない土台をつくる",       re:/不安|安心|守|備え|心配|保険|防衛|将来|老後|安定/g},
+  {k:"誇り",     say:"名前で呼ばれる仕事をする",   re:/名前|認め|評価|尊敬|信頼|ブランド|呼ばれ|語られ|一目|第一人者|専門|会社をつく/g},
+  {k:"静けさ",   say:"何が起きても機嫌よくいる",   re:/機嫌|穏やか|比べ|許|怒らない|一人の時間|平穏|整え|落ち着|禅|瞑想|余白|解放/g},
+  {k:"冒険",     say:"まだ見ぬ景色を見に行く",     re:/旅|世界(一周)?|海外|移住|未知|見たこと|景色|山|海|島|留学|へ行く/g}
+];
+
+const KEY = "yume-techo-v4";
+const OLD3 = "yume-techo-v3", OLD2 = "yume-techo-v2", OLD1 = "yume-techo-v1";
+const MAX_BYTES = 4.6 * 1024 * 1024;
+
+/* ==================== データ ==================== */
+function uid(){ return "i" + Math.random().toString(36).slice(2,9); }
+function blank(){ return {version:4, ultimate:"", items:[], answers:{}, progress:0, seenPro:false, updatedAt:null}; }
+function fromV3(old){
+  const d = blank();
+  d.ultimate = old.ultimate || "";
+  d.items = (old.items||[]).map(i => ({id:i.id||uid(), cat:i.cat, text:i.text, due:i.due||null,
+    level:i.level||null, img:i.img||null, done:!!i.done, from:i.from||null}));
+  d.answers = old.answers || {};
+  d.progress = Math.min(old.progress||0, 3);
+  if(d.items.length && d.items.every(i=>i.due) && d.ultimate) d.progress = 4;
+  return d;
+}
+function fromV2(old){
+  const back = {base:"y1", realize:"y3", result:"y10"};
+  const items = (old.items||[]).map(i => ({id:uid(), cat:i.cat, text:i.text,
+    due:i.level ? back[i.level] : null, level:i.level||null, img:null, done:!!i.done}));
+  (old.map||[]).forEach(m => items.push({id:uid(), cat:m.cat, text:m.caption || "（名前をつけてください）",
+    due:null, level:null, img:m.img, done:false}));
+  return fromV3({ultimate:old.ultimate||"", items, progress:items.length?1:0});
+}
+function fromV1(old){
+  const cmap = {work:"social", money:"economy", family:"family", mind:"knowledge", health:"health", play:"spirit"};
+  const lmap = {daily:"base", mid:"realize", long:"result"};
+  return fromV2({ultimate:old.philosophy||"",
+    items:(old.items||[]).map(i=>({cat:cmap[i.cat]||"spirit", level:lmap[i.tier]||null, text:i.text, done:i.done})), map:[]});
+}
+let data = (function(){
+  try{
+    const raw = localStorage.getItem(KEY); if(raw) return Object.assign(blank(), JSON.parse(raw));
+    const v3 = localStorage.getItem(OLD3); if(v3) return fromV3(JSON.parse(v3));
+    const v2 = localStorage.getItem(OLD2); if(v2) return fromV2(JSON.parse(v2));
+    const v1 = localStorage.getItem(OLD1); if(v1) return fromV1(JSON.parse(v1));
+  }catch(e){}
+  return blank();
+})();
+
+let saveTimer = null, lastSaveError = null;
+function setSaved(s){ document.getElementById("saved").textContent = s; }
+function save(){
+  data.updatedAt = new Date().toISOString();
+  try{
+    localStorage.setItem(KEY, JSON.stringify(data));
+    const t = new Date();
+    setSaved("保存済み " + String(t.getHours()).padStart(2,"0") + ":" + String(t.getMinutes()).padStart(2,"0"));
+    return true;
+  }catch(e){
+    lastSaveError = (e && (e.name === "QuotaExceededError" || e.name === "NS_ERROR_DOM_QUOTA_REACHED" || e.code === 22)) ? "quota" : "blocked";
+    setSaved(lastSaveError === "quota" ? "容量オーバー" : "このブラウザでは保存できません");
+    return false;
+  }
+}
+function touch(){ clearTimeout(saveTimer); saveTimer = setTimeout(save, 350); }
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function cssv(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim() || "#999"; }
+function itemsOf(cat, level){ return data.items.filter(i => i.cat===cat && (level ? i.level===level : !i.level)); }
+function noDate(){ return data.items.filter(i => !i.due); }
+function withImg(){ return data.items.filter(i => i.img); }
+function bytes(){ try{ return new Blob([JSON.stringify(data)]).size; }catch(e){ return 0; } }
+function catOf(id){ return CATS.find(c=>c.id===id) || CATS[0]; }
+function setDue(it, dueId){ it.due = dueId; it.level = dueOf(dueId).level; }
+function ans(id){ return (data.answers[id] || "").trim(); }
+
+/* 具体度の判定。数字・英字・カタカナ語のいずれかが入っていれば「くっきり」 */
+function isSharp(t){
+  return /[0-9０-９]/.test(t) || /[A-Za-zＡ-Ｚａ-ｚ]/.test(t) || /[ァ-ヶ][ァ-ヶー]{2,}/.test(t)
+      || /[一二三四五六七八九十百千万億兆]/.test(t);
+}
+
+/* ==================== 解析 ==================== */
+function analyze(){
+  const sources = [];
+  data.items.forEach(i => sources.push({w: isSharp(i.text) ? 2 : 1, text:i.text}));
+  FUNERAL.forEach(f => { const a = ans(f.id); if(a) sources.push({w:4, text:a}); });
+  DEEP.forEach(g => g.qs.forEach(q => { const a = ans(q.id); if(a) sources.push({w:3, text:a}); }));
+
+  const found = VALUES.map(v => {
+    let score = 0; const quotes = [];
+    sources.forEach(s => {
+      v.re.lastIndex = 0;
+      const m = s.text.match(v.re);
+      if(m){ score += m.length * s.w; if(quotes.length < 3) quotes.push(s.text); }
+    });
+    return {k:v.k, say:v.say, score, quotes};
+  }).filter(v => v.score > 0).sort((a,b) => b.score - a.score);
+
+  const top = found.slice(0, 3);
+  let draft = "";
+  if(top.length === 1)      draft = top[0].say + "。それを、最後まで手放さない。";
+  else if(top.length === 2) draft = top[0].say + "。そして" + top[1].say + "。";
+  else if(top.length >= 3)  draft = top[0].say + "。" + top[1].say + "。そして" + top[2].say + "。";
+  return {draft, found, top, sources:sources.length, heard:ans("f3")};
+}
+
+/* ==================== ステップ ==================== */
+const STEPS = [
+  {n:1, t:"書き出す",   s:()=>`${data.items.length} 個`, phase:"dump"},
+  {n:2, t:"日付をつける", s:()=>noDate().length ? `残り ${noDate().length} 個` : "完了", phase:"date"},
+  {n:3, t:"絵をつける", s:()=>`${withImg().length} 枚`, phase:"image"},
+  {n:4, t:"終わりから", s:()=>data.progress >= 4 ? "目的が出ました" : "まだ", phase:"legacy"}
+];
+document.getElementById("introSteps").innerHTML = STEPS.map((s,i) =>
+  `<div class="introstep" style="background:linear-gradient(140deg,${CATS[i].hex},${CATS[i+1].hex})">
+    <span>STEP ${s.n}</span>${s.t}</div>`).join("");
+
+function drawRail(){
+  const rail = document.getElementById("rail");
+  rail.hidden = data.progress === 0;
+  rail.innerHTML = STEPS.map(st => {
+    const done = data.progress >= st.n, now = data.progress === st.n - 1, can = data.progress >= st.n - 1;
+    return `<li class="${done?"done":""} ${now?"now":""} ${can?"can":"locked"}" ${can?`data-phase="${st.phase}"`:""}>
+      <span class="badge">${done ? "✓" : st.n}</span>
+      <span><span class="t">${st.t}</span><br><span class="s">${st.s()}</span></span></li>`;
+  }).join("");
+  rail.querySelectorAll("[data-phase]").forEach(li => li.onclick = () => startWizard(li.dataset.phase));
+}
+function drawResume(){
+  const host = document.getElementById("resumeHost");
+  if(data.progress === 0 || data.progress >= 4){ host.innerHTML = ""; return; }
+  const st = STEPS[data.progress];
+  host.innerHTML = `<section class="panel"><div class="veil">
+    <b>STEP ${st.n}「${st.t}」の途中です</b>
+    ピラミッドと人生の目的は、4つのステップが終わってからお見せします
+    <div style="margin-top:16px"><button class="cta big" id="btnResume">続きから</button></div>
+  </div></section>`;
+  document.getElementById("btnResume").onclick = () => startWizard(st.phase);
+}
+
+/* ==================== ピラミッド ==================== */
+function wrapJa(s, per, maxLines){
+  const out = []; let rest = String(s).replace(/\n+/g, " ").trim();
+  while(rest.length && out.length < maxLines){
+    if(out.length === maxLines - 1 && rest.length > per){ out.push(rest.slice(0, per - 1) + "…"); break; }
+    out.push(rest.slice(0, per)); rest = rest.slice(per);
+  }
+  return out;
+}
+function drawPyramid(reveal){
+  const TOP_Y = 136, BASE_Y = 468, CX = 512, HW_TOP = 60, HW_BASE = 396;
+  const step = (BASE_Y - TOP_Y) / 3;
+  const hw = y => HW_TOP + (y - TOP_Y) / (BASE_Y - TOP_Y) * (HW_BASE - HW_TOP);
+  const PANEL = cssv("--panel"), SUNK = cssv("--sunk"), LINE = cssv("--line"),
+        GOLD = cssv("--gold"), GOLD2 = cssv("--gold-2"), INK3 = cssv("--ink-3");
+  const p = [];
+
+  p.push(`<defs>
+    <linearGradient id="plaque" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5cf6"/><stop offset=".52" stop-color="#ec4899"/><stop offset="1" stop-color="#f97316"/></linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".30"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity=".02"/>
+      <stop offset="1" stop-color="#000000" stop-opacity=".13"/></linearGradient>
+    <radialGradient id="halo" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ec4899" stop-opacity=".30"/>
+      <stop offset=".6" stop-color="#8b5cf6" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
+    <filter id="soft" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="9" stdDeviation="11" flood-color="#ec4899" flood-opacity=".30"/></filter>
+  </defs>`);
+
+  const text = data.ultimate.trim();
+  const lines = text ? wrapJa(text, 25, 3) : [];
+  const plaqueH = text ? Math.max(62, 34 + lines.length * 27) : 56;
+  const plaqueW = 640, px = CX - plaqueW/2, py = 104 - plaqueH;
+
+  p.push(`<g class="crowng">`);
+  p.push(`<ellipse cx="${CX}" cy="${104 - plaqueH/2 + 10}" rx="430" ry="${(plaqueH*0.9).toFixed(0)}" fill="url(#halo)"/>`);
+  for(let a = -4; a <= 4; a++){
+    if(!a) continue;
+    p.push(`<line x1="${CX}" y1="110" x2="${CX + a*126}" y2="${196 - Math.abs(a)*8}"
+      stroke="#ec4899" stroke-opacity="${(0.16 - Math.abs(a)*0.026).toFixed(3)}" stroke-width="3"/>`);
+  }
+  p.push(`<rect x="${px}" y="${py}" width="${plaqueW}" height="${plaqueH}" rx="16"
+    fill="${text ? "url(#plaque)" : "none"}" stroke="${text ? "none" : cssv("--line-2")}" stroke-width="2"
+    stroke-dasharray="${text ? "" : "8 6"}" filter="${text ? "url(#soft)" : ""}"/>`);
+  p.push(`<text x="${CX}" y="${py + 21}" text-anchor="middle" font-size="10.5" letter-spacing="3.4"
+    font-weight="800" fill="${text ? "#fff" : INK3}" fill-opacity="${text ? .82 : 1}">人生の目的</text>`);
+  if(text) lines.forEach((ln, i) => p.push(`<text x="${CX}" y="${py + 48 + i*27}" text-anchor="middle"
+      font-size="19" font-weight="800" fill="#ffffff">${esc(ln)}</text>`));
+  else p.push(`<text x="${CX}" y="${py + 42}" text-anchor="middle" font-size="13.5" fill="${INK3}">STEP 4 を終えると、ここに現れます</text>`);
+  p.push(`<line x1="${CX}" y1="${py + plaqueH}" x2="${CX}" y2="${TOP_Y}" stroke="#ec4899" stroke-width="3"/>`);
+  p.push(`</g>`);
+
+  [...LEVELS].reverse().forEach((lv, r) => {
+    const yt = TOP_Y + step*r, yb = TOP_Y + step*(r+1);
+    const ht = hw(yt), hb = hw(yb), g = [];
+    const segs = CATS.map(c => {
+      const list = itemsOf(c.id, lv.id), done = list.filter(i=>i.done).length;
+      return {color:c.hex, n:list.length, d:done, ratio:list.length ? done/list.length : 0, name:c.name};
+    });
+    const sum = segs.reduce((a,s)=>a+s.n, 0);
+    const poly = `${CX-ht},${yt} ${CX+ht},${yt} ${CX+hb},${yb} ${CX-hb},${yb}`;
+
+    if(sum === 0){
+      g.push(`<polygon points="${poly}" fill="${SUNK}"/>`);
+      g.push(`<text x="${CX}" y="${(yt+yb)/2+5}" text-anchor="middle" font-size="13" fill="${INK3}">まだ何も入っていません</text>`);
+    }else{
+      let acc = 0;
+      segs.forEach(s => {
+        if(s.n === 0) return;
+        const f0 = acc/sum, f1 = (acc+s.n)/sum; acc += s.n;
+        const x = (f,h) => CX - h + f*2*h;
+        g.push(`<polygon points="${x(f0,ht)},${yt} ${x(f1,ht)},${yt} ${x(f1,hb)},${yb} ${x(f0,hb)},${yb}"
+          fill="${s.color}" fill-opacity="${(0.68 + 0.32*s.ratio).toFixed(2)}"
+          ><title>${esc(lv.label + " / " + s.name + "　" + s.d + " / " + s.n + " 件")}</title></polygon>`);
+      });
+      g.push(`<polygon points="${poly}" fill="url(#sheen)"/>`);
+    }
+    g.push(`<polygon points="${poly}" fill="none" stroke="${PANEL}" stroke-width="3"/>`);
+    const my = (yt+yb)/2;
+    g.push(`<text class="tierlabel" x="6" y="${my-11}">${lv.n}. ${lv.label}</text>`);
+    g.push(`<text class="tiersub" x="6" y="${my+7}">${lv.span}</text>`);
+    g.push(`<text class="tiersub" x="6" y="${my+25}">${sum ? segs.reduce((a,s)=>a+s.d,0) + " / " + sum + " 件" : "0 件"}</text>`);
+    p.push(`<g class="tierg" style="animation-delay:${(2-r)*0.32}s">${g.join("")}</g>`);
+  });
+
+  if(text){
+    [[196,72,7,0],[828,86,6,.7],[300,44,5,1.4],[726,42,6,2.1],[132,120,5,2.8],[884,132,7,1.1]]
+      .forEach(q => p.push(`<polygon class="spark" style="animation-delay:${q[3]}s"
+        points="${q[0]},${q[1]-q[2]*2.4} ${q[0]+q[2]*.8},${q[1]-q[2]*.8} ${q[0]+q[2]*2.4},${q[1]}
+                ${q[0]+q[2]*.8},${q[1]+q[2]*.8} ${q[0]},${q[1]+q[2]*2.4} ${q[0]-q[2]*.8},${q[1]+q[2]*.8}
+                ${q[0]-q[2]*2.4},${q[1]} ${q[0]-q[2]*.8},${q[1]-q[2]*.8}" fill="#fbbf24"/>`));
+  }
+  p.push(`<text x="6" y="492" font-size="12" font-weight="800" fill="${cssv("--c5")}">↑ 近い日付ほど、下の段に入ります</text>`);
+
+  const svg = document.getElementById("pyramid");
+  svg.classList.remove("reveal");
+  svg.innerHTML = p.join("");
+  if(reveal){ void svg.getBoundingClientRect(); svg.classList.add("reveal"); }
+  document.getElementById("legend").innerHTML =
+    CATS.map(c=>`<span style="color:${c.hex}">${catIcon(c.id,16)}<b style="color:var(--ink)">${c.name}</b></span>`).join("");
+}
+
+function countUp(el, to){
+  el.textContent = to;                       /* 先に確定値。rAF が回らない環境でも 0 のままにならない */
+  const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  if(reduce || to === 0 || document.visibilityState !== "visible") return;
+  el.textContent = "0";
+  const t0 = performance.now(), dur = 650;
+  const tick = t => {
+    const k = Math.min(1, (t - t0) / dur);
+    el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+    if(k < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+function drawStats(animate){
+  const dated = data.items.filter(i=>i.due);
+  const done = dated.filter(i=>i.done).length;
+  const sharp = data.items.filter(i=>isSharp(i.text)).length;
+  const cells = [
+    {v:data.items.length, l:"書き出した夢", c:"var(--c4)"},
+    {v:data.items.filter(i=>i.level==="base").length, l:"1年以内にやること", c:"var(--c1)"},
+    {v:withImg().length, l:"絵にした夢", c:"var(--c2)"},
+    {v:sharp, l:"くっきりした夢", c:"var(--c3)"},
+    {v:done, l:"叶えた夢", c:"var(--c5)"},
+    {v:dated.length ? Math.round(done/dated.length*100) : 0, l:"達成率", c:"var(--c6)", suffix:"%"}
+  ];
+  document.getElementById("stats").innerHTML = cells.map((c,i)=>
+    `<div class="stat"><b style="color:${c.c}"><span data-n="${c.v}">0</span>${c.suffix||""}</b><span>${c.l}</span></div>`).join("");
+  document.querySelectorAll("#stats [data-n]").forEach(el => {
+    const n = Number(el.dataset.n);
+    if(animate) countUp(el, n); else el.textContent = n;
+  });
+}
+
+function drawLegacy(){
+  const rows = [];
+  FUNERAL.forEach(f => { const a = ans(f.id); if(a) rows.push({q:f.q, a}); });
+  DEEP.forEach(g => g.qs.forEach(q => { const a = ans(q.id); if(a) rows.push({q:q.q, a}); }));
+  document.getElementById("secLegacy").hidden = rows.length === 0 || data.progress < 4;
+  document.getElementById("legacyView").innerHTML =
+    rows.map(r => `<div class="qa"><h4>${esc(r.q)}</h4><p>${esc(r.a)}</p></div>`).join("");
+}
+
+/* ==================== カード ==================== */
+function dueSelect(i){
+  return `<select class="due" data-act="setdue" aria-label="いつまでに">
+    <option value="" ${!i.due?"selected":""}>未定</option>
+    ${DUES.map(d=>`<option value="${d.id}" ${i.due===d.id?"selected":""}>${d.years ? THIS_YEAR+d.years+"年" : "いつか"}</option>`).join("")}
+  </select>`;
+}
+function itemRow(i, showRank){
+  const sharp = isSharp(i.text);
+  return `<li class="item ${i.done?"done":""} ${sharp?"":"vague"}" data-id="${i.id}">
+    <input type="checkbox" ${i.done?"checked":""} data-act="toggle" aria-label="達成">
+    ${i.img ? `<img class="thumb" src="${i.img}" alt="" data-act="reimg">` : ""}
+    <span class="txt" contenteditable="true" data-act="edit">${esc(i.text)}</span>
+    <span class="flag ${sharp?"sharp":"vague"}">${sharp?"くっきり":"ぼんやり"}</span>
+    ${dueSelect(i)}
+    <span class="tools">
+      <button data-act="img" title="${i.img?"写真を変える":"写真をつける"}">▣</button>
+      ${showRank ? `<button data-act="up" title="優先順位を上げる">▲</button><button data-act="down" title="優先順位を下げる">▼</button>` : ""}
+      <button data-act="del" class="del" title="削除">✕</button>
+    </span></li>`;
+}
+function drawCats(){
+  document.getElementById("cats").innerHTML = CATS.map(c => {
+    const all = data.items.filter(i=>i.cat===c.id), un = itemsOf(c.id, null);
+    const unBlock = un.length ? `<div class="lvgroup nodate">
+      <h4>日付が未定 ${un.length}件 — いつまでに叶えますか</h4>
+      <ul class="items">${un.map(i=>itemRow(i,false)).join("")}</ul></div>` : "";
+    const groups = [...LEVELS].reverse().map(lv => {
+      const list = itemsOf(c.id, lv.id);
+      return `<div class="lvgroup"><h4><i>${lv.n}</i>${lv.label}<span style="font-weight:600;opacity:.75">${lv.span}</span></h4>
+        ${list.length ? `<ul class="items">${list.map(i=>itemRow(i,true)).join("")}</ul>` : `<div class="empty">—</div>`}</div>`;
+    }).join("");
+    return `<article class="cat" data-cat="${c.id}">
+      <div class="capbar" style="background:linear-gradient(110deg,${c.hex},${c.hex}cc)">
+        <span class="wm">${catIcon(c.id, 96, 1.1)}</span>
+        <span class="ic">${catIcon(c.id, 20)}</span>
+        <h3>${c.name}</h3><em>${c.sub}</em>
+        <span class="prog">${all.filter(i=>i.done).length} / ${all.length}</span></div>
+      <div class="body">
+        ${unBlock}${groups}
+        <div class="addrow">
+          <input type="text" data-act="text" placeholder="思いついたことを書く（日付はあとで）">
+          <button data-act="add" class="cta">追加</button>
+        </div>
+      </div></article>`;
+  }).join("");
+}
+
+/* ==================== 夢の地図 ==================== */
+function drawBoard(){
+  const list = withImg();
+  document.getElementById("board").innerHTML = list.length ? list.map(i => {
+    const c = catOf(i.cat);
+    return `<figure class="tile" data-id="${i.id}" style="margin:0">
+      <div class="ribbon" style="background:${c.hex}"></div>
+      <img src="${i.img}" alt="${esc(i.text)}" loading="lazy">
+      <button class="kill" data-act="killimg" title="写真を外す">✕</button>
+      <figcaption class="cap"><b style="color:${c.hex}">${c.name}・${dueFull(i.due)}</b>${esc(i.text)}</figcaption>
+    </figure>`;
+  }).join("") : `<div class="veil" style="grid-column:1/-1"><b>まだ絵がありません</b>
+    STEP 3 か、一覧の ▣ ボタンから写真をつけられます</div>`;
+  const used = bytes(), pct = Math.min(100, Math.round(used / MAX_BYTES * 100));
+  document.getElementById("meterBar").style.width = pct + "%";
+  document.getElementById("meterTxt").textContent = `保存容量 ${pct}%（${(used/1024/1024).toFixed(2)} MB）`;
+}
+
+/* ==================== 画像 ==================== */
+function shrink(file){
+  return new Promise((res, rej) => {
+    const fr = new FileReader();
+    fr.onerror = () => rej(new Error("読み込めません"));
+    fr.onload = () => {
+      const im = new Image();
+      im.onerror = () => rej(new Error("画像として開けません"));
+      im.onload = () => {
+        const max = 1000, sc = Math.min(1, max / Math.max(im.width, im.height));
+        const cv = document.createElement("canvas");
+        cv.width = Math.round(im.width * sc); cv.height = Math.round(im.height * sc);
+        cv.getContext("2d").drawImage(im, 0, 0, cv.width, cv.height);
+        res(cv.toDataURL("image/jpeg", 0.75));
+      };
+      im.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
+const filePicker = document.getElementById("fileImg");
+let pickTarget = null, pickAfter = null;
+function askImage(itemId, after){ pickTarget = itemId; pickAfter = after || null; filePicker.value = ""; filePicker.click(); }
+filePicker.onchange = async e => {
+  const f = e.target.files && e.target.files[0];
+  if(!f || !pickTarget) return;
+  const it = data.items.find(i => i.id === pickTarget);
+  if(it){
+    try{
+      const img = await shrink(f), prev = it.img;
+      it.img = img;
+      if(!save()){
+        it.img = prev;
+        alert(lastSaveError === "quota"
+          ? "保存容量がいっぱいです。写真を減らすか、書き出してバックアップしてから整理してください。"
+          : "このブラウザでは写真を保存できません。プライベートモードになっていないか確認してください。");
+      }
+    }catch(err){ alert("この画像は読み込めませんでした"); }
+  }
+  const cb = pickAfter; pickTarget = null; pickAfter = null;
+  if(cb) cb(); else renderAll();
+};
+
+/* ==================== 紙吹雪 ==================== */
+function confetti(){
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  if(document.visibilityState !== "visible") return;
+  const cv = document.getElementById("confetti");
+  cv.hidden = false;
+  cv.width = innerWidth; cv.height = innerHeight;
+  const ctx = cv.getContext("2d");
+  const colors = CATS.map(c=>c.hex).concat(["#fbbf24"]);
+  const ps = Array.from({length:110}, (_,i) => ({
+    x: innerWidth*(0.2 + 0.6*((i*37%100)/100)), y: innerHeight*0.32,
+    vx: (((i*53)%100)/100 - 0.5) * 9, vy: -6 - ((i*29)%100)/100 * 8,
+    w: 6 + (i%5)*2, h: 9 + (i%4)*3, r: (i%360), vr: (((i*17)%100)/100 - 0.5) * 0.4,
+    c: colors[i % colors.length]
+  }));
+  const t0 = performance.now();
+  const tick = t => {
+    const el = t - t0;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    ps.forEach(p => {
+      p.vy += 0.28; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r);
+      ctx.globalAlpha = Math.max(0, 1 - el/2600);
+      ctx.fillStyle = p.c; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h); ctx.restore();
+    });
+    if(el < 2600) requestAnimationFrame(tick);
+    else { ctx.clearRect(0,0,cv.width,cv.height); cv.hidden = true; }
+  };
+  requestAnimationFrame(tick);
+  setTimeout(() => { cv.hidden = true; }, 3200);   /* 保険。rAF が止まっても必ず片づく */
+}
+
+/* ==================== 全体描画 ==================== */
+function renderAll(reveal){
+  const shown = data.progress >= 4;
+  document.getElementById("intro").hidden = data.progress > 0;
+  document.getElementById("secPyramid").hidden = !shown;
+  document.getElementById("secCats").hidden = !shown;
+  document.getElementById("secMap").hidden = !shown;
+  drawRail(); drawResume();
+  if(shown){ drawPyramid(reveal); drawStats(reveal); drawLegacy(); drawCats(); drawBoard(); }
+  else document.getElementById("secLegacy").hidden = true;
+}
+
+/* ==================== 本体の入力 ==================== */
+const ult = document.getElementById("ultimate");
+ult.value = data.ultimate;
+ult.addEventListener("input", e => { data.ultimate = e.target.value; touch(); drawPyramid(); });
+document.getElementById("btnReanalyze").onclick = () => { startWizard("legacy"); legacyStep = 2; wizRender(); };
+
+const cats = document.getElementById("cats");
+cats.addEventListener("click", e => {
+  const act = e.target.dataset.act, card = e.target.closest(".cat");
+  if(!act || !card) return;
+  if(act === "add"){
+    const input = card.querySelector('[data-act="text"]');
+    const text = input.value.trim();
+    if(!text || text.includes("＿")) return;
+    data.items.push({id:uid(), cat:card.dataset.cat, text, due:null, level:null, img:null, done:false});
+    save(); renderAll();
+    const again = document.querySelector(`.cat[data-cat="${card.dataset.cat}"] [data-act="text"]`);
+    if(again) again.focus();
+    return;
+  }
+  const li = e.target.closest("li.item"); if(!li) return;
+  const id = li.dataset.id, it = data.items.find(i=>i.id===id); if(!it) return;
+  if(act === "toggle"){ it.done = e.target.checked; save(); renderAll(); return; }
+  if(act === "img" || act === "reimg"){ askImage(id); return; }
+  if(act === "del"){ data.items = data.items.filter(i => i.id !== id); save(); renderAll(); return; }
+  if(act === "up" || act === "down"){
+    const sib = data.items.filter(i => i.cat===it.cat && i.level===it.level);
+    const at = sib.indexOf(it), to = act === "up" ? at-1 : at+1;
+    if(to < 0 || to >= sib.length) return;
+    const a = data.items.indexOf(sib[at]), b = data.items.indexOf(sib[to]);
+    [data.items[a], data.items[b]] = [data.items[b], data.items[a]];
+    save(); renderAll();
+  }
+});
+cats.addEventListener("change", e => {
+  if(e.target.dataset.act !== "setdue") return;
+  const it = data.items.find(i => i.id === e.target.closest("li").dataset.id); if(!it) return;
+  if(e.target.value) setDue(it, e.target.value); else { it.due = null; it.level = null; }
+  save(); renderAll();
+});
+cats.addEventListener("keydown", e => {
+  if(e.target.dataset.act === "text" && e.key === "Enter"){
+    e.preventDefault(); e.target.closest(".addrow").querySelector('[data-act="add"]').click();
+  }
+  if(e.target.dataset.act === "edit" && e.key === "Enter"){ e.preventDefault(); e.target.blur(); }
+});
+cats.addEventListener("blur", e => {
+  if(e.target.dataset.act !== "edit") return;
+  const it = data.items.find(i => i.id === e.target.closest("li").dataset.id); if(!it) return;
+  const v = e.target.textContent.trim();
+  if(v && v !== it.text){ it.text = v; save(); renderAll(); } else if(!v){ e.target.textContent = it.text; }
+}, true);
+
+document.getElementById("board").addEventListener("click", e => {
+  const tile = e.target.closest(".tile"); if(!tile) return;
+  const id = tile.dataset.id;
+  if(e.target.dataset.act === "killimg"){
+    const it = data.items.find(i=>i.id===id);
+    if(it && confirm("この写真を外します。夢そのものは残ります。")){ it.img = null; save(); renderAll(); }
+    return;
+  }
+  askImage(id);
+});
+
+/* ==================== ウィザード ==================== */
+const wiz = document.getElementById("wiz");
+const wizTitle = document.getElementById("wizTitle"), wizHint = document.getElementById("wizHint");
+const wizBody = document.getElementById("wizBody"), wizBar = document.getElementById("wizBar");
+const wizPrev = document.getElementById("wizPrev"), wizNext = document.getElementById("wizNext");
+const wizCount = document.getElementById("wizCount"), wizCloseBtn = document.getElementById("wizClose");
+let phase = "dump", catIdx = 0, queue = [], at = 0, legacyStep = 0, whyFor = null;
+const TOTAL_UNITS = CATS.length + 4;
+
+function startWizard(p){
+  phase = p || "dump";
+  if(phase === "dump") catIdx = 0;
+  if(phase === "date") buildQueue();
+  if(phase === "legacy") legacyStep = 0;
+  wizRender();
+  if(!wiz.open) wiz.showModal();
+}
+function buildQueue(){ queue = noDate().map(i => i.id); at = 0; }
+function bump(n){ if(data.progress < n) data.progress = n; }
+function wizRender(){
+  wizCloseBtn.textContent = "中断する";
+  if(phase === "dump") return renderDump();
+  if(phase === "date") return renderDate();
+  if(phase === "image") return renderImage();
+  if(phase === "legacy") return renderLegacy();
+  return renderFinale();
+}
+
+/* --- STEP1 書き出す --- */
+function renderDump(){
+  const c = CATS[catIdx], mine = data.items.filter(i => i.cat === c.id);
+  const sharp = mine.filter(i=>isSharp(i.text)).length, vague = mine.length - sharp;
+  wizBar.style.width = (catIdx / TOTAL_UNITS * 100) + "%";
+  wizTitle.innerHTML = `<i class="dot" style="background:${c.hex};width:15px;height:15px"></i>
+    <span style="color:${c.hex}">${c.name}</span>
+    <span style="font-size:13px;color:var(--ink-3);font-weight:600">${c.sub}</span>`;
+  wizHint.textContent = "この分野で 5〜10個。叶うかどうかは考えません。頭にあるものをそのまま、自分の言葉で。";
+  wizBody.innerHTML = `
+    <div class="prompts" style="border-left:5px solid ${c.hex}">
+      <h4 style="color:${c.hex}">思い出すための質問</h4>
+      <ul>${c.asks.map(a=>`<li>${a}</li>`).join("")}</ul></div>
+    <div class="dumpin">
+      <input type="text" id="dumpInput" placeholder="${esc(c.name)}について、思いついたことを1つ" autocomplete="off">
+      <button class="cta" id="dumpAdd">追加</button></div>
+    <div class="blankwarn" id="blankWarn"></div>
+    <p class="hint" style="margin:6px 0 0">型だけ用意しました。<strong>＿＿ はご自身で埋めてください</strong>。埋めないと追加できません</p>
+    <div class="chips">${c.forms.map(t=>`<button data-form="${esc(t)}">${esc(t)}</button>`).join("")}</div>
+    <div class="goal" id="dumpGoal"></div>
+    <ul class="dumplist" id="dumpList"></ul>
+    <div class="tally" id="dumpTally"></div>`;
+
+  const input = document.getElementById("dumpInput");
+  const addBtn = document.getElementById("dumpAdd");
+  const warn = document.getElementById("blankWarn");
+  const check = () => {
+    const v = input.value;
+    const blanks = (v.match(/＿/g) || []).length;
+    addBtn.disabled = !v.trim() || blanks > 0;
+    warn.textContent = blanks > 0 ? "＿＿ を、あなたの言葉で埋めてください" : "";
+  };
+  const add = () => {
+    const v = input.value.trim();
+    if(!v || v.includes("＿")) return;
+    data.items.push({id:uid(), cat:c.id, text:v, due:null, level:null, img:null, done:false});
+    bump(1); save(); renderDump();
+  };
+  input.oninput = check;
+  input.onkeydown = e => { if(e.key === "Enter"){ e.preventDefault(); add(); } };
+  addBtn.onclick = add;
+  wizBody.querySelectorAll("[data-form]").forEach(b => b.onclick = () => {
+    input.value = b.dataset.form;
+    const at0 = input.value.indexOf("＿");
+    input.focus();
+    if(at0 >= 0){ let end = at0; while(input.value[end] === "＿") end++; input.setSelectionRange(at0, end); }
+    check();
+  });
+  check();
+  drawDumpList(c);
+
+  const n = mine.length, need = Math.max(0, DUMP_MIN - n);
+  const cheered = cheeredCats.has(c.id);
+  if(n >= DUMP_MIN) cheeredCats.add(c.id);
+  const goal = document.getElementById("dumpGoal");
+  goal.className = "goal" + (n >= DUMP_MIN ? " done" : "") + (n === DUMP_MIN && !cheered ? " cheer" : "");
+  goal.innerHTML =
+    `<span class="beads">${Array.from({length:DUMP_MIN}, (_,i) =>
+      `<i class="${i < n ? "on" : ""}" style="transition-delay:${i*60}ms"></i>`).join("")}</span>
+     <span class="msg">${CHEER(n)}</span>
+     <span class="n">${n}${n >= DUMP_MIN ? "" : " / " + DUMP_MIN}</span>`;
+  document.getElementById("dumpTally").innerHTML = n === 0 ? ""
+    : `<b class="sh">${sharp}</b> くっきり　<b class="vg">${vague}</b> ぼんやり`
+      + (vague ? `　— ぼんやりしたものは「なぜ？」を押すと、その先が出てきます` : "");
+
+  wizPrev.disabled = catIdx === 0;
+  wizNext.disabled = need > 0;
+  wizNext.textContent = need > 0 ? `あと ${need} つ`
+    : catIdx === CATS.length - 1 ? "6分野おわり　日付をつける" : "次の分野へ";
+  wizCount.textContent = `STEP 1　書き出す ${catIdx+1} / ${CATS.length}　合計 ${data.items.length} 個`;
+  setTimeout(()=>{ const el = document.getElementById("dumpInput"); if(el) el.focus(); }, 30);
+}
+
+function drawDumpList(c){
+  const host = document.getElementById("dumpList");
+  const mine = data.items.filter(i => i.cat === c.id);
+  host.innerHTML = mine.map((i,n) => {
+    const sharp = isSharp(i.text);
+    const row = `<li>
+      <span class="i">${n+1}</span>
+      <span class="body">${esc(i.text)}
+        <span class="flag ${sharp?"sharp":"vague"}" style="margin-left:7px">${sharp?"くっきり":"ぼんやり"}</span></span>
+      <button class="why" data-why="${i.id}">なぜ？</button>
+      <button class="x" data-kill="${i.id}" title="削除">✕</button></li>`;
+    if(whyFor !== i.id) return row;
+    return row + `<div class="whyrow">
+      <div class="q">「${esc(i.text)}」が手に入ったら、何をしますか</div>
+      <div class="row">
+        <input type="text" id="whyInput" placeholder="その先にあるものを、一言で" autocomplete="off">
+        <button class="cta" id="whyAdd">追加</button>
+        <button id="whyCancel">やめる</button></div></div>`;
+  }).join("");
+
+  host.querySelectorAll("[data-kill]").forEach(b => b.onclick = () => {
+    data.items = data.items.filter(i => i.id !== b.dataset.kill); save(); renderDump();
+  });
+  host.querySelectorAll("[data-why]").forEach(b => b.onclick = () => {
+    whyFor = whyFor === b.dataset.why ? null : b.dataset.why;
+    drawDumpList(c);
+    const el = document.getElementById("whyInput"); if(el) el.focus();
+  });
+  const wi = document.getElementById("whyInput");
+  if(wi){
+    const parent = data.items.find(i => i.id === whyFor);
+    const go = () => {
+      const v = wi.value.trim(); if(!v) return;
+      data.items.push({id:uid(), cat:c.id, text:v, due:null, level:null, img:null, done:false, from:parent ? parent.text : null});
+      whyFor = null; save(); renderDump();
+    };
+    document.getElementById("whyAdd").onclick = go;
+    document.getElementById("whyCancel").onclick = () => { whyFor = null; drawDumpList(c); };
+    wi.onkeydown = e => { if(e.key === "Enter"){ e.preventDefault(); go(); } };
+  }
+}
+
+/* --- STEP2 日付 --- */
+function renderDate(){
+  if(at >= queue.length){
+    if(noDate().length) buildQueue(); else { bump(2); phase = "image"; return wizRender(); }
+  }
+  let it = data.items.find(i => i.id === queue[at]);
+  while(at < queue.length && (!it || it.due)){ at++; it = data.items.find(i => i.id === queue[at]); }
+  if(!it){ if(noDate().length){ buildQueue(); return renderDate(); } bump(2); phase = "image"; return wizRender(); }
+  const c = catOf(it.cat), total = queue.length;
+  wizBar.style.width = ((CATS.length + at/Math.max(total,1)) / TOTAL_UNITS * 100) + "%";
+  wizTitle.textContent = "いつまでに叶えますか";
+  wizHint.textContent = "夢は、日付を入れた瞬間に目標になります。だいたいで構いません。あとから変えられます。";
+  wizBody.innerHTML = `
+    <div class="sortcard" style="background:linear-gradient(125deg,${c.hex},${c.hex}bb)">
+      <div class="who">${c.name}${it.from ? "　←　" + esc(it.from) : ""}</div>
+      <div class="what">${esc(it.text)}</div></div>
+    <div class="duebtns">${DUES.map(d=>{
+      const lv = LEVELS.find(l=>l.id===d.level);
+      const col = d.level==="base" ? "var(--c1)" : d.level==="realize" ? "var(--c3)" : "var(--c4)";
+      return `<button class="duebtn" data-due="${d.id}"><strong>${d.label}</strong>
+        <span class="yr">${d.years ? dueFull(d.id) + "まで" : "日付は決めない"}</span>
+        <span class="lv" style="color:${col}">→ ${lv.label}</span></button>`;
+    }).join("")}</div>`;
+  wizBody.querySelectorAll("[data-due]").forEach(b => b.onclick = () => pickDue(b.dataset.due));
+  wizPrev.disabled = at === 0; wizNext.textContent = "あとで"; wizNext.disabled = false;
+  wizCount.textContent = `STEP 2　日付 ${Math.min(at+1,total)} / ${total}　残り ${noDate().length} 個`;
+}
+function pickDue(dueId){
+  const it = data.items.find(i => i.id === queue[at]);
+  if(it) setDue(it, dueId);
+  save(); at++; renderDate();
+}
+document.addEventListener("keydown", e => {
+  if(!wiz.open || phase !== "date") return;
+  const n = Number(e.key);
+  if(n >= 1 && n <= DUES.length){ e.preventDefault(); pickDue(DUES[n-1].id); }
+});
+
+/* --- STEP3 絵 --- */
+function renderImage(){
+  wizBar.style.width = ((CATS.length + 1) / TOTAL_UNITS * 100) + "%";
+  wizTitle.textContent = "この夢に、合う絵はありますか";
+  wizHint.textContent = "文字は理屈を通って入りますが、絵は理屈を通さずに入ります。つけたいものだけで構いません。";
+  wizBody.innerHTML = `<div class="board" style="margin-top:16px">
+    ${data.items.map(i => {
+      const c = catOf(i.cat);
+      return `<figure class="tile addable" data-pick="${i.id}" style="margin:0">
+        <div class="ribbon" style="background:${c.hex}"></div>
+        ${i.img ? `<img src="${i.img}" alt="">` : `<div class="ph">＋ 画像をつける</div>`}
+        <figcaption class="cap"><b style="color:${c.hex}">${c.name}・${dueBadge(i.due)}</b>${esc(i.text)}</figcaption>
+      </figure>`;
+    }).join("")}</div>`;
+  wizBody.querySelectorAll("[data-pick]").forEach(el => el.onclick = () => askImage(el.dataset.pick, () => renderImage()));
+  wizPrev.disabled = false; wizNext.disabled = false;
+  wizNext.textContent = withImg().length ? "次へ　終わりから考える" : "絵はつけずに次へ";
+  wizCount.textContent = `STEP 3　絵にした夢 ${withImg().length} / ${data.items.length} 個`;
+}
+
+/* --- STEP4 終わりから --- */
+function saveAnswers(){
+  wizBody.querySelectorAll("textarea[data-q]").forEach(t => { data.answers[t.dataset.q] = t.value; });
+}
+function renderLegacy(){
+  wizBar.style.width = ((CATS.length + 2 + legacyStep*0.6) / TOTAL_UNITS * 100) + "%";
+  if(legacyStep === 0){
+    wizTitle.textContent = "最後の質問です";
+    wizHint.textContent = "";
+    wizBody.innerHTML = `
+      <div class="solemn"><p>ここから先は、夢の話ではありません。<br>
+      人は終わりを意識したとき、見栄や刷り込みを捨てて、本当に大事なものだけを見ます。<br>
+      <strong>目を閉じて、あなたのお葬式を想像してください。</strong></p></div>
+      ${FUNERAL.map(f=>`<div class="qblock">
+        <label for="q_${f.id}">${esc(f.q)}<span class="sub">${esc(f.sub)}</span></label>
+        <textarea id="q_${f.id}" data-q="${f.id}">${esc(ans(f.id))}</textarea></div>`).join("")}`;
+    wizPrev.disabled = false; wizNext.disabled = false;
+    wizNext.textContent = "次へ";
+    wizCount.textContent = "STEP 4　終わりから　1 / 3";
+    setTimeout(()=>{ const el = document.getElementById("q_f1"); if(el) el.focus(); }, 30);
+    return;
+  }
+  if(legacyStep === 1){
+    const answered = DEEP.reduce((a,g)=>a + g.qs.filter(q=>ans(q.id)).length, 0);
+    wizTitle.textContent = "もう少し深く掘りますか";
+    wizHint.textContent = "任意です。答えた分だけ、最後に出る言葉が正確になります。2〜3問で十分です。";
+    wizBody.innerHTML = DEEP.map((g,gi)=>`
+      <details class="deep" ${g.qs.some(q=>ans(q.id)) ? "open" : ""}>
+        <summary><i class="dot" style="background:${CATS[gi%6].hex}"></i>${esc(g.t)}
+          <span class="hint" style="font-weight:500">${esc(g.s)}</span></summary>
+        <div class="in">${g.qs.map(q=>`<div class="qblock">
+          <label for="q_${q.id}">${esc(q.q)}</label>
+          <textarea id="q_${q.id}" data-q="${q.id}">${esc(ans(q.id))}</textarea></div>`).join("")}</div>
+      </details>`).join("");
+    wizPrev.disabled = false; wizNext.disabled = false;
+    wizNext.textContent = answered ? "言葉を解析する" : "答えずに解析する";
+    wizCount.textContent = `STEP 4　終わりから　2 / 3　答えた問い ${answered} 個`;
+    return;
+  }
+  const r = analyze();
+  if(!data.ultimate.trim() && r.draft) data.ultimate = r.draft;
+  wizTitle.textContent = "あなたの言葉から、こう読めます";
+  wizHint.textContent = "これは下書きです。違和感があれば、あなたの言葉に書き直してください。直したものが正解です。";
+  wizBody.innerHTML = `
+    <div class="draft"><div class="in">
+      <div class="lab">人生の目的（下書き）</div>
+      <textarea id="draftBox">${esc(data.ultimate || r.draft)}</textarea></div></div>
+    <div class="redo">
+      <button id="btnRegen">下書きを作り直す</button>
+      <span class="hint">${r.sources} 個の文章から、${r.found.length} 個の価値観を検出しました</span></div>
+    ${r.heard ? `<div class="evrow" style="border-left:5px solid var(--c2);margin-top:16px">
+      <b style="color:var(--c2)">葬儀で聞こえてきてほしい一言</b>
+      <ul><li>${esc(r.heard)}</li></ul></div>` : ""}
+    <p class="hint" style="margin:16px 0 8px">あなたが繰り返し書いていた言葉</p>
+    <div class="evidence">${r.top.map((v,i)=>`
+      <div class="evrow" style="border-left:5px solid ${CATS[i].hex}">
+        <b style="color:${CATS[i].hex}">${i+1}. ${esc(v.k)}</b><span class="cnt">${v.score} 回ぶん</span>
+        <ul>${v.quotes.map(q=>`<li>${esc(q.length > 42 ? q.slice(0,42)+"…" : q)}</li>`).join("")}</ul></div>`).join("")
+      || `<div class="evrow">まだ言葉が足りません。STEP 1 に戻って、もう少し書き出してみてください。</div>`}</div>`;
+  const box = document.getElementById("draftBox");
+  box.oninput = () => { data.ultimate = box.value; ult.value = box.value; touch(); };
+  document.getElementById("btnRegen").onclick = () => {
+    const fresh = analyze();
+    box.value = fresh.draft; data.ultimate = fresh.draft; ult.value = fresh.draft; save();
+  };
+  wizPrev.disabled = false; wizNext.disabled = false;
+  wizNext.textContent = "これで決める";
+  wizCount.textContent = "STEP 4　終わりから　3 / 3";
+}
+
+function renderFinale(){
+  wizBar.style.width = "100%";
+  const byLv = LEVELS.map(l => data.items.filter(i=>i.level===l.id).length);
+  wizTitle.textContent = ""; wizHint.textContent = "";
+  wizBody.innerHTML = `<div class="finale">
+    <div class="big grad">これが、あなたの人生の目的です</div>
+    <div class="quote">${esc(data.ultimate || "（まだ書かれていません）")}</div>
+    <p>${data.items.length} 個の夢が、この一文の下に積み上がりました。<br>
+    これから先は、いちばん下の段のひとつを、今日やるだけです。</p>
+    <div class="legend" style="margin-top:18px">${LEVELS.map((l,x)=>
+      `<span><i class="dot" style="background:${[cssv("--c1"),cssv("--c3"),cssv("--c4")][x]}"></i>${l.label} ${byLv[x]}</span>`).join("")}</div></div>`;
+  wizPrev.disabled = false; wizNext.disabled = false;
+  wizNext.textContent = "ピラミッドを見る";
+  wizCloseBtn.textContent = "閉じる";
+  wizCount.textContent = "";
+  confetti();
+}
+
+wizNext.onclick = () => {
+  if(phase === "dump"){
+    if(catIdx < CATS.length - 1){ catIdx++; whyFor = null; renderDump(); }
+    else if(noDate().length){ bump(1); phase = "date"; buildQueue(); wizRender(); }
+    else { bump(2); phase = "image"; wizRender(); }
+    return;
+  }
+  if(phase === "date"){ at++; renderDate(); return; }
+  if(phase === "image"){ bump(3); phase = "legacy"; legacyStep = 0; wizRender(); return; }
+  if(phase === "legacy"){
+    if(legacyStep < 2){ saveAnswers(); save(); legacyStep++; wizRender(); return; }
+    bump(4); save(); phase = "finale"; wizRender(); return;
+  }
+  wiz.close(); renderAll(true);
+  document.getElementById("secPyramid").scrollIntoView({block:"start"});
+};
+wizPrev.onclick = () => {
+  if(phase === "dump"){ if(catIdx > 0){ catIdx--; whyFor = null; renderDump(); } return; }
+  if(phase === "date"){
+    if(at > 0){ at--; const it = data.items.find(i=>i.id===queue[at]); if(it){ it.due = null; it.level = null; } save(); renderDate(); }
+    else { phase = "dump"; catIdx = CATS.length - 1; renderDump(); }
+    return;
+  }
+  if(phase === "image"){ phase = "date"; buildQueue(); wizRender(); return; }
+  if(phase === "legacy"){
+    if(legacyStep > 0){ saveAnswers(); save(); legacyStep--; wizRender(); }
+    else { phase = "image"; wizRender(); }
+    return;
+  }
+  phase = "legacy"; legacyStep = 2; wizRender();
+};
+wizCloseBtn.onclick = () => {
+  if(phase === "legacy" && legacyStep < 2) saveAnswers();
+  save(); wiz.close(); renderAll(phase === "finale");
+};
+document.getElementById("btnStart").onclick = () => startWizard("dump");
+
+/* ==================== 記入例 ==================== */
+const SAMPLE = {
+  answers:{
+    f1:"よく晴れた日の、小さな会場。堅苦しくない。笑い声が漏れている。",
+    f2:"家族、昔の仲間、それから仕事で関わった人たち。名前も覚えていないような人まで来てくれている。",
+    f3:"「あの人に会って、自分は変われた」「背中を押してもらった」そう言い合っている。",
+    d43:"目の前の人が、自分にはまだできることがあると思い直す。その一瞬に立ち会いたい。"
+  },
+  rows:[
+    ["economy","y1","毎月の収支を1枚にまとめて把握する"],["economy","y1","生活防衛資金を12か月分積む"],
+    ["economy","y3","本業以外の収入を月30万円にする"],["economy","y10","働く場所と時間を自分で決められる"],
+    ["economy","someday","6億円が入ってくる"],
+    ["family","y1","週に一度、家族と何もしない夜をつくる"],["family","y5","家族4人でイタリアへ行く"],
+    ["family","y10","家族が互いの挑戦を面白がる家になる"],
+    ["social","y1","毎日1本、学んだことを書いて公開する"],["social","y1","初対面の人に月10人会う"],
+    ["social","y3","顧問先を12社にする"],["social","y10","この分野で名前が挙がる存在になる"],
+    ["social","y10","誰かの人生が変わる瞬間に立ち会い続ける"],
+    ["knowledge","y1","毎朝30分、本を読む"],["knowledge","y3","学んだ内容で講座を1本つくる"],
+    ["knowledge","y10","人に教えられる専門領域を2つ持つ"],
+    ["health","y1","毎朝5km走る"],["health","y1","23時に寝る"],
+    ["health","y5","フルマラソンを完走する"],["health","y10","60歳で30代の体力を保っている"],
+    ["spirit","y1","朝に3行、今日の意図を書く"],["spirit","y3","月に一度、何も持たずに自然の中へ行く"],
+    ["spirit","y10","何が起きても機嫌よくいられる"]
+  ]
+};
+document.getElementById("btnSample").onclick = () => {
+  if(data.items.length && !confirm("いま書かれている内容に、記入例を追加します。よろしいですか。")) return;
+  SAMPLE.rows.forEach(([cat,due,text]) => {
+    const it = {id:uid(), cat, text, due:null, level:null, img:null, done:false};
+    setDue(it, due); data.items.push(it);
+  });
+  Object.assign(data.answers, SAMPLE.answers);
+  if(!data.ultimate.trim()) data.ultimate = analyze().draft;
+  ult.value = data.ultimate;
+  data.progress = 4; save(); renderAll(true); confetti();
+  document.getElementById("secPyramid").scrollIntoView({block:"start"});
+};
+
+/* ==================== 書き出し・読み込み ==================== */
+const dlg = document.getElementById("dlg");
+function openDlg(title, hint, text, actions){
+  document.getElementById("dlgTitle").textContent = title;
+  document.getElementById("dlgHint").textContent = hint;
+  document.getElementById("dlgText").value = text;
+  const host = document.getElementById("dlgActions"); host.innerHTML = "";
+  actions.forEach(a => {
+    const b = document.createElement("button");
+    b.textContent = a.label; if(a.primary) b.className = "cta";
+    b.onclick = a.fn; host.appendChild(b);
+  });
+  dlg.showModal();
+}
+document.getElementById("btnExport").onclick = () => {
+  const json = JSON.stringify(data);
+  openDlg("書き出し", "この全文が、写真も含めたバックアップです。コピーして保存してください。", json, [
+    {label:"クリップボードにコピー", primary:true, fn:async () => {
+      try{ await navigator.clipboard.writeText(json); alert("コピーしました"); }
+      catch(_){ document.getElementById("dlgText").select(); }
+    }},
+    /* 配信環境ではブラウザがダウンロードを遮断するため、ローカル版でのみ出す */
+    ...(typeof window.claude === "undefined" ? [{label:"ファイルで保存", fn:() => {
+      const d = new Date(), a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([json], {type:"application/json"}));
+      a.download = `lifegoal-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}.json`;
+      a.click(); URL.revokeObjectURL(a.href);
+    }}] : []),
+    {label:"閉じる", fn:() => dlg.close()}
+  ]);
+};
+document.getElementById("btnImport").onclick = () => {
+  openDlg("読み込み", "書き出したJSONを貼り付けてください。いまの内容は置き換わります。", "", [
+    {label:"読み込む", primary:true, fn:() => {
+      try{
+        const d = JSON.parse(document.getElementById("dlgText").value);
+        if(!Array.isArray(d.items)) throw new Error("形式が違います");
+        data = d.version === 4 ? Object.assign(blank(), d) : d.version === 3 ? fromV3(d) : fromV2(d);
+        ult.value = data.ultimate; save(); renderAll(); dlg.close();
+      }catch(err){ alert("読み込めませんでした: " + err.message); }
+    }},
+    {label:"閉じる", fn:() => dlg.close()}
+  ]);
+};
+document.getElementById("btnPrint").onclick = () => window.print();
+document.getElementById("btnReset").onclick = () => {
+  if(!confirm("すべて消去します。書き出しは済んでいますか。")) return;
+  if(!confirm("本当に消去してよろしいですか。元に戻せません。")) return;
+  data = blank(); ult.value = ""; save(); renderAll();
+};
+document.getElementById("btnTheme").onclick = () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : cur === "light" ? "" : "dark";
+  if(next) document.documentElement.setAttribute("data-theme", next);
+  else document.documentElement.removeAttribute("data-theme");
+  try{ localStorage.setItem(KEY + "-theme", next); }catch(_){}
+  if(data.progress >= 4) drawPyramid();
+};
+try{ const th = localStorage.getItem(KEY + "-theme"); if(th) document.documentElement.setAttribute("data-theme", th); }catch(_){}
+
+/* ==================== プロローグ ====================
+   知らない人が「よし、やろう」と思えるまでの7場面。外部画像は使わずSVGで描く */
+const HEX = CATS.map(c => c.hex);
+function pDot(x, y, c, d, cls){
+  return `<circle class="${cls||"pop"}" cx="${x}" cy="${y}" r="7" fill="${c}" style="animation-delay:${d}s"/>`;
+}
+function pChip(x, y, label, d){
+  const w = label.length * 15 + 22;
+  return `<g class="dft" style="animation-delay:${d}s">
+    <rect x="${x-w/2}" y="${y-15}" width="${w}" height="30" rx="15" fill="${cssv("--sunk")}" stroke="${cssv("--line-2")}"/>
+    <text x="${x}" y="${y+5}" text-anchor="middle" font-size="14" fill="${cssv("--ink-3")}">${label}</text></g>`;
+}
+function pPyramid(litTiers, plaque){
+  const CX = 300, TOP = 150, BASE = 288, HWT = 34, HWB = 176, st = (BASE-TOP)/3;
+  const hw = y => HWT + (y-TOP)/(BASE-TOP)*(HWB-HWT);
+  const out = [];
+  for(let r = 0; r < 3; r++){
+    const yt = TOP + st*r, yb = TOP + st*(r+1), ht = hw(yt), hb = hw(yb);
+    const on = r >= 3 - litTiers;
+    let acc = "";
+    if(on){
+      for(let k = 0; k < 6; k++){
+        const f0 = k/6, f1 = (k+1)/6, x = (f,h) => CX - h + f*2*h;
+        acc += `<polygon points="${x(f0,ht)},${yt} ${x(f1,ht)},${yt} ${x(f1,hb)},${yb} ${x(f0,hb)},${yb}"
+          fill="${HEX[k]}" fill-opacity=".88"/>`;
+      }
+    }else{
+      acc = `<polygon points="${CX-ht},${yt} ${CX+ht},${yt} ${CX+hb},${yb} ${CX-hb},${yb}" fill="${cssv("--sunk")}"/>`;
+    }
+    out.push(`<g class="rise" style="animation-delay:${(2-r)*0.28}s">${acc}
+      <polygon points="${CX-ht},${yt} ${CX+ht},${yt} ${CX+hb},${yb} ${CX-hb},${yb}"
+        fill="none" stroke="${cssv("--panel")}" stroke-width="3"/></g>`);
+  }
+  if(plaque){
+    out.push(`<g class="pop" style="animation-delay:1.1s">
+      <ellipse class="glow" cx="${CX}" cy="96" rx="230" ry="62" fill="url(#proHalo)"/>
+      <rect x="${CX-172}" y="70" width="344" height="52" rx="14" fill="url(#proPlaque)"/>
+      <text x="${CX}" y="92" text-anchor="middle" font-size="10" letter-spacing="3" font-weight="800" fill="#fff" fill-opacity=".8">人生の目的</text>
+      <text x="${CX}" y="112" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">あなたの言葉で、ここに</text>
+      <line x1="${CX}" y1="122" x2="${CX}" y2="150" stroke="#ec4899" stroke-width="3"/></g>`);
+  }
+  return out.join("");
+}
+const PRO_DEFS = `<defs>
+  <linearGradient id="proPlaque" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#8b5cf6"/><stop offset=".52" stop-color="#ec4899"/><stop offset="1" stop-color="#f97316"/></linearGradient>
+  <radialGradient id="proHalo" cx=".5" cy=".5" r=".5">
+    <stop offset="0" stop-color="#ec4899" stop-opacity=".34"/><stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
+</defs>`;
+
+const HEAD_OFF = [[-40,-40],[20,-52],[-10,-14],[-62,8],[46,0],[-26,36],[32,44],[0,72],
+                  [-52,54],[58,-36],[-72,-20],[70,36],[0,-72],[-38,-64],[40,-70],[-64,-46]];
+const SPREAD = [[70,70],[168,44],[262,80],[356,50],[452,74],[534,116],[62,150],[152,132],
+                [250,158],[348,140],[446,160],[530,196],[96,236],[196,224],[300,248],[404,232]];
+
+const PROLOGUE = [
+  { h:"やりたいことは、あるはずなんです",
+    p:"でも、頭の中にあるうちは形になりません。<br>「いつか」「そのうち」のまま、何年も過ぎていきます。",
+    svg(){
+      const dots = HEAD_OFF.map((o,i) => pDot(300+o[0], 160+o[1], HEX[i%6], i*0.045, "jit")).join("");
+      return `${PRO_DEFS}
+        <circle class="halo" cx="300" cy="160" r="118" fill="url(#proHalo)"/>
+        <path class="draw" d="M300,58 C364,58 406,104 406,162 C406,222 364,262 300,262 C236,262 194,222 194,162 C194,104 236,58 300,58Z"
+          fill="none" stroke="${cssv("--line-2")}" stroke-width="3"/>
+        <path class="draw" style="animation-delay:.5s" d="M240,120 C300,100 330,180 270,200 C220,216 330,230 350,180 C366,138 250,150 262,196"
+          fill="none" stroke="${cssv("--line-2")}" stroke-width="2" stroke-opacity=".8"/>
+        ${dots}
+        ${pChip(84,70,"いつか",0)}${pChip(504,62,"お金のこと",.5)}
+        ${pChip(88,248,"時間がない",1)}${pChip(508,240,"何から？",1.5)}
+        ${pChip(300,300,"このままでいいのか",.8)}`;
+    }},
+  { h:"頭の中にあるものは、数えられません",
+    p:"数えられないものは、いつまでも減りません。<br>だからまず、全部そとに出します。ぜんぶです。",
+    svg(){
+      return `${PRO_DEFS}
+        <path d="M300,58 C364,58 406,104 406,162 C406,222 364,262 300,262 C236,262 194,222 194,162 C194,104 236,58 300,58Z"
+          fill="none" stroke="${cssv("--line")}" stroke-width="3" stroke-dasharray="7 8"/>
+        ${SPREAD.map((q,i)=>pDot(q[0], q[1], HEX[i%6], i*0.055)).join("")}`;
+    }},
+  { h:"人生は、6つの部屋でできています",
+    p:"経済、家庭、仕事、教養、健康、心。<br>どこかが空っぽなら、それが今のあなたの偏りです。",
+    svg(){
+      return PRO_DEFS + CATS.map((c,i) => {
+        const x = 66 + i*94;
+        return `<g class="pop" style="animation-delay:${i*0.11}s">
+          <circle cx="${x}" cy="150" r="40" fill="${c.hex}" fill-opacity=".92"/>
+          <circle cx="${x-13}" cy="140" r="6" fill="#fff" fill-opacity=".85"/>
+          <circle cx="${x+11}" cy="152" r="6" fill="#fff" fill-opacity=".85"/>
+          <circle cx="${x-4}" cy="164" r="6" fill="#fff" fill-opacity=".85"/>
+          <text x="${x}" y="222" text-anchor="middle" font-size="14" font-weight="800" fill="${c.hex}">${c.name.split("・")[0]}</text>
+        </g>`;
+      }).join("");
+    }},
+  { h:"日付を入れた瞬間、夢は目標に変わります",
+    p:"1年以内。3年。5年。10年。<br>遠いものほど上に、近いものほど下に置かれます。",
+    svg(){
+      const marks = [["1年",90],["3年",220],["5年",350],["10年",480]];
+      const bars = marks.map((m,i) => {
+        const lab = m[0], x = m[1];
+        return `<g class="rise" style="animation-delay:${i*0.13}s">
+        <line x1="${x}" y1="230" x2="${x}" y2="248" stroke="${cssv("--line-2")}" stroke-width="3"/>
+        <text x="${x}" y="272" text-anchor="middle" font-size="15" font-weight="800" fill="${cssv("--ink-2")}">${lab}</text>
+        ${[0,1,2].map(k=>`<circle cx="${x + (k-1)*22}" cy="${208 - k*30 - i*14}" r="9" fill="${HEX[(i*3+k)%6]}"/>`).join("")}
+      </g>`;
+      }).join("");
+      return `${PRO_DEFS}
+        <line x1="46" y1="240" x2="554" y2="240" stroke="${cssv("--line-2")}" stroke-width="3" stroke-linecap="round"/>
+        ${bars}
+        <text x="554" y="212" text-anchor="end" font-size="13" fill="${cssv("--ink-3")}">遠い夢</text>
+        <text x="46" y="212" font-size="13" fill="${cssv("--ink-3")}">近い夢</text>`;
+    }},
+  { h:"積み上がると、順番が見えます",
+    p:"いちばん下の段が、今日やることです。<br>もう「何から手をつけるか」で迷いません。",
+    svg(){
+      return `${PRO_DEFS}${pPyramid(3,false)}
+        <text x="300" y="322" text-anchor="middle" font-size="14" font-weight="800" fill="${cssv("--c5")}">↑ いちばん下から、手をつける</text>`;
+    }},
+  { h:"最後に、あなたの言葉の中から<br>人生の目的が現れます",
+    p:"誰かに決められたものではありません。<br>あなたが書いた言葉だけを数えて、組み立てます。",
+    svg(){ return `${PRO_DEFS}${pPyramid(3,true)}`; }},
+  { h:"さあ、はじめましょう",
+    p:"紙もペンもいりません。<br>途中でやめても、続きから戻れます。",
+    svg(){
+      return `${PRO_DEFS}
+        <g class="pop">${pPyramid(3,true)}</g>
+        ${[[92,58],[512,50],[62,216],[538,198],[300,326]].map((q,i)=>
+          `<g class="dft" style="animation-delay:${i*.35}s"><circle cx="${q[0]}" cy="${q[1]}" r="6" fill="${HEX[i]}"/></g>`).join("")}
+        ${[[168,96,8,0],[434,88,7,.6],[240,52,6,1.3],[372,300,7,2],[130,268,6,2.6]].map(q=>
+          `<polygon class="spark" style="animation-delay:${q[3]}s"
+            points="${q[0]},${q[1]-q[2]*2.4} ${q[0]+q[2]*.8},${q[1]-q[2]*.8} ${q[0]+q[2]*2.4},${q[1]}
+                    ${q[0]+q[2]*.8},${q[1]+q[2]*.8} ${q[0]},${q[1]+q[2]*2.4} ${q[0]-q[2]*.8},${q[1]+q[2]*.8}
+                    ${q[0]-q[2]*2.4},${q[1]} ${q[0]-q[2]*.8},${q[1]-q[2]*.8}" fill="#fbbf24"/>`).join("")}`;
+    }}
+];
+
+/* 書き出しの最低数と、そこまでの応援 */
+const DUMP_MIN = 5;
+const cheeredCats = new Set();
+function CHEER(n){
+  if(n === 0) return "まず1つ。どんなに小さくても、人に言えないことでも構いません<small>ここは誰にも見せなくていい場所です</small>";
+  if(n === 1) return "いいですね。1つ出ました<small>あと4つ。上の質問を1つずつ読んでみてください</small>";
+  if(n === 2) return "ここで一度、深呼吸をどうぞ<small>急がなくて大丈夫です。あと3つ</small>";
+  if(n === 3) return "ここからが本番です<small>頭の奥にしまってあったものが出てきます。あと2つ</small>";
+  if(n === 4) return "あと1つ。いちばん言いにくいものを<small>本音は、たいてい最後に出てきます</small>";
+  if(n === DUMP_MIN) return "5つ達成。よく出しました<small>もう次へ進めます。まだ出るなら、出るだけどうぞ</small>";
+  if(n < 10) return n + "個。ここまで書ける人はそう多くありません<small>10個までは伸びしろです</small>";
+  return n + "個。十分すぎます<small>次の分野へどうぞ</small>";
+}
+
+let proAt = 0;
+const proEl = document.getElementById("prologue");
+function drawPro(){
+  const sc = PROLOGUE[proAt];
+  document.getElementById("proStage").innerHTML =
+    `<svg viewBox="0 0 600 340" class="pro-scene" role="img" aria-label="${esc(sc.h.replace(/<br>/g, "　"))}">${sc.svg()}</svg>`;
+  document.getElementById("proCopy").innerHTML = `<div class="pro-scene"><h2>${sc.h}</h2><p>${sc.p}</p></div>`;
+  sparkle(document.querySelector(".pro-copy h2"),
+    [{t:"-14px",l:"-26px",s:"15px",k:"#fbbf24",d:"0s"},
+     {t:"-4px",r:"-28px",s:"12px",k:"#ec4899",d:".8s"},
+     {b:"-10px",l:"6%",s:"10px",k:"#8b5cf6",d:"1.6s"}]);
+  document.getElementById("proDots").innerHTML =
+    PROLOGUE.map((_,i)=>`<i class="${i===proAt?"on":""}"></i>`).join("");
+  document.getElementById("proBack").disabled = proAt === 0;
+  document.getElementById("proNext").textContent = proAt === PROLOGUE.length-1 ? "書き出しをはじめる" : "次へ";
+  document.getElementById("proSkip").hidden = proAt === PROLOGUE.length-1;
+}
+function openPro(){ proAt = 0; proEl.hidden = false; document.body.style.overflow = "hidden"; drawPro(); }
+function closePro(){ proEl.hidden = true; document.body.style.overflow = ""; data.seenPro = true; save(); }
+document.getElementById("proNext").onclick = () => {
+  if(proAt < PROLOGUE.length - 1){ proAt++; drawPro(); }
+  else { closePro(); startWizard("dump"); }
+};
+document.getElementById("proBack").onclick = () => { if(proAt > 0){ proAt--; drawPro(); } };
+document.getElementById("proSkip").onclick = () => closePro();
+document.addEventListener("keydown", e => {
+  if(proEl.hidden) return;
+  if(e.key === "ArrowRight" || e.key === "Enter"){ e.preventDefault(); document.getElementById("proNext").click(); }
+  if(e.key === "ArrowLeft"){ e.preventDefault(); document.getElementById("proBack").click(); }
+  if(e.key === "Escape"){ e.preventDefault(); closePro(); }
+});
+document.getElementById("btnPro").onclick = () => openPro();
+
+/* ==================== 宝の人生マップ ====================
+   絵にした夢を1枚のポスターに合成する。A4縦・210dpi 相当（1748×2480） */
+const MAP_W = 1748, MAP_H = 2480;
+const JP_FONT = '"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif';
+
+function rrect(ctx, x, y, w, h, r){
+  if(ctx.roundRect){ ctx.beginPath(); ctx.roundRect(x, y, w, h, r); return; }
+  ctx.beginPath();
+  ctx.moveTo(x+r, y); ctx.arcTo(x+w, y, x+w, y+h, r); ctx.arcTo(x+w, y+h, x, y+h, r);
+  ctx.arcTo(x, y+h, x, y, r); ctx.arcTo(x, y, x+w, y, r); ctx.closePath();
+}
+function wrapText(ctx, text, maxW, maxLines){
+  const out = []; let line = "";
+  const chars = Array.from(String(text));
+  for(let i = 0; i < chars.length; i++){
+    const ch = chars[i];
+    if(ch === "\n"){ out.push(line); line = ""; if(out.length >= maxLines) return {lines:out, cut:i < chars.length-1}; continue; }
+    const t = line + ch;
+    if(line && ctx.measureText(t).width > maxW){
+      out.push(line); line = ch;
+      if(out.length >= maxLines) return {lines:out, cut:true};
+    }else line = t;
+  }
+  if(line) out.push(line);
+  return {lines:out, cut:false};
+}
+function loadImg(src){
+  return new Promise(res => {
+    const im = new Image();
+    im.onload = () => res(im);
+    im.onerror = () => res(null);
+    im.src = src;
+  });
+}
+function drawCover(ctx, im, x, y, w, h){
+  const ar = im.width / im.height, tr = w / h;
+  let sw = im.width, sh = im.height, sx = 0, sy = 0;
+  if(ar > tr){ sw = im.height * tr; sx = (im.width - sw) / 2; }
+  else { sh = im.width / tr; sy = (im.height - sh) / 2; }
+  ctx.drawImage(im, sx, sy, sw, sh, x, y, w, h);
+}
+
+async function buildTreasureMap(){
+  const cv = document.createElement("canvas");
+  cv.width = MAP_W; cv.height = MAP_H;
+  const ctx = cv.getContext("2d");
+  const dark = document.documentElement.getAttribute("data-theme") === "dark"
+    || (!document.documentElement.getAttribute("data-theme") && matchMedia("(prefers-color-scheme:dark)").matches);
+  const PAPER = dark ? "#15161c" : "#fffdf9";
+  const INK = dark ? "#f0f1f4" : "#16181c";
+  const INK3 = dark ? "#8d939d" : "#8d939d";
+  const CARD = dark ? "#23252e" : "#ffffff";
+
+  /* 背景 */
+  ctx.fillStyle = PAPER; ctx.fillRect(0, 0, MAP_W, MAP_H);
+  CATS.forEach((c, i) => {
+    const g = ctx.createRadialGradient(
+      (i % 2 ? MAP_W - 60 : 60), 620 + i * 320, 0,
+      (i % 2 ? MAP_W - 60 : 60), 620 + i * 320, 640);
+    g.addColorStop(0, c.hex + (dark ? "26" : "1c"));
+    g.addColorStop(1, c.hex + "00");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, MAP_W, MAP_H);
+  });
+
+  /* ヘッダー帯 */
+  const HB = 486;
+  const hg = ctx.createLinearGradient(0, 0, MAP_W, HB);
+  hg.addColorStop(0, "#8b5cf6"); hg.addColorStop(.52, "#ec4899"); hg.addColorStop(1, "#f97316");
+  ctx.fillStyle = hg; ctx.fillRect(0, 0, MAP_W, HB);
+
+  /* 帯の右上に薄いピラミッド */
+  ctx.save(); ctx.globalAlpha = .16; ctx.strokeStyle = "#fff"; ctx.lineWidth = 5;
+  [[0,64],[1,44],[2,24]].forEach(([r, hwTop]) => {
+    const y0 = 96 + r * 62, y1 = y0 + 62, w0 = 26 + r * 44, w1 = w0 + 44, cx = MAP_W - 190;
+    ctx.beginPath(); ctx.moveTo(cx - w0, y0); ctx.lineTo(cx + w0, y0);
+    ctx.lineTo(cx + w1, y1); ctx.lineTo(cx - w1, y1); ctx.closePath(); ctx.stroke();
+  });
+  ctx.restore();
+
+  ctx.textBaseline = "alphabetic";
+  try{ ctx.letterSpacing = "10px"; }catch(e){}
+  ctx.font = `800 26px ${JP_FONT}`; ctx.fillStyle = "rgba(255,255,255,.72)";
+  ctx.fillText("LIFE GOAL", 96, 96);
+  try{ ctx.letterSpacing = "6px"; }catch(e){}
+  ctx.font = `800 24px ${JP_FONT}`; ctx.fillStyle = "rgba(255,255,255,.82)";
+  ctx.fillText("人生の目的", 96, 152);
+  try{ ctx.letterSpacing = "0px"; }catch(e){}
+
+  const purpose = (data.ultimate || "").trim() || "（まだ書かれていません）";
+  ctx.font = `800 62px ${JP_FONT}`; ctx.fillStyle = "#ffffff";
+  const pw = wrapText(ctx, purpose, MAP_W - 200, 4);
+  pw.lines.forEach((ln, i) => ctx.fillText(ln, 96, 240 + i * 84));
+
+  const d = new Date();
+  ctx.font = `600 26px ${JP_FONT}`; ctx.fillStyle = "rgba(255,255,255,.80)";
+  ctx.fillText(`${data.items.length} の夢　${withImg().length} 枚の絵　${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`, 96, HB - 44);
+
+  /* 写真カード */
+  const photos = withImg();
+  const M = 84, availW = MAP_W - M * 2, gap = 30;
+  let cols = photos.length <= 1 ? 1 : photos.length <= 4 ? 2 : photos.length <= 9 ? 3 : photos.length <= 16 ? 4 : 5;
+  let cardW, imgH, capH, cardH, rows, blockH;
+  const topY = HB + 74, footH = 210;
+  for(;;){
+    cardW = (availW - gap * (cols - 1)) / cols;
+    imgH = Math.round(cardW * 0.72);
+    capH = Math.round(Math.max(96, cardW * 0.30));
+    cardH = imgH + capH;
+    rows = Math.ceil(photos.length / cols);
+    blockH = rows * (cardH + gap);
+    if(blockH <= MAP_H - topY - footH - 260 || cols >= 6) break;
+    cols++;
+  }
+
+  const imgs = await Promise.all(photos.map(i => loadImg(i.img)));
+  photos.forEach((it, n) => {
+    const c = catOf(it.cat);
+    const col = n % cols, row = Math.floor(n / cols);
+    const cx = M + col * (cardW + gap) + cardW / 2;
+    const cy = topY + row * (cardH + gap) + cardH / 2;
+    const rot = (((n * 53) % 9) - 4) * 0.0055;
+
+    ctx.save();
+    ctx.translate(cx, cy); ctx.rotate(rot); ctx.translate(-cardW / 2, -cardH / 2);
+    ctx.shadowColor = "rgba(0,0,0,.22)"; ctx.shadowBlur = 26; ctx.shadowOffsetY = 12;
+    ctx.fillStyle = CARD; rrect(ctx, 0, 0, cardW, cardH, 18); ctx.fill();
+    ctx.shadowColor = "transparent"; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+
+    ctx.save(); rrect(ctx, 12, 12, cardW - 24, imgH - 12, 12); ctx.clip();
+    const im = imgs[n];
+    if(im) drawCover(ctx, im, 12, 12, cardW - 24, imgH - 12);
+    else { ctx.fillStyle = c.hex; ctx.fillRect(12, 12, cardW - 24, imgH - 12); }
+    ctx.restore();
+
+    ctx.fillStyle = c.hex; rrect(ctx, 12, imgH + 6, cardW - 24, 7, 4); ctx.fill();
+    ctx.font = `800 ${Math.round(cardW * 0.052)}px ${JP_FONT}`; ctx.fillStyle = c.hex;
+    ctx.fillText(`${c.name.split("・")[0]}・${dueBadge(it.due)}`, 22, imgH + 48);
+    ctx.font = `700 ${Math.round(cardW * 0.062)}px ${JP_FONT}`; ctx.fillStyle = INK;
+    const w = wrapText(ctx, it.text, cardW - 44, 2);
+    w.lines.forEach((ln, i) => ctx.fillText(ln + (w.cut && i === w.lines.length - 1 ? "…" : ""), 22, imgH + 92 + i * Math.round(cardW * 0.076)));
+    ctx.restore();
+  });
+
+  /* 絵のない夢を色チップで */
+  let y = topY + blockH + 44;
+  const rest = data.items.filter(i => !i.img);
+  if(rest.length && y < MAP_H - footH - 130){
+    ctx.font = `800 28px ${JP_FONT}`; ctx.fillStyle = INK3;
+    ctx.fillText("そのほかの夢", M, y); y += 46;
+    ctx.font = `700 27px ${JP_FONT}`;
+    let x = M, shown = 0;
+    for(const it of rest){
+      const c = catOf(it.cat);
+      const label = `${it.text}　${dueBadge(it.due)}`;
+      const w = Math.min(availW, ctx.measureText(label).width + 44);
+      if(x + w > MAP_W - M){ x = M; y += 56; }
+      if(y > MAP_H - footH - 60) break;
+      ctx.fillStyle = c.hex + (dark ? "33" : "22"); rrect(ctx, x, y - 32, w, 46, 23); ctx.fill();
+      ctx.strokeStyle = c.hex + "88"; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = INK; ctx.fillText(label, x + 22, y);
+      x += w + 12; shown++;
+    }
+    if(shown < rest.length){
+      y += 56; ctx.font = `600 25px ${JP_FONT}`; ctx.fillStyle = INK3;
+      ctx.fillText(`ほか ${rest.length - shown} 件`, M, y);
+    }
+  }
+
+  /* フッター */
+  const fy = MAP_H - 118;
+  ctx.strokeStyle = dark ? "#2c2e37" : "#e6e5e1"; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(M, fy - 56); ctx.lineTo(MAP_W - M, fy - 56); ctx.stroke();
+  ctx.font = `700 25px ${JP_FONT}`;
+  let lx = M;
+  CATS.forEach(c => {
+    const n = data.items.filter(i => i.cat === c.id).length;
+    const label = `${c.name.split("・")[0]} ${n}`;
+    ctx.fillStyle = c.hex; ctx.beginPath(); ctx.arc(lx + 9, fy - 9, 9, 0, 7); ctx.fill();
+    ctx.fillStyle = INK; ctx.fillText(label, lx + 28, fy);
+    lx += ctx.measureText(label).width + 66;
+  });
+  ctx.font = `800 25px ${JP_FONT}`; ctx.fillStyle = INK3; ctx.textAlign = "right";
+  ctx.fillText("ライフゴール　人生はビジュアル化できる", MAP_W - M, fy);
+  ctx.textAlign = "left";
+  return cv;
+}
+
+/* ---- 表示・保存・印刷 ---- */
+let mapBlob = null, mapURL = null;
+async function openTreasureMap(){
+  const btn = document.getElementById("btnMap");
+  if(btn){ btn.disabled = true; btn.textContent = "作成中…"; }
+  let cv;
+  try{ cv = await buildTreasureMap(); }
+  catch(err){ alert("地図を作れませんでした: " + err.message); }
+  finally{ if(btn){ btn.disabled = false; btn.textContent = "1枚の宝の地図にする"; } }
+  if(!cv) return;
+
+  mapBlob = await new Promise(r => cv.toBlob(r, "image/jpeg", 0.92));
+  if(mapURL) URL.revokeObjectURL(mapURL);
+  mapURL = URL.createObjectURL(mapBlob);
+
+  document.getElementById("mapImg").src = mapURL;
+  document.getElementById("mapPrintHost").innerHTML = `<img src="${mapURL}" alt="宝の人生マップ">`;
+  const kb = Math.round(mapBlob.size / 1024);
+  document.getElementById("mapInfo").textContent =
+    `A4縦・${MAP_W}×${MAP_H}px（${kb > 1024 ? (kb/1024).toFixed(1) + " MB" : kb + " KB"}）　印刷して、毎日見える場所に貼ってください`;
+  document.getElementById("mapDlg").showModal();
+}
+async function saveTreasureMap(){
+  if(!mapBlob) return;
+  const d = new Date();
+  const name = `takara-map-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}.jpg`;
+  const dl = (window.claude && claude.use) ? await claude.use("downloads").catch(() => null) : null;
+  if(dl){
+    try{ await dl.save({filename:name, data:mapBlob}); }
+    catch(err){
+      if(err && err.code === "declined") return;
+      alert("保存できませんでした。画像を長押し、または右クリックで保存してください。");
+    }
+    return;
+  }
+  const a = document.createElement("a");
+  a.href = mapURL; a.download = name; a.click();
+}
+function printTreasureMap(){
+  document.body.classList.add("map-print");
+  const done = () => { document.body.classList.remove("map-print"); window.removeEventListener("afterprint", done); };
+  window.addEventListener("afterprint", done);
+  window.print();
+  setTimeout(done, 1500);
+}
+document.getElementById("btnMap").onclick = openTreasureMap;
+document.getElementById("mapSave").onclick = saveTreasureMap;
+document.getElementById("mapPrint").onclick = printTreasureMap;
+document.getElementById("mapClose").onclick = () => document.getElementById("mapDlg").close();
+
+/* ==================== 装飾 ====================
+   分野アイコン・きらめき・スクロールで現れる演出 */
+const ICONS = {
+  economy:'<circle cx="12" cy="12" r="8.5"/><path d="M8.6 8.2 12 12.2l3.4-4M12 12.2v5M9.4 13.6h5.2M9.4 15.6h5.2"/>',
+  family:'<path d="M3.2 11 12 4.2 20.8 11"/><path d="M5.4 9.6V19h13.2V9.6"/><path d="M10 19v-4.6h4V19"/>',
+  social:'<rect x="3" y="7.6" width="18" height="11.4" rx="2"/><path d="M9 7.6V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.6M3 12.6h18"/>',
+  knowledge:'<path d="M4 5.2A2.2 2.2 0 0 1 6.2 3H19v14.2H6.2A2.2 2.2 0 0 0 4 19.4Z"/><path d="M19 17.2v3.6H6.2A2.2 2.2 0 0 1 4 18.6"/>',
+  health:'<path d="M12 20s-7.2-4.4-7.2-9.2A3.9 3.9 0 0 1 12 8.2a3.9 3.9 0 0 1 7.2 2.6C19.2 15.6 12 20 12 20Z"/>',
+  spirit:'<path d="m12 2.8 2 5.7 5.7 2-5.7 2-2 5.7-2-5.7-5.7-2 5.7-2z"/><circle cx="18.6" cy="18.4" r="1.7"/>'
+};
+function catIcon(id, size, sw){
+  return `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor"
+    stroke-width="${sw || 1.8}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[id] || ""}</svg>`;
+}
+
+/* きらめきを見出しに散らす */
+const SPOTS = [
+  {t:"-16px", l:"-22px", s:"15px", k:"#fbbf24", d:"0s"},
+  {t:"-6px",  r:"-26px", s:"12px", k:"#ec4899", d:".9s"},
+  {t:"70%",   l:"-30px", s:"10px", k:"#8b5cf6", d:"1.7s"}
+];
+function sparkle(el, spots){
+  if(!el || el.dataset.spk) return;
+  el.dataset.spk = "1";
+  el.classList.add("spk");
+  (spots || SPOTS).forEach(p => {
+    const i = document.createElement("i");
+    i.style.cssText = `--s:${p.s};--k:${p.k};animation-delay:${p.d};` +
+      (p.t ? `top:${p.t};` : "") + (p.l ? `left:${p.l};` : "") +
+      (p.r ? `right:${p.r};` : "") + (p.b ? `bottom:${p.b};` : "");
+    el.appendChild(i);
+  });
+}
+function sparkleAll(){
+  sparkle(document.querySelector(".brand h1"));
+  sparkle(document.querySelector(".intro h2"));
+  document.querySelectorAll(".sechead h2").forEach(h => sparkle(h));
+}
+
+/* スクロールで現れる */
+let io = null;
+function revealInit(){
+  if(!("IntersectionObserver" in window)) return;
+  if(!io) io = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add("on");
+      if(e.target.classList.contains("stats")) shineStats();
+      io.unobserve(e.target);
+    }
+  }), {rootMargin:"0px 0px -8% 0px", threshold:.08});
+  document.querySelectorAll(".panel,.cat,.tile,.sechead,.stats").forEach(el => {
+    if(el.dataset.rv) return;
+    el.dataset.rv = "1";
+    if(!el.classList.contains("sechead") && !el.classList.contains("stats")) el.classList.add("rv");
+    io.observe(el);
+  });
+}
+function shineStats(){
+  document.querySelectorAll("#stats .stat").forEach((s, i) =>
+    setTimeout(() => { s.classList.add("shine"); setTimeout(() => s.classList.remove("shine"), 1200); }, i * 110));
+}
+
+/* 描画のたびに装飾を貼り直す */
+const _renderAll = renderAll;
+renderAll = function(reveal){
+  _renderAll(reveal);
+  CATS.forEach(c => {
+    const card = document.querySelector(`.cat[data-cat="${c.id}"]`);
+    if(card) card.style.setProperty("--glow", c.hex + "3d");
+  });
+  sparkleAll();
+  revealInit();
+};
+sparkleAll();
+revealInit();
+
+/* ==================== プロフィール ====================
+   名前と生年月日があると、すべての年に「◯◯歳」が並ぶ。それが人生ロードマップの背骨になる */
+if(!data.profile) data.profile = {name:"", birth:"", gender:"", lifespan:90, face:null};
+
+function prof(){ return data.profile || (data.profile = {name:"", birth:"", gender:"", lifespan:90, face:null}); }
+function birthDate(){
+  const b = prof().birth;
+  if(!b) return null;
+  const d = new Date(b + "T00:00:00");
+  return isNaN(d) ? null : d;
+}
+function ageNow(){
+  const d = birthDate(); if(!d) return null;
+  const t = new Date();
+  let a = t.getFullYear() - d.getFullYear();
+  if(t.getMonth() < d.getMonth() || (t.getMonth() === d.getMonth() && t.getDate() < d.getDate())) a--;
+  return a;
+}
+function ageAt(year){ const a = ageNow(); return a === null ? null : a + (year - THIS_YEAR); }
+function yearOfDue(id){ const d = dueOf(id); return d && d.years ? THIS_YEAR + d.years : null; }
+function dueFull(id){
+  const y = yearOfDue(id);
+  if(!y) return "いつか";
+  const a = ageAt(y);
+  return y + "年" + (a === null ? "" : "・" + a + "歳");
+}
+function endYear(){ const d = birthDate(); return d ? d.getFullYear() + (prof().lifespan || 90) : null; }
+function yearsLeft(){ const e = endYear(); return e === null ? null : e - THIS_YEAR; }
+
+/* ピラミッドの段ラベルに年齢を入れる */
+function refreshSpans(){
+  const a = ageNow();
+  LEVELS[0].span = a === null ? "1年以内" : `${THIS_YEAR + 1}年・${a + 1}歳まで`;
+  LEVELS[1].span = a === null ? "3〜5年" : `${THIS_YEAR + 3}〜${THIS_YEAR + 5}年・${a + 3}〜${a + 5}歳`;
+  LEVELS[2].span = a === null ? "10年以降・いつか" : `${THIS_YEAR + 10}年・${a + 10}歳〜`;
+}
+
+/* ---- プロフィール画面 ---- */
+function renderProfile(){
+  const p = prof();
+  wizBar.style.width = "3%";
+  wizTitle.textContent = "はじめに、あなたのことを";
+  wizHint.textContent = "名前と生年月日をいただくと、すべての夢に「何年の、何歳の自分か」が入ります。";
+  wizBody.innerHTML = `
+    <div class="pform">
+      <div><label for="pfName">お名前<span class="req">＊</span><span class="sub" style="font-weight:600;color:var(--ink-3);font-size:12px;margin-left:7px">ニックネームでも構いません</span></label>
+        <input type="text" id="pfName" value="${esc(p.name)}" placeholder="例）矢部 大" autocomplete="name"></div>
+      <div class="pf-2">
+        <div><label for="pfBirth">生年月日</label><input type="date" id="pfBirth" value="${esc(p.birth)}"></div>
+        <div><label for="pfGender">性別（任意）</label>
+          <select id="pfGender">
+            <option value="" ${!p.gender?"selected":""}>回答しない</option>
+            <option ${p.gender==="男性"?"selected":""}>男性</option>
+            <option ${p.gender==="女性"?"selected":""}>女性</option>
+          </select></div>
+      </div>
+      <div class="pf-2">
+        <div><label for="pfLife">何歳まで生きますか</label>
+          <input type="number" id="pfLife" min="40" max="120" step="1" value="${p.lifespan || 90}"></div>
+        <div><label>いまの年齢</label><div class="pf-age" id="pfAge">—</div></div>
+      </div>
+      <div class="pf-face">
+        <div class="pf-thumb" id="pfThumb">${p.face ? `<img src="${p.face}" alt="">` : "＋"}</div>
+        <div><label>最高の笑顔の顔写真（任意）</label>
+          <p class="hint">宝地図の中央に入ります。なければ、お名前と人生の目的が中央に入ります</p></div>
+      </div>
+    </div>`;
+
+  const name = document.getElementById("pfName");
+  const birth = document.getElementById("pfBirth");
+  const life = document.getElementById("pfLife");
+  const upd = () => {
+    p.name = name.value.trim();
+    p.birth = birth.value;
+    p.lifespan = Math.min(120, Math.max(40, Number(life.value) || 90));
+    p.gender = document.getElementById("pfGender").value;
+    const a = ageNow(), left = yearsLeft();
+    document.getElementById("pfAge").innerHTML = a === null ? "—<small>生年月日を入れると出ます</small>"
+      : `${a}歳<small>${left !== null && left > 0 ? `目標まで あと ${left} 年　${endYear()}年` : "目標年齢を超えています"}</small>`;
+    wizNext.disabled = !p.name;
+    refreshSpans();
+  };
+  [name, birth, life].forEach(el => el.oninput = upd);
+  document.getElementById("pfGender").onchange = upd;
+  document.getElementById("pfThumb").onclick = () => askFace();
+  upd();
+
+  wizPrev.disabled = true;
+  wizNext.textContent = "書き出しをはじめる";
+  wizCount.textContent = "はじめに";
+  setTimeout(() => { const el = document.getElementById("pfName"); if(el && !p.name) el.focus(); }, 30);
+}
+
+/* 顔写真 */
+const faceInput = document.createElement("input");
+faceInput.type = "file"; faceInput.accept = "image/*"; faceInput.hidden = true;
+document.body.appendChild(faceInput);
+function askFace(){ faceInput.value = ""; faceInput.click(); }
+faceInput.onchange = async e => {
+  const f = e.target.files && e.target.files[0];
+  if(!f) return;
+  try{
+    const img = await shrink(f);
+    const prev = prof().face;
+    prof().face = img;
+    if(!save()){ prof().face = prev; alert("保存できませんでした。写真の枚数を減らしてみてください。"); }
+  }catch(err){ alert("この画像は読み込めませんでした"); }
+  if(phase === "profile") renderProfile(); else renderAll();
+};
+
+/* ---- ウィザードにプロフィールの局面を差し込む ---- */
+const _startWizard = startWizard;
+startWizard = function(p){
+  if(p === "dump" && !prof().name){ phase = "profile"; wizRender(); if(!wiz.open) wiz.showModal(); return; }
+  _startWizard(p);
+};
+const _wizRender = wizRender;
+wizRender = function(){
+  wizCloseBtn.textContent = "中断する";
+  if(phase === "profile") return renderProfile();
+  return _wizRender();
+};
+const _nextClick = wizNext.onclick;
+wizNext.onclick = () => {
+  if(phase === "profile"){
+    if(!prof().name) return;
+    save(); phase = "dump"; catIdx = 0; wizRender(); return;
+  }
+  _nextClick();
+};
+const _prevClick = wizPrev.onclick;
+wizPrev.onclick = () => {
+  if(phase === "profile") return;
+  if(phase === "dump" && catIdx === 0){ phase = "profile"; wizRender(); return; }
+  _prevClick();
+};
+function openProfile(){ phase = "profile"; wizRender(); if(!wiz.open) wiz.showModal(); }
+
+/* ---- 画面上のプロフィール札 ---- */
+function drawMe(){
+  const host = document.getElementById("meHost");
+  if(!host) return;
+  const p = prof();
+  if(!p.name && data.progress === 0){ host.innerHTML = ""; return; }
+  const a = ageNow(), left = yearsLeft();
+  host.innerHTML = `<div class="mecard">
+    <span class="av">${p.face ? `<img src="${p.face}" alt="">` : esc((p.name || "？").slice(0,1))}</span>
+    <span><b>${esc(p.name || "名前が未設定")}</b>
+      <span class="sub">${a === null ? "生年月日が未設定" :
+        `${a}歳　${left > 0 ? `目標の${prof().lifespan}歳まで あと ${left} 年` : ""}`}</span></span>
+    <button id="btnMe">編集</button></div>`;
+  document.getElementById("btnMe").onclick = openProfile;
+}
+
+/* ==================== 年表ロードマップ ==================== */
+const RM_COLS = [
+  {due:"y1",  n:1},
+  {due:"y3",  n:3},
+  {due:"y5",  n:5},
+  {due:"y10", n:10},
+  {due:"someday", n:null}
+];
+function drawRoadmap(){
+  const host = document.getElementById("roadmap");
+  if(!host) return;
+  const a = ageNow();
+  const head = RM_COLS.map((col, i) => {
+    const y = col.n ? THIS_YEAR + col.n : null;
+    return `<div class="hd ${i===0?"now":""}">
+      <b>${y ? y + "年" : "いつか"}</b>
+      <small>${y ? (a === null ? `${col.n}年後` : `${a + col.n}歳`) : (endYear() ? `${endYear()}年まで` : "期限なし")}</small></div>`;
+  }).join("");
+
+  const lanes = CATS.map(c => {
+    const cells = RM_COLS.map((col, i) => {
+      const list = data.items.filter(it => it.cat === c.id && it.due === col.due);
+      return `<div class="cell ${i===0?"nowcol":""}">${
+        list.length ? list.map(it => `<span class="chip ${it.done?"done":""}" style="--c:${c.hex}">
+          ${it.img ? `<img src="${it.img}" alt="">` : ""}<span>${esc(it.text)}</span></span>`).join("")
+        : `<span class="none">—</span>`}</div>`;
+    }).join("");
+    return `<div class="lane"><div class="lname" style="color:${c.hex}">${catIcon(c.id,17)}
+      <span style="color:var(--ink)">${c.name.split("・")[0]}</span></div>${cells}</div>`;
+  }).join("");
+
+  host.innerHTML = `<div class="rmwrap"><div class="rmap">
+    <div class="corner"></div>${head}${lanes}
+  </div></div>
+  <p class="rmnote">${a === null
+    ? "生年月日を入れると、すべての列に年齢が並びます"
+    : `${THIS_YEAR}年・${a}歳のいまから、${endYear()}年・${prof().lifespan}歳まで。残り ${yearsLeft()} 年です`}</p>`;
+}
+function setView(v){
+  document.querySelectorAll(".viewtabs button").forEach(b => b.classList.toggle("on", b.dataset.v === v));
+  document.getElementById("pyrView").hidden = v !== "pyr";
+  document.getElementById("roadView").hidden = v !== "road";
+  if(v === "road") drawRoadmap();
+  data.view = v; touch();
+}
+
+/* ==================== 描画の差し替え ==================== */
+const _renderAll2 = renderAll;
+renderAll = function(reveal){
+  refreshSpans();
+  _renderAll2(reveal);
+  drawMe();
+  if(data.progress >= 4){
+    const tabs = document.querySelector(".viewtabs");
+    if(tabs && !tabs.dataset.b){
+      tabs.dataset.b = "1";
+      tabs.querySelectorAll("button").forEach(b => b.onclick = () => setView(b.dataset.v));
+    }
+    setView(data.view === "road" ? "road" : "pyr");
+  }
+};
+/* ==================== 宝の人生マップ（第2版） ====================
+   上半分：望月式のコラージュ（額縁・名前・中央に笑顔・元気が出る言葉）
+   下半分：年表ロードマップ（西暦と年齢の軸に、6分野の夢） */
+buildTreasureMap = async function(){
+  const W = MAP_W, H = MAP_H;
+  const cv = document.createElement("canvas");
+  cv.width = W; cv.height = H;
+  const ctx = cv.getContext("2d");
+  const dark = document.documentElement.getAttribute("data-theme") === "dark"
+    || (!document.documentElement.getAttribute("data-theme") && matchMedia("(prefers-color-scheme:dark)").matches);
+  const PAPER = dark ? "#17181f" : "#fffdf8";
+  const INK   = dark ? "#f0f1f4" : "#16181c";
+  const INK3  = dark ? "#8d939d" : "#8d939d";
+  const CARD  = dark ? "#23252e" : "#ffffff";
+  const LINE  = dark ? "#2c2e37" : "#e6e5e1";
+  const p = prof();
+
+  /* 用紙 */
+  ctx.fillStyle = PAPER; ctx.fillRect(0, 0, W, H);
+  CATS.forEach((c, i) => {
+    const g = ctx.createRadialGradient((i%2 ? W-40 : 40), 520 + i*330, 0, (i%2 ? W-40 : 40), 520 + i*330, 660);
+    g.addColorStop(0, c.hex + (dark ? "22" : "18")); g.addColorStop(1, c.hex + "00");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  });
+
+  /* 金の額縁 */
+  const fg = ctx.createLinearGradient(0, 0, W, H);
+  fg.addColorStop(0, "#c8952f"); fg.addColorStop(.35, "#f5d787");
+  fg.addColorStop(.6, "#c8952f"); fg.addColorStop(1, "#f0cd7a");
+  ctx.strokeStyle = fg; ctx.lineWidth = 34; ctx.strokeRect(17, 17, W-34, H-34);
+  ctx.strokeStyle = dark ? "#6d5418" : "#a87c22"; ctx.lineWidth = 3;
+  ctx.strokeRect(37, 37, W-74, H-74);
+  ctx.strokeStyle = "#f5d787"; ctx.lineWidth = 2; ctx.strokeRect(46, 46, W-92, H-92);
+
+  const IN = 74, INW = W - IN*2;
+
+  /* 見出し：◯◯の宝地図 */
+  ctx.textBaseline = "alphabetic"; ctx.textAlign = "center";
+  try{ ctx.letterSpacing = "8px"; }catch(e){}
+  ctx.font = `800 24px ${JP_FONT}`; ctx.fillStyle = INK3;
+  ctx.fillText("LIFE GOAL - TREASURE MAP", W/2, 132);
+  try{ ctx.letterSpacing = "0px"; }catch(e){}
+
+  const title = (p.name ? p.name + "の" : "") + "宝地図";
+  ctx.font = `800 76px ${JP_FONT}`;
+  const tw = ctx.measureText(title).width;
+  const tg = ctx.createLinearGradient(W/2 - tw/2, 0, W/2 + tw/2, 0);
+  tg.addColorStop(0, "#8b5cf6"); tg.addColorStop(.5, "#ec4899"); tg.addColorStop(1, "#f97316");
+  ctx.fillStyle = tg; ctx.fillText(title, W/2, 216);
+
+  const a = ageNow();
+  ctx.font = `700 25px ${JP_FONT}`; ctx.fillStyle = INK3;
+  ctx.font = `700 28px ${JP_FONT}`;
+  const sub = [a !== null ? `${a}歳` : null, endYear() ? `${endYear()}年・${p.lifespan}歳まで あと ${yearsLeft()} 年` : null,
+               `${data.items.length} の夢`].filter(Boolean).join("　／　");
+  ctx.fillText(sub, W/2, 262);
+
+  /* ===== コラージュ（上半分） ===== */
+  const COL_TOP = 300, COL_BOT = 1330;
+  const CX = W/2, CY = (COL_TOP + COL_BOT)/2 - 20;
+
+  const photos = withImg();
+  const imgs = await Promise.all(photos.map(i => loadImg(i.img)));
+  const faceImg = p.face ? await loadImg(p.face) : null;
+
+  /* 周囲に写真を円環状に散らす */
+  const R1 = 330, R2 = 452;
+  photos.slice(0, 14).forEach((it, n) => {
+    const c = catOf(it.cat);
+    const total = Math.min(photos.length, 14);
+    const ang = (n / total) * Math.PI * 2 - Math.PI/2 + 0.22;
+    const r = n % 2 ? R2 : R1;
+    const w = n % 2 ? 300 : 266, h = w * 0.74;
+    let x = CX + Math.cos(ang) * r * 1.32, y = CY + Math.sin(ang) * r * 0.86;
+    x = Math.max(IN + w/2 + 8, Math.min(W - IN - w/2 - 8, x));
+    y = Math.max(COL_TOP + h/2 + 8, Math.min(COL_BOT - h/2 - 8, y));
+    const rot = (((n*47) % 11) - 5) * 0.014;
+
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.translate(-w/2, -h/2);
+    ctx.shadowColor = "rgba(0,0,0,.28)"; ctx.shadowBlur = 22; ctx.shadowOffsetY = 10;
+    ctx.fillStyle = CARD; rrect(ctx, 0, 0, w, h + 90, 10); ctx.fill();
+    ctx.shadowColor = "transparent"; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+    ctx.save(); rrect(ctx, 9, 9, w-18, h-18, 6); ctx.clip();
+    if(imgs[n]) drawCover(ctx, imgs[n], 9, 9, w-18, h-18);
+    else { ctx.fillStyle = c.hex; ctx.fillRect(9, 9, w-18, h-18); }
+    ctx.restore();
+    ctx.fillStyle = c.hex; rrect(ctx, 9, h - 4, w - 18, 6, 3); ctx.fill();
+    ctx.textAlign = "left";
+    ctx.font = `800 22px ${JP_FONT}`; ctx.fillStyle = c.hex;
+    ctx.fillText(dueFull(it.due), 15, h + 28);
+    ctx.font = `700 26px ${JP_FONT}`; ctx.fillStyle = INK;
+    const wt = wrapText(ctx, it.text, w - 30, 2);
+    wt.lines.forEach((ln, li) => ctx.fillText(ln + (wt.cut && li === wt.lines.length-1 ? "…" : ""), 15, h + 60 + li*30));
+    ctx.textAlign = "center";
+    ctx.restore();
+  });
+
+  /* 中央：笑顔の写真 or 名前 */
+  const FR = 196;
+  ctx.save();
+  ctx.shadowColor = "rgba(236,72,153,.4)"; ctx.shadowBlur = 40; ctx.shadowOffsetY = 8;
+  ctx.beginPath(); ctx.arc(CX, CY, FR + 12, 0, 7);
+  const rg = ctx.createLinearGradient(CX-FR, CY-FR, CX+FR, CY+FR);
+  rg.addColorStop(0, "#8b5cf6"); rg.addColorStop(.5, "#ec4899"); rg.addColorStop(1, "#f97316");
+  ctx.fillStyle = rg; ctx.fill();
+  ctx.restore();
+  ctx.save();
+  ctx.beginPath(); ctx.arc(CX, CY, FR, 0, 7); ctx.clip();
+  if(faceImg){
+    const s = Math.max(FR*2/faceImg.width, FR*2/faceImg.height);
+    ctx.drawImage(faceImg, CX - faceImg.width*s/2, CY - faceImg.height*s/2, faceImg.width*s, faceImg.height*s);
+  }else{
+    ctx.fillStyle = CARD; ctx.fillRect(CX-FR, CY-FR, FR*2, FR*2);
+    ctx.fillStyle = INK;
+    ctx.font = `800 54px ${JP_FONT}`;
+    ctx.fillText(p.name || "あなた", CX, CY - 6);
+    ctx.font = `700 22px ${JP_FONT}`; ctx.fillStyle = INK3;
+    ctx.fillText(a !== null ? `${a}歳` : "", CX, CY + 34);
+  }
+  ctx.restore();
+
+  /* 元気が出る言葉 */
+  const words = [];
+  if(data.ultimate.trim()) words.push({t:data.ultimate.trim().split(/[。\n]/)[0], c:"#ec4899"});
+  const heard = ans("f3");
+  if(heard) words.push({t:heard.replace(/[「」]/g, "").split(/[。\n]/)[0], c:"#8b5cf6"});
+  data.items.filter(i => i.cat === "spirit").slice(0, 2).forEach(i => words.push({t:i.text, c:"#eab308"}));
+  words.push({t:"夢は、かならず叶う", c:"#06b6a4"});
+
+  const slots = [[CX, COL_TOP + 52], [CX, COL_BOT - 34], [IN + 250, CY - 250], [W - IN - 250, CY + 250]];
+  words.slice(0, 4).forEach((wd, i) => {
+    const [x, y] = slots[i];
+    ctx.font = `800 32px ${JP_FONT}`;
+    const t = wd.t.length > 20 ? wd.t.slice(0, 20) + "…" : wd.t;
+    const bw = Math.min(INW - 40, ctx.measureText(t).width + 52);
+    ctx.save(); ctx.translate(x, y); ctx.rotate((((i*37)%7)-3) * 0.011);
+    ctx.shadowColor = "rgba(0,0,0,.18)"; ctx.shadowBlur = 14; ctx.shadowOffsetY = 5;
+    ctx.fillStyle = wd.c; rrect(ctx, -bw/2, -32, bw, 64, 32); ctx.fill();
+    ctx.shadowColor = "transparent";
+    ctx.fillStyle = "#fff"; ctx.fillText(t, 0, 11);
+    ctx.restore();
+  });
+
+  /* ===== 年表ロードマップ（下半分） ===== */
+  const RT = 1392, RB = H - 210;
+  ctx.textAlign = "left";
+  ctx.font = `800 38px ${JP_FONT}`; ctx.fillStyle = INK;
+  ctx.fillText("人生ロードマップ", IN, RT - 20);
+  ctx.font = `700 26px ${JP_FONT}`; ctx.fillStyle = INK3;
+  ctx.textAlign = "right";
+  ctx.fillText(a !== null ? `${THIS_YEAR}年・${a}歳 から` : `${THIS_YEAR}年 から`, W - IN, RT - 20);
+  ctx.textAlign = "left";
+
+  const LNW = 190, colW = (INW - LNW) / 5;
+  const laneH = (RB - RT - 74) / 6;
+
+  /* 列見出し */
+  RM_COLS.forEach((col, i) => {
+    const x = IN + LNW + colW*i;
+    const y = THIS_YEAR + (col.n || 0);
+    ctx.textAlign = "center";
+    ctx.font = `800 31px ${JP_FONT}`; ctx.fillStyle = i === 0 ? "#ec4899" : INK;
+    ctx.fillText(col.n ? y + "年" : "いつか", x + colW/2, RT + 28);
+    ctx.font = `700 23px ${JP_FONT}`; ctx.fillStyle = INK3;
+    ctx.fillText(col.n ? (a === null ? col.n + "年後" : (a + col.n) + "歳")
+                       : (endYear() ? endYear() + "年まで" : "期限なし"), x + colW/2, RT + 58);
+  });
+  ctx.textAlign = "left";
+  ctx.strokeStyle = LINE; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(IN, RT + 74); ctx.lineTo(W - IN, RT + 74); ctx.stroke();
+
+  CATS.forEach((c, li) => {
+    const y0 = RT + 74 + laneH*li;
+    ctx.strokeStyle = LINE; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(IN, y0 + laneH); ctx.lineTo(W - IN, y0 + laneH); ctx.stroke();
+    ctx.fillStyle = c.hex; rrect(ctx, IN, y0 + 10, 7, laneH - 20, 4); ctx.fill();
+    ctx.font = `800 28px ${JP_FONT}`; ctx.fillStyle = c.hex;
+    ctx.fillText(c.name.split("・")[0], IN + 22, y0 + laneH/2 + 10);
+
+    RM_COLS.forEach((col, ci) => {
+      const x = IN + LNW + colW*ci;
+      ctx.strokeStyle = LINE; ctx.lineWidth = 1;
+      ctx.setLineDash([5, 6]);
+      ctx.beginPath(); ctx.moveTo(x, y0 + 6); ctx.lineTo(x, y0 + laneH - 6); ctx.stroke();
+      ctx.setLineDash([]);
+      const list = data.items.filter(it => it.cat === c.id && it.due === col.due);
+      let cy = y0 + 36;
+      ctx.font = `700 25px ${JP_FONT}`;
+      for(const it of list){
+        if(cy > y0 + laneH - 10){
+          ctx.fillStyle = INK3; ctx.fillText("ほか " + (list.length - list.indexOf(it)) + " 件", x + 16, cy - 4); break;
+        }
+        const w = wrapText(ctx, it.text, colW - 36, 1);
+        ctx.fillStyle = c.hex + "2e"; rrect(ctx, x + 10, cy - 24, colW - 22, 34, 12); ctx.fill();
+        ctx.fillStyle = INK;
+        ctx.fillText(w.lines[0] + (w.cut ? "…" : ""), x + 20, cy);
+        cy += 40;
+      }
+      if(!list.length){ ctx.fillStyle = LINE; ctx.fillText("—", x + 18, y0 + 36); }
+    });
+  });
+
+  /* ===== 人生の目的（最下部） ===== */
+  const py = H - 176;
+  const pg = ctx.createLinearGradient(IN, py, W - IN, py + 100);
+  pg.addColorStop(0, "#8b5cf6"); pg.addColorStop(.52, "#ec4899"); pg.addColorStop(1, "#f97316");
+  ctx.fillStyle = pg; rrect(ctx, IN, py, INW, 104, 20); ctx.fill();
+  ctx.textAlign = "center";
+  ctx.font = `800 17px ${JP_FONT}`; ctx.fillStyle = "rgba(255,255,255,.82)";
+  ctx.fillText("人生の目的", W/2, py + 32);
+  ctx.font = `800 31px ${JP_FONT}`; ctx.fillStyle = "#fff";
+  const pw = wrapText(ctx, data.ultimate.trim() || "（まだ書かれていません）", INW - 70, 2);
+  pw.lines.forEach((ln, i) => ctx.fillText(ln, W/2, py + 68 + i*36));
+
+  const d = new Date();
+  ctx.font = `700 24px ${JP_FONT}`; ctx.fillStyle = INK3;
+  ctx.fillText(`ライフゴール　${p.name ? p.name + "　" : ""}${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`, W/2, H - 48);
+  ctx.textAlign = "left";
+  return cv;
+};
+
+/* ==================== 出力（第3版） ====================
+   ①宝地図（A4縦・コラージュ）　②人生ロードマップ（A4横）
+   額縁のテーマは性別から初期値を提案し、あとから自由に変更できる */
+const MAPTHEMES = {
+  gold: {name:"ゴールド", g:["#c8952f","#f5d787","#c8952f","#f0cd7a"], inner:"#a87c22", hi:"#f7dfa0",
+         paper:"#fffdf7", paperD:"#17181f"},
+  rose: {name:"ローズ",   g:["#c07188","#f7cad6","#bf6b83","#efb4c6"], inner:"#a34f68", hi:"#fbd9e3",
+         paper:"#fffafc", paperD:"#1b1519"},
+  wood: {name:"ナチュラル", g:["#8a6a44","#dcbf93","#7d5f3c","#caa878"], inner:"#654c2e", hi:"#e8d3ae",
+         paper:"#fdfaf2", paperD:"#191712"},
+  ink:  {name:"モノクローム", g:["#3b3b3b","#a6a6a6","#333333","#8f8f8f"], inner:"#222222", hi:"#c9c9c9",
+         paper:"#fcfcfc", paperD:"#141416"}
+};
+function suggestTheme(){ return prof().gender === "女性" ? "rose" : "gold"; }
+function mapTheme(){
+  const p = prof();
+  if(!p.theme) p.theme = suggestTheme();
+  return MAPTHEMES[p.theme] || MAPTHEMES.gold;
+}
+function drawFrame(ctx, W, H, th){
+  const g = ctx.createLinearGradient(0, 0, W, H);
+  g.addColorStop(0, th.g[0]); g.addColorStop(.34, th.g[1]);
+  g.addColorStop(.62, th.g[2]); g.addColorStop(1, th.g[3]);
+  ctx.strokeStyle = g; ctx.lineWidth = 36; ctx.strokeRect(18, 18, W-36, H-36);
+  ctx.strokeStyle = th.inner; ctx.lineWidth = 3; ctx.strokeRect(39, 39, W-78, H-78);
+  ctx.strokeStyle = th.hi;    ctx.lineWidth = 2; ctx.strokeRect(48, 48, W-96, H-96);
+}
+function isDark(){
+  return document.documentElement.getAttribute("data-theme") === "dark"
+    || (!document.documentElement.getAttribute("data-theme") && matchMedia("(prefers-color-scheme:dark)").matches);
+}
+function paperWash(ctx, W, H, dark){
+  CATS.forEach((c, i) => {
+    const g = ctx.createRadialGradient((i%2 ? W-40 : 40), (H/7)*(i+1), 0, (i%2 ? W-40 : 40), (H/7)*(i+1), H*0.3);
+    g.addColorStop(0, c.hex + (dark ? "20" : "16")); g.addColorStop(1, c.hex + "00");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  });
+}
+function pill(ctx, text, cx, cy, color, size, maxW, rot){
+  ctx.save();
+  ctx.font = `800 ${size}px ${JP_FONT}`;
+  const t = ctx.measureText(text).width + 56 > maxW
+    ? text.slice(0, Math.max(4, Math.floor(text.length * maxW / (ctx.measureText(text).width + 56)) - 1)) + "…"
+    : text;
+  const bw = Math.min(maxW, ctx.measureText(t).width + 56), bh = size + 34;
+  ctx.translate(cx, cy); ctx.rotate(rot || 0);
+  ctx.shadowColor = "rgba(0,0,0,.2)"; ctx.shadowBlur = 16; ctx.shadowOffsetY = 6;
+  ctx.fillStyle = color; rrect(ctx, -bw/2, -bh/2, bw, bh, bh/2); ctx.fill();
+  ctx.shadowColor = "transparent";
+  ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  ctx.fillText(t, 0, 1);
+  ctx.restore();
+  ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
+}
+function cheerWords(){
+  const out = [];
+  if(data.ultimate.trim()) out.push({t:data.ultimate.trim().split(/[。\n]/)[0], c:"#ec4899"});
+  const heard = ans("f3");
+  if(heard) out.push({t:heard.replace(/[「」]/g, "").split(/[。\n]/)[0], c:"#8b5cf6"});
+  data.items.filter(i => i.cat === "spirit" && i.text.length <= 20).slice(0, 2)
+    .forEach(i => out.push({t:i.text, c:"#eab308"}));
+  out.push({t:"夢は、かならず叶う", c:"#06b6a4"});
+  return out;
+}
+
+/* ==================== ①宝地図（A4縦） ==================== */
+buildTreasureMap = async function(){
+  const W = 1748, H = 2480;
+  const cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  const ctx = cv.getContext("2d");
+  const dark = isDark(), th = mapTheme(), p = prof(), a = ageNow();
+  const INK = dark ? "#f0f1f4" : "#16181c", INK3 = "#8d939d", CARD = dark ? "#23252e" : "#ffffff";
+
+  ctx.fillStyle = dark ? th.paperD : th.paper; ctx.fillRect(0, 0, W, H);
+  paperWash(ctx, W, H, dark);
+  drawFrame(ctx, W, H, th);
+
+  /* 見出し */
+  ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
+  try{ ctx.letterSpacing = "9px"; }catch(e){}
+  ctx.font = `800 24px ${JP_FONT}`; ctx.fillStyle = INK3;
+  ctx.fillText("LIFE GOAL - TREASURE MAP", W/2, 142);
+  try{ ctx.letterSpacing = "0px"; }catch(e){}
+  const title = (p.name ? p.name + "の" : "") + "宝地図";
+  ctx.font = `800 82px ${JP_FONT}`;
+  const tw = ctx.measureText(title).width;
+  const tg = ctx.createLinearGradient(W/2 - tw/2, 0, W/2 + tw/2, 0);
+  tg.addColorStop(0, "#8b5cf6"); tg.addColorStop(.5, "#ec4899"); tg.addColorStop(1, "#f97316");
+  ctx.fillStyle = tg; ctx.fillText(title, W/2, 232);
+  ctx.font = `700 28px ${JP_FONT}`; ctx.fillStyle = INK3;
+  ctx.fillText([a !== null ? `${a}歳` : null,
+                endYear() ? `${endYear()}年・${p.lifespan}歳まで あと ${yearsLeft()} 年` : null,
+                `${data.items.length} の夢`].filter(Boolean).join("　／　"), W/2, 282);
+
+  const words = cheerWords();
+  if(words[0]) pill(ctx, words[0].t, W/2, 350, words[0].c, 32, W - 260, -0.008);
+
+  /* 中央の笑顔と、まわりの写真（重ならない環状配置） */
+  const CX = W/2, CY = 1250, FR = 232;
+  const photos = withImg().slice(0, 10);
+  const imgs = await Promise.all(photos.map(i => loadImg(i.img)));
+  const faceImg = p.face ? await loadImg(p.face) : null;
+  const RX = 600, RY = 624, CW = 288, IMGH = Math.round(CW * 0.70), CAPH = 96;
+
+  photos.forEach((it, n) => {
+    const c = catOf(it.cat);
+    const ang = (n / photos.length) * Math.PI * 2 - Math.PI/2;
+    const x = CX + Math.cos(ang) * RX, y = CY + Math.sin(ang) * RY;
+    const rot = (((n*47) % 11) - 5) * 0.013;
+    const ch = IMGH + CAPH;
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.translate(-CW/2, -ch/2);
+    ctx.shadowColor = "rgba(0,0,0,.26)"; ctx.shadowBlur = 22; ctx.shadowOffsetY = 10;
+    ctx.fillStyle = CARD; rrect(ctx, 0, 0, CW, ch, 12); ctx.fill();
+    ctx.shadowColor = "transparent"; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+    ctx.save(); rrect(ctx, 10, 10, CW-20, IMGH-16, 7); ctx.clip();
+    if(imgs[n]) drawCover(ctx, imgs[n], 10, 10, CW-20, IMGH-16);
+    else { ctx.fillStyle = c.hex; ctx.fillRect(10, 10, CW-20, IMGH-16); }
+    ctx.restore();
+    ctx.fillStyle = c.hex; rrect(ctx, 10, IMGH - 2, CW-20, 6, 3); ctx.fill();
+    ctx.textAlign = "left";
+    ctx.font = `800 21px ${JP_FONT}`; ctx.fillStyle = c.hex;
+    ctx.fillText(dueFull(it.due), 16, IMGH + 30);
+    ctx.font = `700 25px ${JP_FONT}`; ctx.fillStyle = INK;
+    const wt = wrapText(ctx, it.text, CW - 32, 2);
+    wt.lines.forEach((ln, li) =>
+      ctx.fillText(ln + (wt.cut && li === wt.lines.length-1 ? "…" : ""), 16, IMGH + 60 + li*29));
+    ctx.textAlign = "center";
+    ctx.restore();
+  });
+
+  ctx.save();
+  ctx.shadowColor = "rgba(236,72,153,.45)"; ctx.shadowBlur = 46; ctx.shadowOffsetY = 8;
+  ctx.beginPath(); ctx.arc(CX, CY, FR + 14, 0, 7);
+  const rg = ctx.createLinearGradient(CX-FR, CY-FR, CX+FR, CY+FR);
+  rg.addColorStop(0, "#8b5cf6"); rg.addColorStop(.5, "#ec4899"); rg.addColorStop(1, "#f97316");
+  ctx.fillStyle = rg; ctx.fill();
+  ctx.restore();
+  ctx.save(); ctx.beginPath(); ctx.arc(CX, CY, FR, 0, 7); ctx.clip();
+  if(faceImg){
+    const s = Math.max(FR*2/faceImg.width, FR*2/faceImg.height);
+    ctx.drawImage(faceImg, CX - faceImg.width*s/2, CY - faceImg.height*s/2, faceImg.width*s, faceImg.height*s);
+  }else{
+    ctx.fillStyle = CARD; ctx.fillRect(CX-FR, CY-FR, FR*2, FR*2);
+    ctx.fillStyle = INK; ctx.font = `800 60px ${JP_FONT}`;
+    ctx.fillText(p.name || "あなた", CX, CY - 4);
+    ctx.font = `700 26px ${JP_FONT}`; ctx.fillStyle = INK3;
+    ctx.fillText(a !== null ? `${a}歳` : "", CX, CY + 42);
+  }
+  ctx.restore();
+
+  if(words[1]) pill(ctx, words[1].t, CX, CY - 316, words[1].c, 28, 560, 0.012);
+  if(words[2]) pill(ctx, words[2].t, CX, CY + 316, words[2].c, 28, 560, -0.01);
+
+  /* 人生の目的 */
+  const py = H - 296;
+  const pg = ctx.createLinearGradient(90, py, W - 90, py + 116);
+  pg.addColorStop(0, "#8b5cf6"); pg.addColorStop(.52, "#ec4899"); pg.addColorStop(1, "#f97316");
+  ctx.fillStyle = pg; rrect(ctx, 90, py, W - 180, 116, 22); ctx.fill();
+  ctx.font = `800 18px ${JP_FONT}`; ctx.fillStyle = "rgba(255,255,255,.85)";
+  ctx.fillText("人生の目的", W/2, py + 34);
+  ctx.font = `800 33px ${JP_FONT}`; ctx.fillStyle = "#fff";
+  const pw = wrapText(ctx, data.ultimate.trim() || "（まだ書かれていません）", W - 260, 2);
+  pw.lines.forEach((ln, i) => ctx.fillText(ln, W/2, py + 74 + i*38));
+
+  if(words[3]) pill(ctx, words[3].t, W/2, py - 66, words[3].c, 28, 640, 0.01);
+
+  const d = new Date();
+  ctx.font = `700 24px ${JP_FONT}`; ctx.fillStyle = INK3;
+  ctx.fillText(`ライフゴール　${p.name ? p.name + "　" : ""}${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`, W/2, H - 122);
+  ctx.textAlign = "left";
+  return cv;
+};
+
+/* ==================== ②人生ロードマップ（A4横） ==================== */
+async function buildRoadmapPoster(){
+  const W = 2480, H = 1748;
+  const cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  const ctx = cv.getContext("2d");
+  const dark = isDark(), th = mapTheme(), p = prof(), a = ageNow();
+  const INK = dark ? "#f0f1f4" : "#16181c", INK3 = "#8d939d";
+  const LINE = dark ? "#2c2e37" : "#e4e3de";
+
+  ctx.fillStyle = dark ? th.paperD : th.paper; ctx.fillRect(0, 0, W, H);
+  paperWash(ctx, W, H, dark);
+  drawFrame(ctx, W, H, th);
+
+  const M = 110, INW = W - M*2;
+  ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
+  ctx.font = `800 52px ${JP_FONT}`; ctx.fillStyle = INK;
+  ctx.fillText(`${p.name ? p.name + "の" : ""}人生ロードマップ`, M, 168);
+  ctx.textAlign = "right";
+  ctx.font = `700 27px ${JP_FONT}`; ctx.fillStyle = INK3;
+  ctx.fillText(a !== null
+    ? `${THIS_YEAR}年・${a}歳 から　${endYear()}年・${p.lifespan}歳まで　残り ${yearsLeft()} 年`
+    : `${THIS_YEAR}年 から`, W - M, 168);
+  ctx.textAlign = "left";
+
+  const LNW = 250, colW = (INW - LNW) / 5;
+  const HT = 226, LT = HT + 96, LB = H - 250;
+  const laneH = (LB - LT) / 6;
+
+  RM_COLS.forEach((col, i) => {
+    const x = M + LNW + colW*i, y = THIS_YEAR + (col.n || 0);
+    ctx.textAlign = "center";
+    if(i === 0){
+      ctx.fillStyle = "rgba(236,72,153,.10)";
+      rrect(ctx, x + 6, HT - 44, colW - 12, LB - HT + 50, 16); ctx.fill();
+    }
+    ctx.font = `800 40px ${JP_FONT}`; ctx.fillStyle = i === 0 ? "#ec4899" : INK;
+    ctx.fillText(col.n ? y + "年" : "いつか", x + colW/2, HT);
+    ctx.font = `700 27px ${JP_FONT}`; ctx.fillStyle = INK3;
+    ctx.fillText(col.n ? (a === null ? col.n + "年後" : (a + col.n) + "歳")
+                       : (endYear() ? endYear() + "年まで" : "期限なし"), x + colW/2, HT + 36);
+  });
+  ctx.textAlign = "left";
+  ctx.strokeStyle = LINE; ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(M, LT - 14); ctx.lineTo(W - M, LT - 14); ctx.stroke();
+
+  CATS.forEach((c, li) => {
+    const y0 = LT + laneH*li;
+    ctx.strokeStyle = LINE; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(M, y0 + laneH); ctx.lineTo(W - M, y0 + laneH); ctx.stroke();
+    ctx.fillStyle = c.hex; rrect(ctx, M, y0 + 14, 9, laneH - 28, 5); ctx.fill();
+    ctx.font = `800 32px ${JP_FONT}`; ctx.fillStyle = c.hex;
+    ctx.fillText(c.name.split("・")[0], M + 26, y0 + laneH/2 - 4);
+    const nAll = data.items.filter(i => i.cat === c.id).length;
+    ctx.font = `700 22px ${JP_FONT}`; ctx.fillStyle = INK3;
+    ctx.fillText(`${nAll} 件`, M + 26, y0 + laneH/2 + 30);
+
+    RM_COLS.forEach((col, ci) => {
+      const x = M + LNW + colW*ci;
+      ctx.strokeStyle = LINE; ctx.lineWidth = 1; ctx.setLineDash([6, 7]);
+      ctx.beginPath(); ctx.moveTo(x, y0 + 10); ctx.lineTo(x, y0 + laneH - 10); ctx.stroke();
+      ctx.setLineDash([]);
+      const list = data.items.filter(it => it.cat === c.id && it.due === col.due);
+      let cy = y0 + 26;
+      for(let k = 0; k < list.length; k++){
+        const it = list[k];
+        ctx.font = `700 26px ${JP_FONT}`;
+        const w = wrapText(ctx, it.text, colW - 46, 2);
+        const bh = 24 + w.lines.length * 32;
+        if(cy + bh > y0 + laneH - 8){
+          ctx.font = `700 22px ${JP_FONT}`; ctx.fillStyle = INK3;
+          ctx.fillText(`ほか ${list.length - k} 件`, x + 22, cy + 26);
+          break;
+        }
+        ctx.fillStyle = c.hex + (dark ? "38" : "26");
+        rrect(ctx, x + 12, cy, colW - 26, bh, 13); ctx.fill();
+        ctx.fillStyle = c.hex; rrect(ctx, x + 12, cy + 8, 5, bh - 16, 3); ctx.fill();
+        ctx.fillStyle = it.done ? INK3 : INK;
+        ctx.font = `700 26px ${JP_FONT}`;
+        w.lines.forEach((ln, li2) =>
+          ctx.fillText(ln + (w.cut && li2 === w.lines.length-1 ? "…" : ""), x + 28, cy + 34 + li2*32));
+        cy += bh + 12;
+      }
+      if(!list.length){ ctx.fillStyle = LINE; ctx.font = `700 26px ${JP_FONT}`; ctx.fillText("—", x + 24, y0 + 52); }
+    });
+  });
+
+  const py = H - 222;
+  const pg = ctx.createLinearGradient(M, py, W - M, py + 96);
+  pg.addColorStop(0, "#8b5cf6"); pg.addColorStop(.52, "#ec4899"); pg.addColorStop(1, "#f97316");
+  ctx.fillStyle = pg; rrect(ctx, M, py, INW, 96, 20); ctx.fill();
+  ctx.textAlign = "center";
+  ctx.font = `800 17px ${JP_FONT}`; ctx.fillStyle = "rgba(255,255,255,.85)";
+  ctx.fillText("人生の目的", W/2, py + 32);
+  ctx.font = `800 32px ${JP_FONT}`; ctx.fillStyle = "#fff";
+  const pw = wrapText(ctx, data.ultimate.trim() || "（まだ書かれていません）", INW - 160, 1);
+  ctx.fillText(pw.lines[0] + (pw.cut ? "…" : ""), W/2, py + 72);
+  const d = new Date();
+  ctx.font = `700 22px ${JP_FONT}`; ctx.fillStyle = INK3;
+  ctx.fillText(`ライフゴール　${p.name ? p.name + "　" : ""}${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`, W/2, H - 86);
+  ctx.textAlign = "left";
+  return cv;
+}
+
+/* ==================== 表示・保存・印刷 ==================== */
+const SHEETS = {map:{blob:null, url:null, w:0, h:0}, road:{blob:null, url:null, w:0, h:0}};
+let sheetAt = "map";
+
+async function makeSheet(kind){
+  const cv = kind === "map" ? await buildTreasureMap() : await buildRoadmapPoster();
+  const blob = await new Promise(r => cv.toBlob(r, "image/jpeg", 0.92));
+  const sh = SHEETS[kind];
+  if(sh.url) URL.revokeObjectURL(sh.url);
+  sh.blob = blob; sh.url = URL.createObjectURL(blob); sh.w = cv.width; sh.h = cv.height;
+}
+function showSheet(kind){
+  sheetAt = kind;
+  document.querySelectorAll("#mapTabs button").forEach(b => b.classList.toggle("on", b.dataset.s === kind));
+  const sh = SHEETS[kind];
+  document.getElementById("mapImg").src = sh.url;
+  document.getElementById("mapPrintHost").innerHTML =
+    `<img src="${sh.url}" alt="" style="width:100%">`;
+  document.getElementById("mapPrintHost").dataset.land = kind === "road" ? "1" : "";
+  const kb = Math.round(sh.blob.size / 1024);
+  document.getElementById("mapInfo").textContent =
+    `${kind === "map" ? "A4縦" : "A4横"}・${sh.w}×${sh.h}px（${kb > 1024 ? (kb/1024).toFixed(1)+" MB" : kb+" KB"}）　`
+    + (kind === "map" ? "壁に貼る用です" : "机に置く・手帳に挟む用です");
+}
+openTreasureMap = async function(){
+  const btn = document.getElementById("btnMap");
+  if(btn){ btn.disabled = true; btn.textContent = "作成中…"; }
+  try{
+    await makeSheet("map");
+    await makeSheet("road");
+  }catch(err){ alert("地図を作れませんでした: " + err.message); return; }
+  finally{ if(btn){ btn.disabled = false; btn.textContent = "1枚の宝の地図にする"; } }
+  drawThemePicker();
+  showSheet(sheetAt);
+  const dlg = document.getElementById("mapDlg");
+  if(!dlg.open) dlg.showModal();
+};
+function drawThemePicker(){
+  const host = document.getElementById("mapThemes");
+  if(!host) return;
+  const cur = mapTheme();
+  host.innerHTML = Object.entries(MAPTHEMES).map(([k, t]) =>
+    `<button data-t="${k}" class="${MAPTHEMES[prof().theme] === t ? "on" : ""}" title="${t.name}">
+      <i style="background:linear-gradient(135deg,${t.g[0]},${t.g[1]},${t.g[2]})"></i>${t.name}</button>`).join("");
+  host.querySelectorAll("[data-t]").forEach(b => b.onclick = async () => {
+    prof().theme = b.dataset.t; save();
+    host.querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b));
+    await makeSheet("map"); await makeSheet("road"); showSheet(sheetAt);
+  });
+}
+saveTreasureMap = async function(){
+  const sh = SHEETS[sheetAt];
+  if(!sh.blob) return;
+  const d = new Date(), stamp = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`;
+  const base = (prof().name || "lifegoal").replace(/[\\/:*?"<>|\s]/g, "");
+  const name = `${base}-${sheetAt === "map" ? "takarachizu" : "roadmap"}-${stamp}.jpg`;
+  const dl = (window.claude && claude.use) ? await claude.use("downloads").catch(() => null) : null;
+  if(dl){
+    try{ await dl.save({filename:name, data:sh.blob}); }
+    catch(err){ if(!err || err.code !== "declined") alert("保存できませんでした。画像を長押し、または右クリックで保存してください。"); }
+    return;
+  }
+  const a = document.createElement("a");
+  a.href = sh.url; a.download = name; a.click();
+};
+
+document.getElementById("mapTabs").addEventListener("click", e => {
+  if(e.target.dataset.s) showSheet(e.target.dataset.s);
+});
+document.getElementById("btnMap").onclick = () => openTreasureMap();
+document.getElementById("mapSave").onclick = () => saveTreasureMap();
+
+/* ==================== 起動 ==================== */
+renderAll();
+if(data.progress === 0 && !data.seenPro && !data.items.length) openPro();
+if(data.updatedAt){
+  const t = new Date(data.updatedAt);
+  setSaved(`前回 ${t.getMonth()+1}/${t.getDate()} ${String(t.getHours()).padStart(2,"0")}:${String(t.getMinutes()).padStart(2,"0")}`);
+}
+</script>
+</body>
+</html>
