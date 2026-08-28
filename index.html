@@ -6,6 +6,50 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Zen+Maru+Gothic:wght@700;900&display=swap">
+<script>
+/* 何かで落ちたときに、白い画面ではなく原因を出す。テスターがそのまま送れるように */
+(function(){
+  var shown = false;
+  function show(msg, kind){
+    if(shown) return; shown = true;
+    var warn = kind === "warn";
+    var d = document.createElement("div");
+    d.id = "bootErr";
+    d.style.cssText = "position:fixed;left:0;right:0;bottom:0;z-index:2147483647;"
+      + "background:" + (warn ? "#a86b00" : "#b3392c") + ";color:#fff;"
+      + "font:14px/1.75 -apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif;"
+      + "padding:16px 18px;box-shadow:0 -8px 28px rgba(0,0,0,.35);max-height:60vh;overflow:auto";
+    var info = msg + "\n" + navigator.userAgent + "\n" + location.href;
+    d.innerHTML = "<b style='font-size:15px'>"
+      + (warn ? "この環境では保存ができません" : "この環境では正しく動かないようです")
+      + "</b><br><span style='font-size:12px;opacity:.92;word-break:break-all'>"
+      + String(msg).replace(/</g,"&lt;") + "<br>" + String(navigator.userAgent).replace(/</g,"&lt;")
+      + "</span><br><button id='bootErrCopy' style=\"margin-top:10px;font:inherit;padding:7px 14px;border-radius:9px;border:0;font-weight:700\">内容をコピー</button>"
+      + " <button id='bootErrClose' style=\"margin-top:10px;font:inherit;padding:7px 14px;border-radius:9px;border:0;background:rgba(255,255,255,.25);color:#fff\">閉じる</button>";
+    (document.body || document.documentElement).appendChild(d);
+    document.getElementById("bootErrCopy").onclick = function(){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(info).then(function(){ alert("コピーしました。そのまま送ってください"); },
+                                                 function(){ prompt("この内容をお知らせください", info); });
+      }else prompt("この内容をお知らせください", info);
+    };
+    document.getElementById("bootErrClose").onclick = function(){ d.parentNode.removeChild(d); };
+  }
+  window.__lgErr = show;
+  window.addEventListener("error", function(e){
+    if(e && e.target && e.target !== window && e.target.tagName) return;   /* 画像やCSSの失敗は無視 */
+    show((e && e.message ? e.message : "不明なエラー") + (e && e.lineno ? " (" + e.lineno + ":" + e.colno + ")" : ""));
+  });
+  window.addEventListener("unhandledrejection", function(e){
+    var r = e && e.reason;
+    show("未処理の拒否: " + (r && r.message ? r.message : String(r)));
+  });
+  /* 起動できたかを見張る */
+  setTimeout(function(){
+    if(!window.__lgBooted) show("画面の初期化が終わりませんでした（この端末のブラウザが未対応の可能性）");
+  }, 4000);
+})();
+</script>
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="やりたいことを6分野に書き出し、日付をつけ、絵をつける。最後に自分の言葉から人生の目的が現れます。壁に貼れる宝地図と人生ロードマップをA4で出力できる無料ツールです">
 <link rel="canonical" href="https://yabemasaru23-source.github.io/lifegoal/">
@@ -591,6 +635,13 @@ svg.pyramid .spark{animation:twk 3.4s ease-in-out infinite;transform-box:fill-bo
 .wm .val{font-size:19px}
 .wh{background:linear-gradient(100deg,#0d9488,#8b5cf6)}
 .wh .val{font-size:21px;letter-spacing:.08em;text-align:center}
+
+/* dialog 未対応のブラウザで中身がページに漏れ出さないようにする */
+dialog:not([open]){display:none!important}
+dialog.fbmodal{position:fixed;z-index:9000;top:50%;left:50%;transform:translate(-50%,-50%);
+  max-height:92vh;overflow:auto;display:block}
+body.modal-open{overflow:hidden}
+body.modal-open::after{content:"";position:fixed;inset:0;background:rgba(18,18,24,.72);z-index:8999}
 
 footer{text-align:center;font-size:12px;color:var(--ink-3);margin-top:46px;line-height:2}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
@@ -3461,6 +3512,27 @@ buildRoadmapPoster = async function(){
   }
   return cv;
 };
+
+
+/* ==================== 古いブラウザへの備え ==================== */
+function shimDialog(d){
+  if(!d || typeof d.showModal === "function") return;
+  try{ Object.defineProperty(d, "open", {get:function(){ return d.hasAttribute("open"); }, configurable:true}); }catch(e){}
+  d.showModal = function(){ d.setAttribute("open",""); d.classList.add("fbmodal"); document.body.classList.add("modal-open"); };
+  d.show      = d.showModal;
+  d.close     = function(){ d.removeAttribute("open"); d.classList.remove("fbmodal"); document.body.classList.remove("modal-open"); };
+}
+["wiz","dlg","mapDlg"].forEach(function(id){ shimDialog(document.getElementById(id)); });
+
+/* 保存できない環境（プライベートモードなど）は、黙って失うより先に伝える */
+(function(){
+  var ok = false;
+  try{ localStorage.setItem("__lgtest","1"); localStorage.removeItem("__lgtest"); ok = true; }catch(e){}
+  if(!ok && window.__lgErr)
+    window.__lgErr("書いた内容がこの端末に残りません。プライベートモードを解除するか、別のブラウザでお試しください。"
+      + "このまま進む場合は、終わったら必ず「書き出し」でバックアップを取ってください。", "warn");
+})();
+window.__lgBooted = true;
 
 /* ==================== 起動 ==================== */
 renderAll();
