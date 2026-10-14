@@ -57,11 +57,12 @@
 <meta property="og:title" content="ライフゴール｜夢をかなえる手帳">
 <meta property="og:description" content="6分野に夢を書き出し、日付と絵をつけると、最後に人生の目的が現れます。宝地図と人生ロードマップをA4で出力できます">
 <meta property="og:url" content="https://yabemasaru23-source.github.io/lifegoal/">
-<meta property="og:image" content="https://yabemasaru23-source.github.io/lifegoal/og.png">
+<meta property="og:image" content="https://yabemasaru23-source.github.io/lifegoal/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%231d2a4d%22/%3E%3Cpath d=%22M50 18 82 78H18Z%22 fill=%22none%22 stroke=%22%23e2bd62%22 stroke-width=%228%22 stroke-linejoin=%22round%22/%3E%3Ccircle cx=%2250%22 cy=%2226%22 r=%229%22 fill=%22%23e2bd62%22/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="img/hero.jpg">
 <title>ライフゴール｜夢をかなえる手帳</title>
 <style>
 :root{
@@ -605,6 +606,68 @@ dialog::backdrop{background:rgba(14,18,30,.66);backdrop-filter:blur(3px)}
 .pro-stage .rise{animation:proRise .7s cubic-bezier(.2,.8,.3,1) both;transform-box:fill-box;transform-origin:center}
 .pro-stage .draw{stroke-dasharray:1400;stroke-dashoffset:1400;animation:proDash 2.4s ease-out .2s both}
 
+
+/* ==================== 画像（Canvaで作成） ==================== */
+.hero{padding:0;min-height:560px;display:flex;align-items:center;background:#f4ecdb;border:none}
+.hero::after{display:none}
+.hero-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 50%}
+.hero-veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(251,246,236,.97) 0%,rgba(251,246,236,.92) 32%,rgba(251,246,236,.45) 55%,rgba(251,246,236,0) 70%)}
+.hero-body{position:relative;z-index:1;padding:clamp(28px,5vw,60px);max-width:620px}
+.hero-body h1{color:#1d2640;font-size:clamp(30px,5vw,50px);line-height:1.3}
+.hero-body h1 em{background:linear-gradient(transparent 60%,rgba(226,189,98,.45) 60%)}
+.hero-body .lead{color:#3c4766;font-size:16.5px;font-weight:500}
+.hero-body .kicker{color:#a57a20}
+.hero-body .hint{color:#5d6680}
+.hero-body button:not(.primary){background:rgba(255,255,255,.85);color:#1d2640;border-color:#d8ccb0}
+.hero-body button.ghost{background:transparent;border-color:transparent}
+.hero-body button.primary{background:#1d2a4d;color:#fff;border-color:#1d2a4d}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.hero-badges span{font-size:12.5px;font-weight:800;color:#1d2a4d;background:rgba(255,255,255,.75);border:1px solid #e3d6b8;border-radius:30px;padding:4px 12px}
+@media (max-width:760px){
+  .hero{display:block;min-height:0;background:#fbf6ec}
+  .hero-art{position:static;height:auto;aspect-ratio:16/10;object-position:72% 50%;display:block}
+  .hero-veil{display:none}
+  .hero-body{padding:22px 20px 26px;margin-top:-34px;background:linear-gradient(180deg,rgba(251,246,236,0),#fbf6ec 34px)}
+}
+.flowsec{margin-top:22px}
+.flowsec .flow{margin-top:0}
+.flow li{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}
+
+.rooms{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+@media (max-width:980px){ .rooms{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:520px){ .rooms{grid-template-columns:repeat(2,1fr);gap:10px} }
+.room{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.room:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+.room img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;background:#f7f0e2}
+.room figcaption{padding:11px 14px 14px;border-top:4px solid var(--cc)}
+.room b{display:block;font-family:var(--font-display);font-size:16px;color:var(--cc)}
+.room span{display:block;font-size:12px;color:var(--ink-3);font-weight:700}
+.room em{display:block;font-style:normal;font-size:12.5px;color:var(--ink-2);margin-top:6px;line-height:1.6}
+
+.cathead .art{width:112px;height:112px;border-radius:24px;object-fit:cover;flex:none;border:3px solid var(--cc);box-shadow:var(--shadow);background:#f7f0e2}
+.cathead h2{font-size:26px}
+@media (max-width:520px){ .cathead .art{width:80px;height:80px;border-radius:18px} .cathead h2{font-size:21px} }
+.cattabs .ti{width:26px;height:26px;border-radius:50%;object-fit:cover;margin:-4px 0 -4px -6px;border:2px solid #fff;flex:none}
+
+.cat .capbar{min-height:104px;background-color:var(--cc);background-image:linear-gradient(90deg,var(--cc) 0%,var(--cc) 44%,color-mix(in srgb,var(--cc) 70%,transparent) 58%,color-mix(in srgb,var(--cc) 20%,transparent) 80%,transparent 100%),var(--art);
+  background-size:100% 100%,58% auto;background-position:0 0,right 42%;background-repeat:no-repeat}
+.cat .capbar .prog{margin-left:auto;background:rgba(29,42,77,.55)}
+
+.tile .vis.empty{background-size:cover;background-position:center}
+.tile .vis.empty::before{content:"";position:absolute;inset:0;background:rgba(251,246,236,.62)}
+.tile .vis.empty .ph{position:relative;z-index:1;color:#1d2a4d}
+
+.purpose{background:linear-gradient(105deg,rgba(29,42,77,.97) 0%,rgba(29,42,77,.9) 45%,rgba(29,42,77,.55) 75%,rgba(29,42,77,.35)),url(img/hero.jpg) right 40%/cover}
+.purpose::after{display:none}
+
+.resume{background:linear-gradient(90deg,var(--panel) 0%,var(--panel) 46%,color-mix(in srgb,var(--panel) 55%,transparent) 66%,transparent 85%),url(img/hero-s.jpg) right center/cover;min-height:220px}
+
+.rv-art{display:block;width:100%;height:200px;object-fit:cover;object-position:65% 45%;border-radius:22px;margin-bottom:22px;box-shadow:var(--shadow-lift);animation:rvIn .6s both}
+
+.pickart{display:flex;align-items:center;gap:12px;margin-top:14px;padding:10px;border-radius:14px;border:1.5px solid var(--line);background:var(--raised);width:100%;justify-content:flex-start;white-space:normal;text-align:left}
+.pickart img{width:64px;height:64px;border-radius:12px;object-fit:cover;flex:none}
+.pickart.on{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+
 footer{text-align:center;font-size:12px;color:var(--ink-3);padding:30px 0 40px;line-height:2;border-top:1px solid var(--line);margin-top:30px}
 footer button{font-size:12px;padding:2px 8px;font-weight:700}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:9999}
@@ -739,6 +802,7 @@ body.modal-open::after{content:"";position:fixed;inset:0;background:rgba(14,18,3
       <button class="primary" id="pickPhoto">📷 写真を選ぶ</button>
       <button class="ghost danger" id="pickNone">絵を外す</button>
     </div>
+    <button class="pickart" id="pickArt"><img id="pickArtImg" alt=""><span><b>この分野のイラストを使う</b><br><span class="hint">ちょうどいい写真がないときに</span></span></button>
     <p class="pickh">または、絵文字で</p>
     <div class="emojis" id="pickEmojis"></div>
   </div>
@@ -1217,21 +1281,33 @@ function drawNotice(){
 function viewLanding(){
   main.innerHTML = `
     <section class="hero">
-      <span class="kicker">LIFE GOAL NOTEBOOK</span>
-      <h1>やりたいことを、<em>1枚の地図</em>にする。</h1>
-      <p class="lead">頭の中にある「いつか」を全部書き出し、日付をつけ、絵をつける。最後に、あなた自身の言葉の中から人生の目的が現れます。紙もペンもいりません。</p>
+      <img class="hero-art" src="img/hero.jpg" srcset="img/hero-s.jpg 900w, img/hero.jpg 1600w" sizes="(max-width:760px) 100vw, 1080px" alt="開いた手帳から、頂上へ続く金色の道がのびている絵">
+      <div class="hero-veil"></div>
+      <div class="hero-body">
+        <span class="kicker">LIFE GOAL NOTEBOOK</span>
+        <h1>やりたいことを、<br><em>1枚の地図</em>にする。</h1>
+        <p class="lead">頭の中にある「いつか」を全部書き出し、日付をつけ、絵をつける。最後に、あなた自身の言葉の中から人生の目的が現れます。</p>
+        <div class="hero-badges"><span>無料</span><span>40〜60分</span><span>紙もペンもいらない</span><span>A4で印刷できる</span></div>
+        <div class="cta-row">
+          <button class="primary big" id="btnStart">はじめる</button>
+          <button class="big" id="btnSample">記入例で完成形を見る</button>
+          <button class="ghost big" id="btnGuide2">使い方を読む</button>
+        </div>
+        <p class="hint" style="margin-top:12px">途中でやめても、次に開いたときに続きから始まります。</p>
+      </div>
+    </section>
+    <section class="flowsec">
       <ol class="flow">
         ${[["STEP 1","書き出す","6分野に、思いつくまま全部","20分"],["STEP 2","日付をつける","夢が、目標に変わる瞬間","5分"],
-           ["STEP 3","絵をつける","写真や絵文字で、見える夢に","10分"],["STEP 4","終わりから","人生の目的が、言葉になる","10分"]]
+           ["STEP 3","絵をつける","写真や絵で、見える夢に","10分"],["STEP 4","終わりから","人生の目的が、言葉になる","10分"]]
           .map((s, i) => `<li style="border-top:4px solid ${CATS[i + 1].hex}"><span class="kicker" style="color:${CATS[i + 1].hex}">${s[0]}</span>
             <span class="min">${s[3]}</span><b>${s[1]}</b><p>${s[2]}</p></li>`).join("")}
       </ol>
-      <div class="cta-row">
-        <button class="primary big" id="btnStart">はじめる</button>
-        <button class="big" id="btnSample">記入例で完成形を見る</button>
-        <button class="ghost big" id="btnGuide2">使い方を読む</button>
-      </div>
-      <p class="hint" style="margin-top:12px">途中でやめても、次に開いたときに続きから始まります。書いた内容はこの端末の中だけに保存されます。</p>
+    </section>
+    <section class="sec">
+      <div class="sechead"><h2>人生は、6つの部屋でできています</h2><span class="hint">それぞれの部屋に、5つずつ夢を置いていきます</span></div>
+      <div class="rooms">${CATS.map(c => `<figure class="room" style="--cc:${c.hex}"><img src="img/${c.id}.jpg" alt="${c.name}のイラスト" loading="lazy" width="720" height="720">
+        <figcaption><b>${catShort(c)}</b><span>${c.sub}</span><em>${c.asks[0]}</em></figcaption></figure>`).join("")}</div>
     </section>
     <section class="sec">
       <div class="sechead"><h2>できあがるもの</h2></div>
@@ -1346,10 +1422,10 @@ function viewDump(){
      "思いつかない分野は空のままでも進めます。あとで手帳から追加できます"]) + `
     <nav class="cattabs" aria-label="分野">${CATS.map((x, i) => {
       const k = data.items.filter(it => it.cat === x.id).length;
-      return `<button data-c="${i}" class="${i === ui.cat ? "on" : ""}" style="--cc:${x.hex}"><i class="dot" style="background:${i === ui.cat ? "#fff" : x.hex}"></i>${catShort(x)}<span class="n">${k}</span></button>`;
+      return `<button data-c="${i}" class="${i === ui.cat ? "on" : ""}" style="--cc:${x.hex}"><img class="ti" src="img/${x.id}.jpg" alt="">${catShort(x)}<span class="n">${k}</span></button>`;
     }).join("")}</nav>
     <section class="panel catcard" style="--cc:${c.hex}">
-      <div class="cathead"><span class="ic">${catIcon(c.id, 24)}</span><div><h2>${c.name}</h2><small>${c.sub}　${ui.cat + 1} / 6</small></div></div>
+      <div class="cathead"><img class="art" src="img/${c.id}.jpg" alt=""><div><small>${ui.cat + 1} / 6</small><h2>${c.name}</h2><small>${c.sub}</small></div></div>
       <div class="asks"><h3>思い出すための質問</h3><ul>${c.asks.map(a => `<li>${a}</li>`).join("")}</ul></div>
       <div class="dumpin">
         <input type="text" id="dumpInput" placeholder="${esc(catShort(c))}について、思いついたことを1つ" autocomplete="off" enterkeyhint="done">
@@ -1552,7 +1628,7 @@ function tileHTML(i, opt){
             : i.emoji ? `<span class="em">${i.emoji}</span>`
             : `<span class="ph"><i>＋</i>絵をつける</span>`;
   return `<button class="tile ${i.done ? "done" : ""}" data-act="pick" data-id="${i.id}" style="--cc:${c.hex}">
-    <span class="vis ${hasVisual(i) ? "" : "empty"}">${vis}</span>
+    <span class="vis ${hasVisual(i) ? "" : "empty"}" ${hasVisual(i) ? "" : `style="background-image:url(img/${c.id}.jpg)"`}>${vis}</span>
     <span class="cap"><b>${catShort(c)}・${dueFull(i.due)}</b><span>${esc(i.text)}</span></span></button>`;
 }
 function viewImage(){
@@ -1649,6 +1725,7 @@ function viewLegacy(){
 function viewReveal(){
   const byLv = LEVELS.map(l => data.items.filter(i => i.level === l.id).length);
   main.innerHTML = `<div class="reveal">
+    <img class="rv-art" src="img/hero-s.jpg" alt="">
     <div class="rv-eyebrow">結 果 発 表</div>
     <h1 class="rv-title">${esc(prof().name || "あなた")}さんの ライフゴール</h1>
     <div class="rv-card r1"><span class="rv-lab">① 人生の目的</span><p class="rv-body">${nl2br(data.ultimate || "（未記入）")}</p></div>
@@ -1873,7 +1950,7 @@ function itemRow(i){
 }
 function catCard(c){
   const all = data.items.filter(i => i.cat === c.id), un = all.filter(i => !i.due);
-  return `<article class="cat" data-cat="${c.id}" style="--cc:${c.hex}">
+  return `<article class="cat" data-cat="${c.id}" style="--cc:${c.hex};--art:url(img/${c.id}.jpg)">
     <div class="capbar"><span class="ic">${catIcon(c.id, 19)}</span><h3>${c.name}</h3><em>${c.sub}</em>
       <span class="prog">${all.filter(i => i.done).length} / ${all.length}</span></div>
     <div class="body">
@@ -1992,6 +2069,10 @@ function openPicker(id){
   const list = [...c.emoji, ...EMOJI_MORE, ...CATS.filter(x => x !== c).flatMap(x => x.emoji)].filter((v, i, a) => a.indexOf(v) === i);
   $("#pickEmojis").innerHTML = list.map(e => `<button data-em="${e}" class="${it.emoji === e && !it.img ? "on" : ""}" aria-label="${e}">${e}</button>`).join("");
   $("#pickNone").disabled = !hasVisual(it);
+  const art = `img/${c.id}.jpg`;
+  $("#pickArtImg").src = art;
+  $("#pickArt").classList.toggle("on", it.img === art);
+  $("#pickArt").onclick = () => { it.img = art; it.emoji = null; save(); closeDlg("#pickDlg"); afterPick(); };
   $$("#pickEmojis [data-em]").forEach(b => b.onclick = () => {
     it.emoji = b.dataset.em; it.img = null; save(); closeDlg("#pickDlg"); afterPick();
   });
@@ -2210,10 +2291,11 @@ const PROLOGUE = [
      ${SPREAD.map((q, i) => pDot(q[0], q[1], HEX[i % 6], i * .055)).join("")}`},
   {h:"人生は、6つの部屋でできています",
    p:"経済、家庭、仕事、教養、健康、心。<br>どこかが空っぽなら、それがいまのあなたの偏りです。",
-   svg:() => CATS.map((c, i) => { const x = 66 + i * 94;
-     return `<g class="pop" style="animation-delay:${i * .11}s"><circle cx="${x}" cy="150" r="40" fill="${c.hex}" fill-opacity=".92"/>
-       <g transform="translate(${x - 17} 133) scale(1.4)" color="#fff">${catIcon(c.id, 24, 1.8)}</g>
-       <text x="${x}" y="222" text-anchor="middle" font-size="14" font-weight="800" fill="${c.hex}">${catShort(c)}</text></g>`; }).join("")},
+   svg:() => CATS.map((c, i) => { const x = 54 + i * 98;
+     return `<g class="pop" style="animation-delay:${i * .11}s"><clipPath id="pc${i}"><circle cx="${x}" cy="150" r="44"/></clipPath>
+       <circle cx="${x}" cy="150" r="48" fill="${c.hex}"/>
+       <image href="img/${c.id}.jpg" x="${x - 44}" y="106" width="88" height="88" clip-path="url(#pc${i})" preserveAspectRatio="xMidYMid slice"/>
+       <text x="${x}" y="224" text-anchor="middle" font-size="15" font-weight="800" fill="${c.hex}">${catShort(c)}</text></g>`; }).join("")},
   {h:"日付を入れた瞬間、夢は目標に変わります",
    p:"1年以内。3年。5年。10年。<br>遠いものほど上に、近いものほど下に置かれます。",
    svg:() => `<line x1="46" y1="240" x2="554" y2="240" stroke="${cssv("--line-2")}" stroke-width="3" stroke-linecap="round"/>
@@ -2231,8 +2313,8 @@ const PROLOGUE = [
    svg:() => pPyramid(true)},
   {h:"さあ、はじめましょう",
    p:"紙もペンもいりません。全部で40〜60分ほど。<br>途中でやめても、続きから戻れます。",
-   svg:() => `<g class="pop">${pPyramid(true)}</g>
-     ${[[92,58],[512,50],[62,216],[538,198],[300,326]].map((q, i) => `<g class="dft" style="animation-delay:${i * .35}s"><circle cx="${q[0]}" cy="${q[1]}" r="6" fill="${HEX[i]}"/></g>`).join("")}`}
+   svg:() => `<clipPath id="heroClip"><rect x="20" y="8" width="560" height="315" rx="22"/></clipPath>
+     <g class="pop"><image href="img/hero-s.jpg" x="20" y="8" width="560" height="315" clip-path="url(#heroClip)" preserveAspectRatio="xMidYMid slice"/></g>`}
 ];
 let proAt = 0;
 const proEl = $("#prologue");
@@ -2400,6 +2482,18 @@ async function buildTreasureMap(){
   const W = 1748, H = 2480, {cv, ctx} = newCanvas(W, H);
   const th = mapTheme(), p = prof(), a = ageNow();
   paper(ctx, W, H, th, true);
+  const heroImg = await loadImg("img/hero.jpg");
+  if(heroImg){
+    /* 夢の景色を、紙にうっすら溶かし込む */
+    const off = document.createElement("canvas"); off.width = W; off.height = H;
+    const o = off.getContext("2d");
+    drawCover(o, heroImg, 60, 300, W - 120, 1900);
+    o.globalCompositeOperation = "destination-in";
+    const mg = o.createRadialGradient(W / 2, 1250, 120, W / 2, 1250, 980);
+    mg.addColorStop(0, "rgba(0,0,0,.30)"); mg.addColorStop(.7, "rgba(0,0,0,.16)"); mg.addColorStop(1, "rgba(0,0,0,0)");
+    o.fillStyle = mg; o.fillRect(0, 0, W, H);
+    ctx.drawImage(off, 0, 0);
+  }
   ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
   ctx.font = `800 23px ${JP}`; ctx.fillStyle = P_GOLD; spaced(ctx, "LIFE GOAL ・ TREASURE MAP", W / 2, 136, 9);
   ctx.font = `900 80px ${JP}`; ctx.fillStyle = P_NAVY; ctx.fillText((p.name ? p.name + "の" : "") + "宝地図", W / 2, 222);
@@ -2465,10 +2559,22 @@ async function buildTreasureMap(){
     const s = Math.max(FR * 2 / faceImg.width, FR * 2 / faceImg.height);
     ctx.drawImage(faceImg, CX - faceImg.width * s / 2, CY - faceImg.height * s / 2, faceImg.width * s, faceImg.height * s);
   }else{
-    ctx.fillStyle = "#fff"; ctx.fillRect(CX - FR, CY - FR, FR * 2, FR * 2);
-    ctx.textAlign = "center"; ctx.fillStyle = P_NAVY; ctx.font = `900 58px ${JP}`;
-    ctx.fillText(fitLine(ctx, p.name || "あなた", FR * 1.7), CX, CY - 4);
-    ctx.font = `700 25px ${JP}`; ctx.fillStyle = P_INK3; ctx.fillText(a !== null ? `${a}歳` : "", CX, CY + 40);
+    if(heroImg){
+      /* 顔写真がなければ、頂上の景色を真ん中に */
+      const sw = heroImg.height * .62, sx = heroImg.width * .5;
+      ctx.drawImage(heroImg, sx, 0, sw, heroImg.height * .62, CX - FR, CY - FR, FR * 2, FR * 2);
+      const bg = ctx.createLinearGradient(0, CY + 10, 0, CY + FR);
+      bg.addColorStop(0, "rgba(29,42,77,0)"); bg.addColorStop(.35, "rgba(29,42,77,.78)"); bg.addColorStop(1, "rgba(29,42,77,.92)");
+      ctx.fillStyle = bg; ctx.fillRect(CX - FR, CY + 10, FR * 2, FR);
+      ctx.textAlign = "center"; ctx.fillStyle = "#fff"; ctx.font = `900 50px ${JP}`;
+      ctx.fillText(fitLine(ctx, p.name || "あなた", FR * 1.5), CX, CY + 124);
+      ctx.font = `700 24px ${JP}`; ctx.fillStyle = "#e2bd62"; ctx.fillText(a !== null ? `${a}歳` : "", CX, CY + 162);
+    }else{
+      ctx.fillStyle = "#fff"; ctx.fillRect(CX - FR, CY - FR, FR * 2, FR * 2);
+      ctx.textAlign = "center"; ctx.fillStyle = P_NAVY; ctx.font = `900 58px ${JP}`;
+      ctx.fillText(fitLine(ctx, p.name || "あなた", FR * 1.7), CX, CY - 4);
+      ctx.font = `700 25px ${JP}`; ctx.fillStyle = P_INK3; ctx.fillText(a !== null ? `${a}歳` : "", CX, CY + 40);
+    }
   }
   ctx.restore();
   const words = cheerWords();
