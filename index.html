@@ -668,6 +668,55 @@ dialog::backdrop{background:rgba(14,18,30,.66);backdrop-filter:blur(3px)}
 .pickart img{width:64px;height:64px;border-radius:12px;object-fit:cover;flex:none}
 .pickart.on{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
 
+
+/* ==================== 入口：やろう！と思える構成 ==================== */
+.quick{margin-top:22px;background:rgba(255,255,255,.88);border:1.5px solid #e2d3ae;border-radius:20px;padding:16px 16px 14px;box-shadow:0 10px 30px rgba(29,42,77,.12);max-width:560px}
+.quick label{display:block;font-family:var(--font-display);font-weight:900;font-size:17px;color:#1d2640;margin-bottom:10px}
+.quick label small{display:block;font-family:inherit;font-size:12.5px;color:#6b7390;font-weight:700;margin-top:2px}
+.quick .row{display:flex;gap:8px}
+.quick input{flex:1;font-size:17px;font-weight:700;padding:14px 15px;background:#fff;color:#1d2640;border:2px solid #e2d3ae;border-radius:14px}
+.quick input:focus{border-color:#b98a2a;box-shadow:0 0 0 4px rgba(226,189,98,.3)}
+.quick .go{background:linear-gradient(100deg,#b98a2a,#e2bd62);color:#2b1f05;border:none;font-size:16px;padding:14px 22px;border-radius:14px;box-shadow:0 6px 16px rgba(185,138,42,.35)}
+.quick .go:hover{filter:brightness(1.05);transform:translateY(-1px)}
+.quick .ideas{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;align-items:center}
+.quick .ideas span{font-size:12px;color:#6b7390;font-weight:700;margin-right:2px}
+.quick .ideas button{font-size:12.5px;padding:5px 11px;border-radius:20px;background:#fbf6ec;color:#3c4766;border:1px dashed #d8c9a6;font-weight:700}
+.quick .ideas button:hover{border-style:solid;border-color:#b98a2a;color:#8a6417}
+.sublinks{display:flex;gap:4px 16px;flex-wrap:wrap;margin-top:14px}
+.sublinks button{background:none;border:none;padding:4px 0;color:#1d2a4d;font-size:14px;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#d8c9a6}
+.sublinks button:hover{color:#8a6417}
+@media (max-width:520px){ .quick .row{flex-direction:column} .quick .go{width:100%} }
+.hero{min-height:620px}
+
+.showcase{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(20px,4vw,48px);align-items:center;margin-top:46px}
+@media (max-width:820px){ .showcase{grid-template-columns:1fr} }
+.sc-art{position:relative;min-height:440px}
+.sc-art .road{position:absolute;right:0;top:40px;width:66%;border-radius:10px;box-shadow:var(--shadow-lift);transform:rotate(4deg)}
+.sc-art .map{position:relative;width:58%;margin-left:4%;border-radius:10px;box-shadow:0 24px 50px rgba(29,42,77,.28);transform:rotate(-3deg);z-index:1}
+.sc-art .tape{position:absolute;z-index:2;width:110px;height:30px;background:rgba(226,189,98,.6);top:-8px;left:20%;transform:rotate(-8deg)}
+@media (max-width:820px){ .sc-art{min-height:0;padding:6px 0 18px} .sc-art .road{top:24px} }
+.sc-text h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;line-height:1.45;margin:6px 0 18px}
+.sc-text h2 em{font-style:normal;background:linear-gradient(transparent 60%,var(--gold-soft) 60%)}
+.gets{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.gets li{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow)}
+.gets li i{font-style:normal;width:34px;height:34px;border-radius:50%;background:#1d2a4d;color:#e2bd62;display:grid;place-items:center;font-family:var(--font-num);font-weight:800;flex:none}
+.gets b{display:block;font-family:var(--font-display);font-size:17px;line-height:1.45}
+.gets p{font-size:13.5px;color:var(--ink-2);margin-top:2px}
+
+.forwho{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (max-width:640px){ .forwho{grid-template-columns:1fr} }
+.forwho div{display:flex;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-weight:700;font-size:15px;line-height:1.6}
+.forwho div::before{content:"✓";width:28px;height:28px;border-radius:50%;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center;font-weight:900;flex:none}
+
+.finalcta{margin-top:46px;border-radius:26px;overflow:hidden;position:relative;padding:clamp(34px,6vw,64px) clamp(22px,5vw,56px);color:#fff;text-align:center;
+  background:linear-gradient(180deg,rgba(20,28,54,.55),rgba(20,28,54,.85)),url(img/hero.jpg) center 35%/cover;box-shadow:var(--shadow-lift)}
+.finalcta h2{font-size:clamp(24px,4vw,36px);font-weight:900;line-height:1.5;text-shadow:0 2px 20px rgba(0,0,0,.35)}
+.finalcta p{margin:10px auto 24px;max-width:34em;opacity:.92}
+.finalcta button{background:linear-gradient(100deg,#b98a2a,#e2bd62);color:#2b1f05;border:none;font-size:18px;padding:17px 36px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.finalcta small{display:block;margin-top:14px;font-size:12.5px;opacity:.85}
+.qsnote{display:flex;gap:12px;align-items:center;background:var(--gold-soft);border:1.5px solid var(--gold);border-radius:14px;padding:12px 16px;margin:0 0 16px;font-weight:700}
+.qsnote::before{content:"✨";font-size:20px}
+
 footer{text-align:center;font-size:12px;color:var(--ink-3);padding:30px 0 40px;line-height:2;border-top:1px solid var(--line);margin-top:30px}
 footer button{font-size:12px;padding:2px 8px;font-weight:700}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:9999}
@@ -1171,7 +1220,7 @@ function composeWords(){
 }
 
 /* ==================== 画面の状態 ==================== */
-const ui = {view:"home", cat:0, dateMode:"one", queue:[], qAt:0, legacy:0, whyFor:null, tab:data.view || "pyr", sheet:"map", reveal:false, noticeOff:false};
+const ui = {pendingCat:0, quickText:"", view:"home", cat:0, dateMode:"one", queue:[], qAt:0, legacy:0, whyFor:null, tab:data.view || "pyr", sheet:"map", reveal:false, noticeOff:false};
 const STEPS = [
   {id:"profile", n:0, t:"あなたのこと", k:"はじめに"},
   {id:"dump",    n:1, t:"書き出す",     k:"STEP 1"},
@@ -1278,51 +1327,115 @@ function drawNotice(){
 }
 
 /* ==================== 入口 ==================== */
+const QS_IDEAS = ["家族で海外旅行に行く","年収を100万円上げる","本を出す","フルマラソンを完走する","英語で話せるようになる","海の見える家に住む"];
+const QS_GUESS = [
+  ["health", /健康|走|マラソン|体重|kg|痩|やせ|筋|ジム|ヨガ|眠|睡眠|食事|禁煙|酒|ダイエット|体力/],
+  ["knowledge", /学|資格|英語|語を|語で|話せる|読|勉強|習|ピアノ|ギター|楽器|大学|教養|検定/],
+  ["economy", /円|お金|収入|年収|貯|資産|投資|買|億|稼|ローン|車|時計|経済的/],
+  ["social", /仕事|会社|起業|独立|本を出|出版|講演|事業|顧客|社長|昇進|貢献|ボランティア|店を|お店|発信/],
+  ["family", /家族|妻|夫|子ども|子供|孫|親|旅行|旅|家を|住|ペット|犬|猫|結婚|恋人|休み|行く/],
+  ["spirit", /心|穏やか|感謝|瞑想|許|機嫌|自分を|幸せ|楽しむ|ゆとり|余裕/]
+];
+function guessCat(t){ const hit = QS_GUESS.find(g => g[1].test(t)); return hit ? hit[0] : "spirit"; }
+function quickStart(){
+  const el = $("#qsInput"), v = el ? el.value.trim() : "";
+  if(v && !v.includes("＿")){
+    const cat = guessCat(v);
+    data.items.push({id:uid(), cat, text:v, due:null, level:null, img:null, emoji:null, done:false, from:null});
+    bump(1); data.seenPro = true; save();
+    ui.pendingCat = CATS.findIndex(c => c.id === cat);
+    ui.quickText = v;
+  }
+  go(prof().name ? "dump" : "profile", {cat:ui.pendingCat || 0});
+}
 function viewLanding(){
   main.innerHTML = `
     <section class="hero">
       <img class="hero-art" src="img/hero.jpg" srcset="img/hero-s.jpg 900w, img/hero.jpg 1600w" sizes="(max-width:760px) 100vw, 1080px" alt="開いた手帳から、頂上へ続く金色の道がのびている絵">
       <div class="hero-veil"></div>
       <div class="hero-body">
-        <span class="kicker">LIFE GOAL NOTEBOOK</span>
-        <h1>やりたいことを、<br><em>1枚の地図</em>にする。</h1>
-        <p class="lead">頭の中にある「いつか」を全部書き出し、日付をつけ、絵をつける。最後に、あなた自身の言葉の中から人生の目的が現れます。</p>
-        <div class="hero-badges"><span>無料</span><span>40〜60分</span><span>紙もペンもいらない</span><span>A4で印刷できる</span></div>
-        <div class="cta-row">
-          <button class="primary big" id="btnStart">はじめる</button>
-          <button class="big" id="btnSample">記入例で完成形を見る</button>
-          <button class="ghost big" id="btnGuide2">使い方を読む</button>
+        <span class="kicker">LIFE GOAL NOTEBOOK ・ 夢をかなえる手帳</span>
+        <h1>叶えたい夢を、<br><em>宝地図</em>にしよう。</h1>
+        <p class="lead">やりたいことを書き出して、日付と絵をつけるだけ。<b>約45分後</b>、あなただけの宝地図と、人生の目的ができあがります。</p>
+        <div class="quick">
+          <label for="qsInput">まずは1つ。いちばん叶えたいことは？<small>小さなことでも、大きすぎることでも大丈夫です</small></label>
+          <div class="row">
+            <input type="text" id="qsInput" placeholder="例）${esc(QS_IDEAS[0])}" autocomplete="off" enterkeyhint="go">
+            <button class="go" id="qsGo">書いてはじめる →</button>
+          </div>
+          <div class="ideas"><span>ヒント：</span>${QS_IDEAS.slice(0, 4).map(t => `<button data-idea="${esc(t)}">${esc(t)}</button>`).join("")}</div>
         </div>
-        <p class="hint" style="margin-top:12px">途中でやめても、次に開いたときに続きから始まります。</p>
+        <div class="sublinks">
+          <button id="btnSample">記入例で完成形を見る</button>
+          <button id="btnPro2">1分でわかる紹介</button>
+          <button id="btnGuide2">使い方</button>
+        </div>
+        <div class="hero-badges"><span>無料</span><span>登録不要</span><span>約45分</span><span>A4で印刷できる</span></div>
       </div>
     </section>
-    <section class="flowsec">
-      <ol class="flow">
+
+    <section class="showcase">
+      <div class="sc-art">
+        <img class="road" src="img/sample-road.jpg" alt="人生ロードマップの記入例" loading="lazy">
+        <span class="tape"></span>
+        <img class="map" src="img/sample-map.jpg" alt="宝地図の記入例" loading="lazy">
+      </div>
+      <div class="sc-text">
+        <span class="kicker">45分後、あなたの手元に</span>
+        <h2>世界に1枚だけの<br><em>あなたの宝地図</em>ができあがる</h2>
+        <ul class="gets">
+          <li><i>1</i><div><b>毎朝見たくなる「宝地図」</b><p>絵にした夢と、あなたの名前が並ぶA4の1枚。冷蔵庫や机の前に貼って、毎朝眺めます。</p></div></li>
+          <li><i>2</i><div><b>あなたの言葉から生まれる「人生の目的」</b><p>座右の銘と辞世の句もいっしょに。迷ったときに立ち返る道しるべになります。</p></div></li>
+          <li><i>3</i><div><b>今日やることがわかる「ロードマップ」</b><p>1年後・3年後・10年後を年齢と並べるので、いま何から始めればいいかが見えます。</p></div></li>
+        </ul>
+        <div class="cta-row"><button class="primary big" id="btnStart">わたしの宝地図をつくる</button></div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sechead"><h2>こんな人のための手帳です</h2></div>
+      <div class="forwho">
+        <div>「いつか」やりたいことが、ずっと「いつか」のままになっている</div>
+        <div>毎日が忙しくて、自分の人生をゆっくり考える時間がなかった</div>
+        <div>誕生日や年のはじめに、これからの人生を描き直したい</div>
+        <div>やる気はあるのに、何から手をつければいいかわからない</div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sechead"><h2>かんたん4ステップ</h2><span class="hint">途中でやめても、次に開くと続きから始まります</span></div>
+      <ol class="flow" style="margin-top:0">
         ${[["STEP 1","書き出す","6分野に、思いつくまま全部","20分"],["STEP 2","日付をつける","夢が、目標に変わる瞬間","5分"],
-           ["STEP 3","絵をつける","写真や絵で、見える夢に","10分"],["STEP 4","終わりから","人生の目的が、言葉になる","10分"]]
+           ["STEP 3","絵をつける","写真やイラストで、見える夢に","10分"],["STEP 4","終わりから","人生の目的が、言葉になる","10分"]]
           .map((s, i) => `<li style="border-top:4px solid ${CATS[i + 1].hex}"><span class="kicker" style="color:${CATS[i + 1].hex}">${s[0]}</span>
             <span class="min">${s[3]}</span><b>${s[1]}</b><p>${s[2]}</p></li>`).join("")}
       </ol>
     </section>
+
     <section class="sec">
       <div class="sechead"><h2>人生は、6つの部屋でできています</h2><span class="hint">それぞれの部屋に、5つずつ夢を置いていきます</span></div>
       <div class="rooms">${CATS.map(c => `<figure class="room" style="--cc:${c.hex}"><img src="img/${c.id}.jpg" alt="${c.name}のイラスト" loading="lazy" width="720" height="720">
         <figcaption><b>${catShort(c)}</b><span>${c.sub}</span><em>${c.asks[0]}</em></figcaption></figure>`).join("")}</div>
     </section>
-    <section class="sec">
-      <div class="sechead"><h2>できあがるもの</h2></div>
-      <div class="makes">
-        ${[["🔺","人生ピラミッド","近い夢ほど下の段へ。いちばん下が、今日やることです",CATS[0].hex],
-           ["🗺️","宝地図（A4縦）","絵にした夢と、あなたの笑顔。壁に貼って毎朝見る1枚",CATS[1].hex],
-           ["📅","人生ロードマップ（A4横）","西暦と年齢の軸に、6分野の夢が並びます",CATS[2].hex],
-           ["✅","今年のチェックシート","1年以内にやることと、毎月の見直し欄",CATS[4].hex],
-           ["🖋️","三つの言葉","人生の目的・座右の銘・辞世の句。あなたの言葉から組み立てます",CATS[3].hex]]
-          .map(m => `<div class="make"><div class="ic" style="background:color-mix(in srgb,${m[3]} 16%,transparent)">${m[0]}</div><b>${m[1]}</b><p>${m[2]}</p></div>`).join("")}
-      </div>
-      <p class="credit">6分野と3レベルの名称は熊谷正寿氏の夢手帳の構成に、宝地図の考え方は望月俊孝氏に、「終わりから考える」問いは『7つの習慣』第2の習慣に、それぞれ拠っています。各書籍・商品とは無関係の非公式ツールです。呼び水の質問・穴埋めの型・解析の仕組み・画面の構成は独自に作成しました。</p>
-    </section>`;
-  $("#btnStart").onclick = () => go("profile");
+
+    <section class="finalcta">
+      <h2>あなたの宝地図は、<br>最初の1行から始まります。</h2>
+      <p>紙もペンもいりません。書いた内容はこの端末の中だけに保存され、どこにも送られません。</p>
+      <button id="btnStart2">いますぐ書きはじめる</button>
+      <small>無料・登録不要・途中でやめても続きから</small>
+    </section>
+    <p class="credit">6分野と3レベルの名称は熊谷正寿氏の夢手帳の構成に、宝地図の考え方は望月俊孝氏に、「終わりから考える」問いは『7つの習慣』第2の習慣に、それぞれ拠っています。各書籍・商品とは無関係の非公式ツールです。呼び水の質問・穴埋めの型・解析の仕組み・画面の構成は独自に作成しました。</p>`;
+  const qi = $("#qsInput");
+  $("#qsGo").onclick = quickStart;
+  qi.onkeydown = e => { if(e.key === "Enter" && !e.isComposing){ e.preventDefault(); quickStart(); } };
+  $$("[data-idea]").forEach(b => b.onclick = () => { qi.value = b.dataset.idea; qi.focus(); });
+  let k = 0;
+  const rot = setInterval(() => { if(!document.body.contains(qi)){ clearInterval(rot); return; } k = (k + 1) % QS_IDEAS.length; qi.placeholder = "例）" + QS_IDEAS[k]; }, 2600);
+  const toQuick = () => { window.scrollTo({top:0, behavior:"smooth"}); setTimeout(() => qi.focus({preventScroll:true}), 350); };
+  $("#btnStart").onclick = toQuick;
+  $("#btnStart2").onclick = toQuick;
   $("#btnSample").onclick = loadSample;
+  $("#btnPro2").onclick = openPro;
   $("#btnGuide2").onclick = openGuide;
 }
 function viewResume(){
@@ -1345,11 +1458,13 @@ function viewResume(){
 }
 
 /* ==================== はじめに：プロフィール ==================== */
+function takePendingCat(){ const c = ui.pendingCat || 0; ui.pendingCat = 0; return c; }
 function viewProfile(){
   drawStepper(true);
   const p = prof();
   main.innerHTML = stephead("はじめに", "あなたのことを、少しだけ",
-    "名前と生年月日をいただくと、すべての夢に「何年の、何歳の自分か」が入ります。年齢が見えると、夢は急に現実味を帯びます。") + `
+    "名前と生年月日をいただくと、すべての夢に「何年の、何歳の自分か」が入ります。年齢が見えると、夢は急に現実味を帯びます。") +
+    (ui.quickText ? `<div class="qsnote">1つめの夢「${esc(ui.quickText)}」を受け取りました。あと少しで書き出しに進めます</div>` : "") + `
     <section class="panel"><div class="pform">
       <div><label for="pfName">お名前<span class="req">＊</span><small>ニックネームでも構いません</small></label>
         <input type="text" id="pfName" value="${esc(p.name)}" placeholder="例）山田 花子" autocomplete="nickname"></div>
@@ -1379,10 +1494,10 @@ function viewProfile(){
   const bar = () => setBar({
     back:{label:"ホーム", fn:() => go("home")},
     status:p.name ? "" : "お名前を入れると進めます",
-    next:{label:"書き出しをはじめる", disabled:!p.name, fn:() => { save(); go("dump", {cat:0}); }}
+    next:{label:"書き出しをはじめる", disabled:!p.name, fn:() => { save(); go("dump", {cat:takePendingCat()}); }}
   });
   name.oninput = upd; birth.oninput = upd; life.oninput = upd;
-  name.onkeydown = e => { if(e.key === "Enter" && p.name){ e.preventDefault(); save(); go("dump", {cat:0}); } };
+  name.onkeydown = e => { if(e.key === "Enter" && p.name){ e.preventDefault(); save(); go("dump", {cat:takePendingCat()}); } };
   $("#pfThumb").onclick = () => pickFile(async f => {
     const prev = p.face;
     p.face = await shrink(f, 700);
@@ -1420,6 +1535,7 @@ function viewDump(){
      "「型」を押すと書き出しの形が入ります。＿＿の部分を自分の言葉で埋めてください",
      "ぼんやりした夢は「なぜ？」を押して、手に入ったら何をするかを書き足すと、本当の願いが見えてきます",
      "思いつかない分野は空のままでも進めます。あとで手帳から追加できます"]) + `
+    ${ui.quickText && data.items.some(i => i.text === ui.quickText) ? `<div class="qsnote">「${esc(ui.quickText)}」を「${esc(catShort(catOf(data.items.find(i => i.text === ui.quickText).cat)))}」に入れました。分野が違うときは ✕ で消して、合う分野に書き直してください</div>` : ""}
     <nav class="cattabs" aria-label="分野">${CATS.map((x, i) => {
       const k = data.items.filter(it => it.cat === x.id).length;
       return `<button data-c="${i}" class="${i === ui.cat ? "on" : ""}" style="--cc:${x.hex}"><img class="ti" src="img/${x.id}.jpg" alt="">${catShort(x)}<span class="n">${k}</span></button>`;
@@ -1478,7 +1594,7 @@ function viewDump(){
         if(!last){ ui.cat++; ui.whyFor = null; viewDump(); window.scrollTo(0, 0); return; }
         const empty = CATS.filter(x => !data.items.some(i => i.cat === x.id));
         if(empty.length && !confirm(`「${empty.map(catShort).join("・")}」がまだ空です。このまま日付をつけに進みますか。\n（あとからいつでも追加できます）`)) return;
-        bump(1); save(); go("date");
+        bump(1); ui.quickText = ""; save(); go("date");
       }}
   });
   if(!ui.whyFor && matchMedia("(hover:hover)").matches) setTimeout(() => { const el = $("#dumpInput"); if(el) el.focus({preventScroll:true}); }, 30);
@@ -2280,24 +2396,19 @@ const HEAD_OFF = [[-40,-40],[20,-52],[-10,-14],[-62,8],[46,0],[-26,36],[32,44],[
 const SPREAD = [[70,70],[168,44],[262,80],[356,50],[452,74],[534,116],[62,150],[152,132],[250,158],[348,140],[446,160],[530,196],[96,236],[196,224],[300,248],[404,232]];
 const HEADPATH = "M300,58 C364,58 406,104 406,162 C406,222 364,262 300,262 C236,262 194,222 194,162 C194,104 236,58 300,58Z";
 const PROLOGUE = [
-  {h:"やりたいことは、あるはずなんです",
-   p:"でも、頭の中にあるうちは形になりません。<br>「いつか」「そのうち」のまま、何年も過ぎていきます。",
-   svg:() => `<path class="draw" d="${HEADPATH}" fill="none" stroke="${cssv("--line-2")}" stroke-width="3"/>
-     ${HEAD_OFF.map((o, i) => pDot(300 + o[0], 160 + o[1], HEX[i % 6], i * .045, "jit")).join("")}
-     ${pChip(84, 70, "いつか", 0)}${pChip(504, 62, "お金のこと", .5)}${pChip(88, 248, "時間がない", 1)}${pChip(508, 240, "何から？", 1.5)}${pChip(300, 300, "このままでいいのか", .8)}`},
-  {h:"頭の中にあるものは、数えられません",
-   p:"数えられないものは、いつまでも減りません。<br>だからまず、全部そとに出します。",
-   svg:() => `<path d="${HEADPATH}" fill="none" stroke="${cssv("--line")}" stroke-width="3" stroke-dasharray="7 8"/>
-     ${SPREAD.map((q, i) => pDot(q[0], q[1], HEX[i % 6], i * .055)).join("")}`},
-  {h:"人生は、6つの部屋でできています",
-   p:"経済、家庭、仕事、教養、健康、心。<br>どこかが空っぽなら、それがいまのあなたの偏りです。",
+  {h:"あなたの夢、いくつ言えますか？",
+   p:"行きたい場所、手に入れたいもの、なりたい自分。<br>書き出してみると、思っていたよりずっとたくさん出てきます。",
+   svg:() => `<clipPath id="pClip1"><rect x="20" y="8" width="560" height="315" rx="22"/></clipPath>
+     <g class="pop"><image href="img/hero-s.jpg" x="20" y="8" width="560" height="315" clip-path="url(#pClip1)" preserveAspectRatio="xMidYMid slice"/></g>`},
+  {h:"人生の6つの部屋に、夢を置いていく",
+   p:"お金、家族、仕事、学び、健康、心。<br>それぞれに5つずつ。叶うかどうかは、まだ考えなくて大丈夫です。",
    svg:() => CATS.map((c, i) => { const x = 54 + i * 98;
      return `<g class="pop" style="animation-delay:${i * .11}s"><clipPath id="pc${i}"><circle cx="${x}" cy="150" r="44"/></clipPath>
        <circle cx="${x}" cy="150" r="48" fill="${c.hex}"/>
        <image href="img/${c.id}.jpg" x="${x - 44}" y="106" width="88" height="88" clip-path="url(#pc${i})" preserveAspectRatio="xMidYMid slice"/>
        <text x="${x}" y="224" text-anchor="middle" font-size="15" font-weight="800" fill="${c.hex}">${catShort(c)}</text></g>`; }).join("")},
-  {h:"日付を入れた瞬間、夢は目標に変わります",
-   p:"1年以内。3年。5年。10年。<br>遠いものほど上に、近いものほど下に置かれます。",
+  {h:"日付を入れた瞬間、夢は目標に変わる",
+   p:"1年後、3年後、10年後。<br>年齢と並べると、今日やることがはっきり見えてきます。",
    svg:() => `<line x1="46" y1="240" x2="554" y2="240" stroke="${cssv("--line-2")}" stroke-width="3" stroke-linecap="round"/>
      ${[["1年",90],["3年",220],["5年",350],["10年",480]].map((m, i) => `<g class="rise" style="animation-delay:${i * .13}s">
        <line x1="${m[1]}" y1="230" x2="${m[1]}" y2="248" stroke="${cssv("--line-2")}" stroke-width="3"/>
@@ -2305,16 +2416,14 @@ const PROLOGUE = [
        ${[0,1,2].map(k => `<circle cx="${m[1] + (k - 1) * 22}" cy="${208 - k * 30 - i * 14}" r="9" fill="${HEX[(i * 3 + k) % 6]}"/>`).join("")}</g>`).join("")}
      <text x="554" y="212" text-anchor="end" font-size="13" fill="${cssv("--ink-3")}">遠い夢</text>
      <text x="46" y="212" font-size="13" fill="${cssv("--ink-3")}">近い夢</text>`},
-  {h:"積み上がると、順番が見えます",
-   p:"いちばん下の段が、今日やることです。<br>もう「何から手をつけるか」で迷いません。",
-   svg:() => `${pPyramid(false)}<text x="300" y="322" text-anchor="middle" font-size="14" font-weight="800" fill="${cssv("--gold")}">↑ いちばん下から、手をつける</text>`},
-  {h:"最後に、あなたの言葉の中から<br>人生の目的が現れます",
-   p:"誰かに決められたものではありません。<br>あなたが書いた言葉だけを数えて、組み立てます。",
-   svg:() => pPyramid(true)},
-  {h:"さあ、はじめましょう",
-   p:"紙もペンもいりません。全部で40〜60分ほど。<br>途中でやめても、続きから戻れます。",
-   svg:() => `<clipPath id="heroClip"><rect x="20" y="8" width="560" height="315" rx="22"/></clipPath>
-     <g class="pop"><image href="img/hero-s.jpg" x="20" y="8" width="560" height="315" clip-path="url(#heroClip)" preserveAspectRatio="xMidYMid slice"/></g>`}
+  {h:"そして、世界に1枚だけの宝地図に",
+   p:"絵にした夢と、あなた自身の言葉から生まれた人生の目的。<br>壁に貼って、毎朝眺めてください。",
+   svg:() => `<g class="rise"><image href="img/sample-road.jpg" x="300" y="40" width="270" height="190" transform="rotate(5 435 135)" preserveAspectRatio="xMidYMid meet"/></g>
+     <g class="pop" style="animation-delay:.25s"><image href="img/sample-map.jpg" x="150" y="6" width="226" height="320" transform="rotate(-4 263 166)" preserveAspectRatio="xMidYMid meet"/></g>`},
+  {h:"さあ、最初の1行を書きましょう",
+   p:"紙もペンもいりません。約45分。<br>途中でやめても、続きから戻れます。",
+   svg:() => `<clipPath id="pClip5"><rect x="20" y="8" width="560" height="315" rx="22"/></clipPath>
+     <g class="pop"><image href="img/hero.jpg" x="20" y="8" width="560" height="315" clip-path="url(#pClip5)" preserveAspectRatio="xMidYMid slice"/></g>`}
 ];
 let proAt = 0;
 const proEl = $("#prologue");
@@ -2324,14 +2433,14 @@ function drawPro(){
   $("#proCopy").innerHTML = `<div class="pro-scene"><h2>${sc.h}</h2><p>${sc.p}</p></div>`;
   $("#proDots").innerHTML = PROLOGUE.map((_, i) => `<i class="${i === proAt ? "on" : ""}"></i>`).join("");
   $("#proBack").disabled = proAt === 0;
-  $("#proNext").textContent = proAt === PROLOGUE.length - 1 ? "はじめる" : "次へ";
+  $("#proNext").textContent = proAt === PROLOGUE.length - 1 ? "書きはじめる" : "次へ";
   $("#proSkip").hidden = proAt === PROLOGUE.length - 1;
 }
 function openPro(){ proAt = 0; proEl.hidden = false; document.body.style.overflow = "hidden"; drawPro(); $("#proNext").focus(); }
 function closePro(){ proEl.hidden = true; document.body.style.overflow = ""; data.seenPro = true; save(); }
 $("#proNext").onclick = () => {
   if(proAt < PROLOGUE.length - 1){ proAt++; drawPro(); }
-  else { closePro(); if(data.progress === 0) go("profile"); }
+  else { closePro(); if(data.progress === 0){ go("home"); setTimeout(() => { const q = $("#qsInput"); if(q) q.focus(); }, 80); } }
 };
 $("#proBack").onclick = () => { if(proAt > 0){ proAt--; drawPro(); } };
 $("#proSkip").onclick = () => closePro();
@@ -2879,7 +2988,6 @@ window.__lgBooted = true;
 
 /* ==================== 起動 ==================== */
 render();
-if(data.progress === 0 && !data.seenPro && !data.items.length) openPro();
 if(data.updatedAt){ const t = new Date(data.updatedAt); setSaved(`前回 ${t.getMonth() + 1}/${t.getDate()} ${hhmm(t)}`); }
 </script>
 </body>
